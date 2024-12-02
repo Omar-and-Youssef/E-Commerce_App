@@ -17,5 +17,9 @@ Promotions:
 Product
 Review (user id,productid,message,rating)
 Category (tech..)
+
+Exceptions...
+Gui.....
+resources...
 //Search Bar?
 
