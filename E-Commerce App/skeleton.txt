@@ -1,0 +1,22 @@
+# Project Skeleton
+
+## Folder Structure
+
+E-Commerce_App/
+│
+├── src/
+│   ├── ex/
+│   │   ├── ex/
+│   │   │   └── ex/
+│   │   │       ├── ex
+│   │   │       
+│   │   │      
+│   │   │       
+│   │   │      
+│   │   │
+│   │   └── resources/
+│   
+│
+└── README.md
+
+==============================
