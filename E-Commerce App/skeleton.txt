@@ -1,7 +1,4 @@
-# Project Skeleton
-
-## Folder Structure
-
+==========Folder Structure==========
 E-Commerce_App/
 │
 ├── src/
@@ -19,4 +16,21 @@ E-Commerce_App/
 │
 └── README.md
 
-==============================
+==========Skeleton Templates==========
+Package: game.engine
+Type: Abstract Class
+Description: 
+==
+"Name.java"
+Package: xx.
+Type: Class
+Description:
+===
+void methodName(Param1,...)
+    Description: 
+    Parameters:
+        Param1 : Description
+    Return Type: void
+
+===============Skeleton===============
+
