@@ -1,0 +1,21 @@
+User
+|-Admin(For maniging)
+|-Customer(Buyer,Seller)
+Ticket For Help
+Cart
+
+Orders(Product Id,price,date,info...)
+Order Status
+MemberShip (price,expiry)
+MemberShipType(Enum)
+
+WishList
+Promotions:
+|-Coupon(Voucher either)
+|-Discount(For item,Category,All)
+|-Points
+Product
+Review (user id,productid,message,rating)
+Category (tech..)
+//Search Bar?
+
