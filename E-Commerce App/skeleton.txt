@@ -5,11 +5,11 @@
 E-Commerce_App/
 │
 ├── src/
-│   ├── ex/
-│   │   ├── ex/
-│   │   │   └── ex/
-│   │   │       ├── ex
-│   │   │       
+│   ├── exFolder/
+│   │   ├── exFolder/
+│   │   │   └── exFolder/
+│   │   │       ├── ex.java
+│   │   │       ├── ex2.java
 │   │   │      
 │   │   │       
 │   │   │      
