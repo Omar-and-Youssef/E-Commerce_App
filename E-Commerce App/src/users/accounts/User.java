@@ -12,7 +12,7 @@ public abstract class User {
     //Constructor for name email password gender address
     //Constructor for name email password gender phoneNumber
 //=======================================Methods=======================================
-    public void changePassword(String newPassword){
+    public void changePassword(String newPassword){ 
         //Put Conditions + salting+ hashing 
     }
 //=======================================Get&Set=======================================

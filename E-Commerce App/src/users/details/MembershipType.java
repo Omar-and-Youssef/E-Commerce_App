@@ -1,5 +1,5 @@
 package users.details;
 
-public class MembershipType {
-
+public enum MembershipType {
+    PRIME,STANDARD
 }
