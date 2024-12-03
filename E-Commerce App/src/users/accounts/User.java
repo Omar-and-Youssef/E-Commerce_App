@@ -1,16 +1,43 @@
 package users.accounts;
 public abstract class User {
     private String email,password;
-    protected String name,address,phoneNumber;
+    protected String userId,name,address,phoneNumber;
     protected char gender;
 //=======================================Constructor===================================
-    public User(String name,String email,String password,String phoneNumber,
-           String address,char gender){
 
+    public User(String userId,String name,String email,String password,String phoneNumber,
+           String address,char gender){
+            this.userId=userId;
+            this.name=name;
+            this.email=email;
+            this.password=password;
+            this.phoneNumber=phoneNumber;
+            this.address=address;
+            this.gender=gender;
     }
-    //Constructor for name email password gender
-    //Constructor for name email password gender address
-    //Constructor for name email password gender phoneNumber
+//id,name,email,password
+    public User(String userId,String name,String email,String password){
+        this.userId=userId;
+        this.name=name;
+        this.email=email;
+        this.password=password;
+}
+//id,email,password,gender,address
+    public User(String userId,String email,String password,char gender, String address){
+        this.userId=userId;
+        this.email=email;
+        this.password=password;
+        this.address=address;
+        this.gender=gender;
+}
+//id,email,password,phonenumber,gender
+    public User(String userId,String email,String password,String phoneNumber,char gender){
+        this.userId=userId;
+        this.email=email;
+        this.password=password;
+        this.phoneNumber=phoneNumber;
+        this.gender=gender;
+}
 //=======================================Methods=======================================
     public void changePassword(String newPassword){ 
         //Put Conditions + salting+ hashing 
