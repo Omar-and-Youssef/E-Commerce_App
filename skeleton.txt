@@ -1,20 +1,37 @@
 ==========Folder Structure==========
 E-Commerce_App/
 │
+
 ├── src/
-│   ├── exFolder/
-│   │   ├── exFolder/
-│   │   │   └── exFolder/
-│   │   │       ├── ex.java
-│   │   │       ├── ex2.java
-│   │   │      
-│   │   │       
-│   │   │      
-│   │   │
-│   │   └── resources/
-│   
-│
-└── README.md
+│   ├── exceptions/
+│   ├── gui/
+|   ├── products/
+│       ├── Category.java
+│       ├── Products.java
+│       └── Reviews.java
+|   ├── promotions/
+│   │   ├── Coupon.java
+│   │   ├── Discount.java
+│   │   ├── Points.java
+│   │   └── Promotions.java
+│   ├── resources/
+│   ├── users/
+|   |   ├── accounts/
+│   │   │       ├── Admin.java
+│   │   │       ├── Customer.java
+│   │   │       ├── User.java
+|   |   └── details/
+│   │           ├── Cart.java
+│   │           ├── HelpTicket.java
+│   │           ├── MembershipType.java
+│   │           ├── Orders.java
+│   │           ├── OrderStatus.java
+│   │           ├── WishList.java
+│   │   
+│  
+├── draft.txt
+├── README.md
+└── skeleton.txt
 
 ==========Skeleton Templates==========
 Package: game.engine
