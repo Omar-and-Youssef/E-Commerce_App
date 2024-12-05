@@ -1,28 +1,30 @@
 package users.accounts;
 
+
 public class Admin extends User {
     private static int adminCounter;
     //private Department department;
 
 //=======================================Constructor===================================
 
-    public Admin(String userId,String name,String email,String password,String phoneNumber,
-    String address,char gender){
-        super(userId,name,email,password,phoneNumber,address,gender);
-    }
-
-    public Admin(String userId,String name,String email,String password){
-        super(userId,name,email,password);
-    }
-
-    public Admin(String userId,String name,String email,String password,char gender, String address){
-        super(userId,email,password,gender,address);
-    }
-
-    public Admin(String userId,String email,String password,String phoneNumber,char gender){
-        super(userId,email,password,phoneNumber,gender);
+public Admin(String name,String email,String password,Gender gender,String phoneNumber,
+String address){
+    super("A"+adminCounter++,name,email,password,phoneNumber,address,gender);
 }
-//=======================================Get&Set=======================================
-    
+public Admin(String name,String email,String password,Gender gender){
+    this(name,email,password,gender,"NA","NA");
+}
 
+public Admin(String name,String email,String password, String address,Gender gender){
+    this(name,email,password,gender,"NA",address);
+}
+
+public Admin(String name,String email,String password,Gender gender,String phoneNumber){
+    this(name,email,password,gender,phoneNumber,"NA");
+}
+
+//=======================================Methods=======================================
+//addProduct(), removeProduct(), viewStatistics(), createCategory(), addToCategory()
+
+//=======================================Get&Set=======================================
 }
