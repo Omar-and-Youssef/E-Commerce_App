@@ -1,4 +1,4 @@
-package users.accounts;
+package entity.users.accounts;
 public abstract class User {
     private final String USER_ID;
     private String email,password;

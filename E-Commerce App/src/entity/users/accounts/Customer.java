@@ -1,6 +1,6 @@
-package users.accounts;
-import products.Product;
-import users.details.*;
+package entity.users.accounts;
+import entity.products.Product;
+import entity.users.details.*;
 
 public class Customer extends User{
     private MembershipType membershipType;

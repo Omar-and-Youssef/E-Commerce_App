@@ -1,4 +1,4 @@
-package promotions;
+package entity.promotions;
 
 public class Discount {
 

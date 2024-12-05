@@ -1,5 +1,4 @@
-package users.accounts;
-
+package entity.users.accounts;
 
 public class Admin extends User {
     private static int adminCounter;

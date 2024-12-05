@@ -1,5 +1,5 @@
-package users.details;
-import products.Product;
+package entity.users.details;
+import entity.products.Product;
 
 public class CartItem {
     

@@ -1,4 +1,4 @@
-package products;
+package entity.products;
 import java.util.*;
 
 public class Category {

@@ -1,4 +1,4 @@
-package users.details;
+package entity.users.details;
 
 public class OrderStatus {
 

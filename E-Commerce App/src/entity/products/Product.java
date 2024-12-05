@@ -1,4 +1,4 @@
-package products;
+package entity.products;
 
 public class Product {
     private final String PRODUCT_ID;
