@@ -1,13 +1,13 @@
 package entity.users.details;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 import entity.users.accounts.*;
 
 public class Order {
 
-private final String ORDER_ID;
+private final int ORDER_ID;
+
 private static int orderCounter; 
 private Customer customer;
 private LocalDateTime orderDate;
@@ -18,7 +18,7 @@ private ArrayList<CartItem> OrderedItems;
 //=======================================Constructor===================================
     
 public Order(Customer customer, ArrayList<CartItem> items, String shippingAddress, String paymentMethod){
-        this.ORDER_ID="#"+orderCounter++;
+        this.ORDER_ID=orderCounter++;
         this.customer=customer;
 }
 //in an order service, the cart will pass its list to create an order
@@ -27,7 +27,7 @@ public Order(Customer customer, ArrayList<CartItem> items, String shippingAddres
 
 //=======================================Get&Set=======================================
 
-public String getOrderID() {
+public int getOrderID() {
     return ORDER_ID;
 }
 

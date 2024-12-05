@@ -34,7 +34,7 @@ public class Product {
     }
 
 //=======================================Methods=======================================
-
+//product database is implemented alone, as well as a product dao to query that database
 //=======================================Get&Set=======================================
     public String getPRODUCT_ID() {
         return PRODUCT_ID;
