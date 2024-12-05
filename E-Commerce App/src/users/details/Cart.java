@@ -13,10 +13,27 @@ private ArrayList<CartItem> cartItems;
     }
 
 //=======================================Methods=======================================
-
-//incrementQuantity(), decrementQuantity()  for + - and update total price inside
-
+    public void addItem(CartItem item) {
+        cartItems.add(item);
+    }
+    public void deleteItem(int index) {
+        cartItems.remove(index);
+    }
+    public void clearCart() {
+        cartItems.clear();
+    }
+    public void calcTotalPrice(){
+        for (CartItem item : cartItems) {
+            totalPrice += item.getTotalPrice();
+        }
+    }
 //=======================================Get&Set=======================================
 
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+    public ArrayList<CartItem> getCartItems() {
+        return cartItems;
+    }
 
 }
