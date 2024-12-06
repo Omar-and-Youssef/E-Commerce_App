@@ -5,9 +5,9 @@ import entity.users.accounts.Customer;
 public class HelpTicket {
 private Customer customer;
 private final int ORDER_ID;
-private static int orderCounter;
+private static int orderCounter;//Useless
 private String issueDescription;
-private String ticketStatus;
+private String ticketStatus;//Enum
 
 
 //=======================================Constructor===================================
