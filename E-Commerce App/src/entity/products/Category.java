@@ -1,12 +1,15 @@
 package entity.products;
 import java.util.*;
 
+import entity.promotions.Discount;
+
 public class Category {
 
 private String name;
 private String description;
 private ArrayList<Product> products;
 
+private Discount discount;
 //=======================================Constructor===================================
 public Category(String name,String description){
     this.name=name;

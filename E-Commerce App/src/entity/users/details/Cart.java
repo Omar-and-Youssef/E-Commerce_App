@@ -1,7 +1,7 @@
 package entity.users.details;
 import java.util.*;
 
-import entity.products.Product;
+
 public class Cart {
 private double totalPrice;
 private ArrayList<CartItem> cartItems;
