@@ -1,79 +1,60 @@
 package entity.users.details;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
+import java.util.*;
 import entity.users.accounts.*;
-
-public class Order {
-
-private final int ORDER_ID;
-
-private static int orderCounter; 
-private Customer customer;
-private LocalDateTime orderDate;
-private String shippingAddress; //might be different from the customer's default address
-private String paymentMethod;
-private OrderStatus orderStatus;
-private ArrayList<CartItem> OrderedItems;
+public class Order { 
+    private static int orderCounter;
+    private OrderStatus orderStatus;
+    private final Customer CUSTOMER;
+    private final String ORDER_ID;
+    private final Date ORDER_DATE;
+    private final String SHIPPING_ADDRESS;
+    private final String PAYMENT_METHOD;
+    private final ArrayList<CartItem> ORDERED_ITEMS;
 //=======================================Constructor===================================
-    
-public Order(Customer customer, ArrayList<CartItem> items, String shippingAddress, String paymentMethod){
-        this.ORDER_ID=orderCounter++;
-        this.customer=customer;
-}
-//in an order service, the cart will pass its list to create an order
-
+    public Order(Customer CUSTOMER, ArrayList<CartItem> ORDERED_ITEMS, 
+    String SHIPPING_ADDRESS, String PAYMENT_METHOD){
+        ORDER_ID="O"+(++orderCounter);
+        this.CUSTOMER=CUSTOMER;
+        this.ORDERED_ITEMS=ORDERED_ITEMS;
+        this.SHIPPING_ADDRESS=SHIPPING_ADDRESS;
+        this.PAYMENT_METHOD=PAYMENT_METHOD;
+        ORDER_DATE=new Date();
+    }
 //=======================================Methods=======================================
-
+    public void cancelOrder(){//Incase Remote Cancellation
+        this.orderStatus=OrderStatus.CANCELLED;
+    }
+    public void updateOrderStatus(OrderStatus newStatus){
+        //Probable exception here
+        orderStatus=newStatus;
+    }
 //=======================================Get&Set=======================================
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
 
-public int getOrderID() {
-    return ORDER_ID;
-}
+    public Customer getCustomer() {
+        return CUSTOMER;
+    }
 
-public Customer getCustomer() {
-    return customer;
-}
+    public String getOrderId() {
+        return ORDER_ID;
+    }
 
-public LocalDateTime getOrderDate() {
-    return orderDate;
-}
+    public Date getOrderDate() {
+        return ORDER_DATE;
+    }
 
-public void setOrderDate(LocalDateTime orderDate) {
-    this.orderDate = orderDate;
-}
+    public String getShippingAddress() {
+        return SHIPPING_ADDRESS;
+    }
 
-public String getShippingAddress() {
-    return shippingAddress;
-}
+    public String getPaymentMethod() {
+        return PAYMENT_METHOD;
+    }
 
-public void setShippingAddress(String shippingAddress) {
-    this.shippingAddress = shippingAddress;
-}
-
-public String getPaymentMethod() {
-    return paymentMethod;
-}
-
-public void setPaymentMethod(String paymentMethod) {
-    this.paymentMethod = paymentMethod;
-}
-
-public OrderStatus getOrderStatus() {
-    return orderStatus;
-}
-
-public void setOrderStatus(OrderStatus orderStatus) {
-    this.orderStatus = orderStatus;
-}
-
-public ArrayList<CartItem> getOrderedItems() {
-    return OrderedItems;
-}
-
-public void setOrderedItems(ArrayList<CartItem> orderedItems) {
-    OrderedItems = orderedItems;
-}   //after payment
-
+    public ArrayList<CartItem> getOrderedItems() {
+        return ORDERED_ITEMS;
+    }
 
 }

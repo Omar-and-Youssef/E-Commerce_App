@@ -1,19 +1,21 @@
 package entity.products;
-
+import java.awt.image.BufferedImage;
+import java.util.*;
 public class Product {
+    private static int productCounter;
     private final String PRODUCT_ID;
     private double price;
-    private double stockQuantity;
+    private int stockQuantity;
     private String productName;
     private String description;
     private String brand;
     private Category category;
-    private int rating;
-    private String image; //???
-    private static int productCounter;
+    private BufferedImage image; 
+    private final ArrayList<Review>REVIEW_LIST;
+    //TODO RATING
 //=======================================Constructor===================================
-    public Product(double price, double stockQuantity,String productName,String description,
-    String brand,Category category,String image){
+    public Product(double price, int stockQuantity,String productName,String description,
+    String brand,Category category,BufferedImage image){
         this.PRODUCT_ID="P"+productCounter++;
         this.price=price;
         this.stockQuantity=stockQuantity;
@@ -21,16 +23,16 @@ public class Product {
         this.description=description;
         this.brand=brand;
         this.category=category;
-        this.rating=0;
         this.image=image;
+        REVIEW_LIST=new ArrayList<Review>();
     }
-    public Product(double price, double stockQuantity, String productName, String description, 
+    public Product(double price, int stockQuantity, String productName, String description, 
     String brand, Category category){
-        this(price,stockQuantity,productName,description,brand,category,"NA");
+        this(price,stockQuantity,productName,description,brand,category,null);
     }
-    public Product(double price,double stockQuantity, String productName, String description, 
+    public Product(double price,int stockQuantity, String productName, String description, 
     Category category){
-        this(price,stockQuantity,productName,description,"NA",category,"NA");
+        this(price,stockQuantity,productName,description,"NA",category,null);
     }
 
 //=======================================Methods=======================================
@@ -48,7 +50,7 @@ public class Product {
     public double getStockQuantity() {
         return stockQuantity;
     }
-    public void setStockQuantity(double stockQuantity) {
+    public void setStockQuantity(int stockQuantity) {
         this.stockQuantity = stockQuantity;
     }
     public String getProductName() {
@@ -74,17 +76,5 @@ public class Product {
     }
     public void setCategory(Category category) {
         this.category = category;
-    }
-    public int getRating() {
-        return rating;
-    }
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-    public String getImage() {
-        return image;
-    }
-    public void setImage(String image) {
-        this.image = image;
     }
 }
