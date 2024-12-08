@@ -14,6 +14,7 @@ public class Customer extends User{
     private final ArrayList<Points> COLLECTED_POINTS;
     private final ArrayList<Coupon> COLLECTED_COUPON;
     //TODO customer should have some way to see all reviews he left
+    //TODO cutomer should be able to see tickets he left
 //=======================================Constructor===================================
     public Customer(String name,String email,String password,Gender gender,String phoneNumber,
     String address){
@@ -71,6 +72,10 @@ public class Customer extends User{
     }
     public void deleteFromCart(int index){
         CART.deleteItem(index);
+    }
+    public void submitHelpTicket(String complaint){
+        HelpTicket ticket=new HelpTicket(this, complaint);
+        //TODO there should be an algorithm to assign to the appropirate admin in the engine
     }
     //TODO should add increment/decrement?
     //TODO ADD PRODUCTS TO STORE

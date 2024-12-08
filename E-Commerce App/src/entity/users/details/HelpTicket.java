@@ -1,47 +1,35 @@
 package entity.users.details;
-
-import entity.users.accounts.Customer;
+import entity.users.accounts.*;
 
 public class HelpTicket {
-private Customer customer;
-private final int ORDER_ID;
-private static int orderCounter;//Useless
+private final Customer CUSTOMER;
 private String issueDescription;
-private String ticketStatus;//Enum
-
-
+private TicketStatus ticketStatus;
+private Admin assignedAdmin;//Assigned To
 //=======================================Constructor===================================
-public HelpTicket(Customer customer, int ORDER_ID) {
-    this.ORDER_ID = orderCounter++;
-    this.customer = customer;
-    
-}
+    public HelpTicket(Customer CUSTOMER,String issue) {
+        ticketStatus=TicketStatus.SUBMITTED;
+        this.CUSTOMER=CUSTOMER;
+        issueDescription=issue;
+    }
 //=======================================Methods=======================================
-
+    public void assignAdmin(Admin admin){
+        this.assignedAdmin=admin;
+    }
+    public void updateTicketStatus(TicketStatus status){
+        this.ticketStatus=status;
+    }
 //=======================================Get&Set=======================================
-
-public int getORDER_ID() {
-    return ORDER_ID;
-}
-
-public String getIssueDescription() {
-    return issueDescription;
-}
-
-
-public void setIssueDescription(String issueDescription) {
-    this.issueDescription = issueDescription;
-}
-
-
-public String getTicketStatus() {
-    return ticketStatus;
-}
-
-
-public void setTicketStatus(String ticketStatus) {
-    this.ticketStatus = ticketStatus;
-}
-
-
+    public Admin getAssignedAdmin(){
+        return assignedAdmin;
+    }
+    public String getIssueDescription(){
+        return issueDescription;
+    }
+    public TicketStatus getTicketStatus(){
+        return ticketStatus;
+    }
+    public Customer getCustomer(){
+        return CUSTOMER;
+    }
 }

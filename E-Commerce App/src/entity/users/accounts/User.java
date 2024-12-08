@@ -43,8 +43,6 @@ public abstract class User {
     public void changePassword(String newPassword){ 
         //Put Conditions + salting+ hashing 
     }   
-    //login(), logout()
-
 //=======================================Get&Set=======================================
     public String getEmail() {
         return email;
