@@ -12,7 +12,7 @@ public class Product {
     private Category category;
     private BufferedImage image; 
     private final ArrayList<Review>REVIEW_LIST;
-    //TODO RATING
+    private double rating;
 //=======================================Constructor===================================
     public Product(double price, int stockQuantity,String productName,String description,
     String brand,Category category,BufferedImage image){
@@ -36,7 +36,24 @@ public class Product {
     }
 
 //=======================================Methods=======================================
-//product database is implemented alone, as well as a product dao to query that database
+    public void changeImage(BufferedImage image){
+        this.image=image;
+    }
+    public void addReview(Review r){
+        REVIEW_LIST.add(r);
+        calculateRating();
+    }
+    public void deleteReview(int index){
+        REVIEW_LIST.remove(index);
+        calculateRating();
+    }
+    public void calculateRating(){
+        int total=0;
+        for(Review rev:REVIEW_LIST){
+            total+=rev.getRating();
+        }
+        this.rating=total/REVIEW_LIST.size();
+    }
 //=======================================Get&Set=======================================
     public String getPRODUCT_ID() {
         return PRODUCT_ID;

@@ -13,6 +13,7 @@ public class Order {
 //=======================================Constructor===================================
     public Order(Customer CUSTOMER, ArrayList<CartItem> ORDERED_ITEMS, 
     String SHIPPING_ADDRESS, String PAYMENT_METHOD){
+        orderStatus=OrderStatus.PLACED;
         ORDER_ID="O"+(++orderCounter);
         this.CUSTOMER=CUSTOMER;
         this.ORDERED_ITEMS=ORDERED_ITEMS;

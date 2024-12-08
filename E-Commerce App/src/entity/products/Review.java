@@ -1,22 +1,22 @@
 package entity.products;
 import entity.users.accounts.Customer;
 public class Review{ 
-    private int rating;
+    private double rating;//TODO ROUND?
     private String comment;
     private final Product PRODUCT;
     private final Customer CUSTOMER;
 //=======================================Constructor===================================
-    public Review(Product PRODUCT, Customer CUSTOMER, int rating,String comment){
+    public Review(Product PRODUCT, Customer CUSTOMER, double rating,String comment){
         this.PRODUCT=PRODUCT;
         this.CUSTOMER=CUSTOMER;
         this.rating=rating;
         this.comment=comment;
     }
-    public Review(Product PRODUCT, Customer CUSTOMER, int rating){
+    public Review(Product PRODUCT, Customer CUSTOMER, double rating){
         this(PRODUCT,CUSTOMER,rating,"");
     }
 //=======================================Methods=======================================
-    public void changeRating(int rating){
+    public void changeRating(double rating){
         this.rating=rating;
     }
     public void changeComment(String comment){
@@ -32,7 +32,7 @@ public class Review{
     public Product getProduct(){
         return PRODUCT;
     }
-    public int getRating(){
+    public double getRating(){
         return rating;
     }
 }
