@@ -1,5 +1,5 @@
 package entity.products;
-import entity.users.accounts.Customer;
+import entity.users.accounts.*;
 public class Review{ 
     private double rating;//TODO ROUND?
     private String comment;

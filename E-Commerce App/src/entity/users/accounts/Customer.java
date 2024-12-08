@@ -15,6 +15,8 @@ public class Customer extends User{
     private final ArrayList<Coupon> COLLECTED_COUPON;
     //TODO customer should have some way to see all reviews he left
     //TODO cutomer should be able to see tickets he left
+    private final ArrayList<Review> REVIEWS_SUBMITTED;   
+    private final ArrayList<HelpTicket> HELP_TICKETS_SUBMITTED; 
 //=======================================Constructor===================================
     public Customer(String name,String email,String password,Gender gender,String phoneNumber,
     String address){
@@ -25,6 +27,8 @@ public class Customer extends User{
         ORDERS=new ArrayList<Order>();
         COLLECTED_COUPON=new ArrayList<Coupon>();
         COLLECTED_POINTS=new ArrayList<Points>();
+        REVIEWS_SUBMITTED=new ArrayList<Review>();
+        HELP_TICKETS_SUBMITTED=new ArrayList<HelpTicket>();
     }
     public Customer(String name,String email,String password,Gender gender){
         this(name,email,password,gender,"NA","NA");
@@ -39,11 +43,21 @@ public class Customer extends User{
     }
 //=======================================Methods=======================================
     public void addReview(String comment,double rating,Product product ){
-        product.addReview(new Review(product, this, rating,comment));
+        Review review=new Review(product, this, rating, comment);
+        REVIEWS_SUBMITTED.add(review);
+        product.addReview(review);
     }
     public void deleteReview(Product product){
-        product.deleteReview(0);//TODO FIX THE DELETE REVIEW INDEX OR WHAT?
-
+        Review foundReview=null;
+        for(Review rev:REVIEWS_SUBMITTED){
+            if(rev.getProduct().equals(product)){
+                foundReview=rev;
+                REVIEWS_SUBMITTED.remove(rev);
+                break;
+            }
+        }
+        product.deleteReview(foundReview);//TODO FIX THE DELETE REVIEW INDEX OR WHAT?
+        
     }
     public void updateReview(String comment,int rating,Product product){
         deleteReview(product);
@@ -60,6 +74,7 @@ public class Customer extends User{
     }   
     public void cancelOrder(Order order){
         order.cancelOrder();//TODO should remove?? based on Implementation
+        ORDERS.remove(order);
     }
     public void addToWishlist(Product product){
         WISH_LIST.addProduct(product);
@@ -75,11 +90,46 @@ public class Customer extends User{
     }
     public void submitHelpTicket(String complaint){
         HelpTicket ticket=new HelpTicket(this, complaint);
+        HELP_TICKETS_SUBMITTED.add(ticket);
         //TODO there should be an algorithm to assign to the appropirate admin in the engine
+    }
+    public void incrementCartItem(int index){
+        CART.incrementCartItem(index);
+    }
+    public void decrementCartItem(int index){
+        CART.decrementCartItem(index);
     }
     //TODO should add increment/decrement?
     //TODO ADD PRODUCTS TO STORE
     //T
 //=======================================Get&Set=======================================
+
+    public int getWallet() {
+        return wallet;
+    }
+    public Cart getCART() {
+        return CART;
+    }
+    public Wishlist getWISH_LIST() {
+        return WISH_LIST;
+    }
+    public ArrayList<Order> getORDERS() {
+        return ORDERS;
+    }
+    public Membership getMEMBERSHIP() {
+        return MEMBERSHIP;
+    }
+    public ArrayList<Points> getCOLLECTED_POINTS() {
+        return COLLECTED_POINTS;
+    }
+    public ArrayList<Coupon> getCOLLECTED_COUPON() {
+        return COLLECTED_COUPON;
+    }
+    public ArrayList<Review> getREVIEWS_SUBMITTED() {
+        return REVIEWS_SUBMITTED;
+    }
+    public ArrayList<HelpTicket> getHELP_TICKETS_SUBMITTED() {
+        return HELP_TICKETS_SUBMITTED;
+    }
     
 }

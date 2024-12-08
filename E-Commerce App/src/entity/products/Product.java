@@ -36,15 +36,12 @@ public class Product {
     }
 
 //=======================================Methods=======================================
-    public void changeImage(BufferedImage image){
-        this.image=image;
-    }
     public void addReview(Review r){
         REVIEW_LIST.add(r);
         calculateRating();
     }
-    public void deleteReview(int index){
-        REVIEW_LIST.remove(index);
+    public void deleteReview(Review review){
+        REVIEW_LIST.remove(review);
         calculateRating();
     }
     public void calculateRating(){
@@ -64,7 +61,7 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
-    public double getStockQuantity() {
+    public int getStockQuantity() {
         return stockQuantity;
     }
     public void setStockQuantity(int stockQuantity) {
@@ -93,5 +90,11 @@ public class Product {
     }
     public void setCategory(Category category) {
         this.category = category;
+    }
+    public void setImage(BufferedImage image){
+        this.image=image;
+    }
+    public BufferedImage getImage(){
+        return image;
     }
 }
