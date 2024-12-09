@@ -1,7 +1,8 @@
 package entity.users.accounts;
-
+import entity.users.details.HelpTicket;
 public class Admin extends User {
     private static int adminCounter;
+    private HelpTicket helpTicket;
     //private Department department;
 
 //=======================================Constructor===================================
@@ -23,7 +24,15 @@ public Admin(String name,String email,String password,Gender gender,String phone
 }
 
 //=======================================Methods=======================================
-//addProduct(), removeProduct(), viewStatistics(), createCategory(), addToCategory()
-
+public void assignHelpTicket(HelpTicket helpTicket){
+    this.helpTicket=helpTicket;
+}
+public void helpTicketResolved(){
+    this.helpTicket=null;
+}
 //=======================================Get&Set=======================================
+
+public HelpTicket getHelpTicket(){
+    return helpTicket;
+}
 }

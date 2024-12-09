@@ -12,7 +12,7 @@ public class Order {
     private final ArrayList<CartItem> ORDERED_ITEMS;
 //=======================================Constructor===================================
     public Order(Customer CUSTOMER, ArrayList<CartItem> ORDERED_ITEMS, 
-    String SHIPPING_ADDRESS, String PAYMENT_METHOD){
+        String SHIPPING_ADDRESS, String PAYMENT_METHOD){
         orderStatus=OrderStatus.PLACED;
         ORDER_ID="O"+(++orderCounter);
         this.CUSTOMER=CUSTOMER;
@@ -57,5 +57,9 @@ public class Order {
     public ArrayList<CartItem> getOrderedItems() {
         return ORDERED_ITEMS;
     }
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+    
 
 }

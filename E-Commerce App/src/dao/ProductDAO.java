@@ -1,6 +1,7 @@
 package dao;
 import database.Database;
 import entity.products.*;
+
 import java.util.*;
 public class ProductDAO {
     ArrayList<Product> products= Database.getProductDB();
@@ -8,13 +9,8 @@ public class ProductDAO {
     public void addProduct(Product product){
         products.add(product);
     }
-    public void deleteProduct(String id){
-        for(Product p: products){
-            if(p.getPRODUCT_ID().equals(id)){
-                products.remove(p);
-                break;
-            }
-        }
+    public void deleteProduct(Product product){
+        products.remove(product);
     }
     public boolean updateProduct(Product updatedProduct) { 
         //updated product is created at controller layer

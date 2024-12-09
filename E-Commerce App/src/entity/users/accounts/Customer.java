@@ -9,7 +9,7 @@ public class Customer extends User{
     private int wallet;
     private final Cart CART;
     private final Wishlist WISH_LIST;
-    private final ArrayList<Order>ORDERS;
+    private final ArrayList<Order>ORDERS; //MY ORDERS, WHICH SHOULD BE ADDED TO ORDERS DATABASE
     private final Membership MEMBERSHIP;
     private final ArrayList<Points> COLLECTED_POINTS;
     private final ArrayList<Coupon> COLLECTED_COUPON;
@@ -42,6 +42,7 @@ public class Customer extends User{
         this(name,email,password,gender,phoneNumber,"NA");
     }
 //=======================================Methods=======================================
+    //TODO place in services package
     public void addReview(String comment,double rating,Product product ){
         Review review=new Review(product, this, rating, comment);
         REVIEWS_SUBMITTED.add(review);

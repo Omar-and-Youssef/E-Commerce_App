@@ -10,6 +10,7 @@ public class Membership {
         membershipType=MembershipType.STANDARD;
     }
 //=======================================Methods=======================================
+    //TODO in services package
     public void upgradeMemberShip(Date expirationDate){
         membershipType=MembershipType.PRIME;
         startDate=new Date();
@@ -28,7 +29,7 @@ public class Membership {
         if(MembershipType.PRIME==membershipType)return startDate;
         return null;
     }
-    public Date getExpirtDate(){
+    public Date getExpirationDate(){
         if(MembershipType.PRIME==membershipType)return expirationDate;
         return null;
     }

@@ -3,8 +3,7 @@
 E-Commerce_App/
 ├── src/
 │   ├── database/               
-│   │   ├── DatabaseConnection.java
-│   │   └── DatabaseConfig.java
+│   │   └── Database.java
 │   ├── entity/                
 │   │   ├── products/
 │   │   │   ├── Category.java
@@ -22,6 +21,7 @@ E-Commerce_App/
 │   │   │   │   └── User.java
 │   │   │   ├── details/
 │   │   │   │   ├── Cart.java
+|   |   |   |   ├── CartItem.java
 │   │   │   │   ├── HelpTicket.java
 │   │   │   │   ├── MembershipType.java
 │   │   │   │   ├── Orders.java
@@ -30,11 +30,7 @@ E-Commerce_App/
 │   ├── dao/                    
 │   │   ├── ProductDAO.java
 │   │   ├── UserDAO.java
-│   │   ├── OrderDAO.java
-│   │   ├── impl/
-│   │   │   ├── ProductDAOImpl.java
-│   │   │   ├── UserDAOImpl.java
-│   │   │   └── OrderDAOImpl.java
+│   │   └── OrderDAO.java
 │   ├── service/                
 │   │   ├── ProductService.java
 │   │   ├── UserService.java
@@ -48,22 +44,4 @@ E-Commerce_App/
     ├── draft.txt
     ├── README.md
     └── skeleton.txt
-
-==========Skeleton Templates==========
-Package: game.engine
-Type: Abstract Class
-Description: 
-==
-"Name.java"
-Package: xx.
-Type: Class
-Description:
-===
-void methodName(Param1,...)
-    Description: 
-    Parameters:
-        Param1 : Description
-    Return Type: void
-
-===============Skeleton===============
 

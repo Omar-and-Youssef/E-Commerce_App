@@ -13,7 +13,7 @@ private Admin assignedAdmin;//Assigned To
         issueDescription=issue;
     }
 //=======================================Methods=======================================
-    public void assignAdmin(Admin admin){
+    public void assignAdmin(Admin admin){ //done randomly for free admins
         this.assignedAdmin=admin;
     }
     public void updateTicketStatus(TicketStatus status){
