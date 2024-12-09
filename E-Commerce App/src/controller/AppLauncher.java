@@ -7,6 +7,7 @@ public class AppLauncher{
     }
     void launch(){
         app=new Engine();
+        app.start();
         //
     }
 }

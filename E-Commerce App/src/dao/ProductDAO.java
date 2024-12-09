@@ -4,39 +4,36 @@ import entity.products.*;
 
 import java.util.*;
 public class ProductDAO {
-    ArrayList<Product> products= Database.getProductDB();
+    private static ArrayList<Product> products= Database.getProductDB();
 //=======================================Methods=======================================
-    public void addProduct(Product product){
+    public static void  addProduct(Product product){
         products.add(product);
     }
-    public void deleteProduct(Product product){
-        products.remove(product);
+    public static boolean deleteProduct(Product product){
+        return products.remove(product);
     }
-    public boolean updateProduct(Product updatedProduct) { 
-        //updated product is created at controller layer
-        Product product = getProductById(updatedProduct.getPRODUCT_ID());
-        if (product != null) {
-            product.setPrice(updatedProduct.getPrice());
-            product.setStockQuantity(updatedProduct.getStockQuantity());
-            product.setProductName(updatedProduct.getProductName());
-            product.setDescription(updatedProduct.getDescription());
-            product.setBrand(updatedProduct.getBrand());
-            product.setCategory(updatedProduct.getCategory());
-            product.setImage(updatedProduct.getImage());
-            return true;
+    public static boolean updateProduct(Product product) { 
+        for (int i=0;i<products.size();i++) {
+            if (products.get(i).getProductID().equals(product.getProductID())) {
+                products.set(i, product);
+                return true;
+            }
         }
-        return false;     
+        return false;    
     }
 //=======================================Get&Set=======================================
-public ArrayList<Product> getAllProducts(){
+public static ArrayList<Product> getAllProducts(){
     return products;
 }
-public Product getProductById(String id){
+public static Product getProductById(String id){
     for(Product p: products){
-        if(p.getPRODUCT_ID().equals(id)){
+        if(p.getProductID().equals(id)){
             return p;
         }
     }
     return null;
+}
+public static boolean productInDB(Product product){
+    return getProductById(product.getProductID())!=null;
 }
 }

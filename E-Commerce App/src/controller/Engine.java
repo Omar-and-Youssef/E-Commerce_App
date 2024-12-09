@@ -10,14 +10,13 @@ public class Engine {
     private Product viewedProduct;
     private Stage stage;
     private Scene greenRealmScene;
-    private GreenRealmController greenController;   
+    // private GreenRealmController greenController;   
 //=======================================Constructor===================================
     public Engine(){
         currentScreen=Screen.LOGIN;
         try{
             FXMLLoader endLoader = new FXMLLoader(getClass().getResource("/game/gui/GameEnd.fxml"));
             Parent endRoot = endLoader.load();
-            //To make any new scens write the above without question
             endScene = new Scene(endRoot);
             //Up is to create actual scene maybe save it
             endController = (GameEndController) endLoader.getController();

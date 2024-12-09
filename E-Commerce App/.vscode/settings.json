@@ -1,7 +1,13 @@
 {
-    "java.project.sourcePaths": ["src"],
-    "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+        "lib/**/*.jar",
+        "c:\\Users\\MONTASER YOUSUF\\Desktop\\javafx-sdk-23.0.1\\lib\\javafx.base.jar",
+        "c:\\Users\\MONTASER YOUSUF\\Desktop\\javafx-sdk-23.0.1\\lib\\javafx.controls.jar",
+        "c:\\Users\\MONTASER YOUSUF\\Desktop\\javafx-sdk-23.0.1\\lib\\javafx.fxml.jar",
+        "c:\\Users\\MONTASER YOUSUF\\Desktop\\javafx-sdk-23.0.1\\lib\\javafx.graphics.jar",
+        "c:\\Users\\MONTASER YOUSUF\\Desktop\\javafx-sdk-23.0.1\\lib\\javafx.media.jar",
+        "c:\\Users\\MONTASER YOUSUF\\Desktop\\javafx-sdk-23.0.1\\lib\\javafx.swing.jar",
+        "c:\\Users\\MONTASER YOUSUF\\Desktop\\javafx-sdk-23.0.1\\lib\\javafx.web.jar",
+        "c:\\Users\\MONTASER YOUSUF\\Desktop\\javafx-sdk-23.0.1\\lib\\javafx-swt.jar"
     ]
 }

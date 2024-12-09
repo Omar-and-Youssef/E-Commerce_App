@@ -6,7 +6,7 @@ import java.util.*;
 public class Customer extends User{
     private static int customerCounter; 
 
-    private int wallet;
+    private int balance;
     private final Cart CART;
     private final Wishlist WISH_LIST;
     private final ArrayList<Order>ORDERS; //MY ORDERS, WHICH SHOULD BE ADDED TO ORDERS DATABASE
@@ -43,93 +43,87 @@ public class Customer extends User{
     }
 //=======================================Methods=======================================
     //TODO place in services package
-    public void addReview(String comment,double rating,Product product ){
-        Review review=new Review(product, this, rating, comment);
-        REVIEWS_SUBMITTED.add(review);
-        product.addReview(review);
-    }
-    public void deleteReview(Product product){
-        Review foundReview=null;
-        for(Review rev:REVIEWS_SUBMITTED){
-            if(rev.getProduct().equals(product)){
-                foundReview=rev;
-                REVIEWS_SUBMITTED.remove(rev);
-                break;
-            }
-        }
-        product.deleteReview(foundReview);//TODO FIX THE DELETE REVIEW INDEX OR WHAT?
+    // public void addReview(String comment,double rating,Product product ){
+    //     Review review=new Review(product, this, rating, comment);
+    //     REVIEWS_SUBMITTED.add(review);
+    //     product.addReview(review);
+    // }
+    // public void deleteReview(Product product){
+    //     Review foundReview=null;
+    //     for(Review rev:REVIEWS_SUBMITTED){
+    //         if(rev.getProduct().equals(product)){
+    //             foundReview=rev;
+    //             REVIEWS_SUBMITTED.remove(rev);
+    //             break;
+    //         }
+    //     }
+    //     product.deleteReview(foundReview);//TODO FIX THE DELETE REVIEW INDEX OR WHAT?
         
-    }
-    public void updateReview(String comment,int rating,Product product){
-        deleteReview(product);
-        //TODO FIX IMPLEMENTATION OFF DELETE FROM ALL ARRAYLIST STUFF (iS IT INDEX OR OBJECT)
-        addReview(comment, rating, product);
-    }
-    public void upgradeMemberShip(Date expiryDate){
-        MEMBERSHIP.upgradeMemberShip(expiryDate);
-    }
-    public void placeOrder(String shippingAddress, String paymentMethod){
-        Order newOrder=new Order(this,CART.getCartItems(),shippingAddress,paymentMethod);
-        CART.clearCart();
-        ORDERS.add(newOrder);
-    }   
-    public void cancelOrder(Order order){
-        order.cancelOrder();//TODO should remove?? based on Implementation
-        ORDERS.remove(order);
-    }
-    public void addToWishlist(Product product){
-        WISH_LIST.addProduct(product);
-    }
-    public void removeFromWishlist(int index){
-        WISH_LIST.removeProduct(index);
-    }
-    public void addToCart(Product product,int quantity){
-        CART.addItem(new CartItem(product, quantity));
-    }
-    public void deleteFromCart(int index){
-        CART.deleteItem(index);
-    }
-    public void submitHelpTicket(String complaint){
-        HelpTicket ticket=new HelpTicket(this, complaint);
-        HELP_TICKETS_SUBMITTED.add(ticket);
-        //TODO there should be an algorithm to assign to the appropirate admin in the engine
-    }
-    public void incrementCartItem(int index){
-        CART.incrementCartItem(index);
-    }
-    public void decrementCartItem(int index){
-        CART.decrementCartItem(index);
-    }
+    // }
+    // public void updateReview(String comment,int rating,Product product){
+    //     deleteReview(product);
+    //     //TODO FIX IMPLEMENTATION OFF DELETE FROM ALL ARRAYLIST STUFF (iS IT INDEX OR OBJECT)
+    //     addReview(comment, rating, product);
+    // }
+    // public void upgradeMemberShip(Date expiryDate){
+    //     MEMBERSHIP.upgradeMemberShip(expiryDate);
+    // }
+    // public void placeOrder(String shippingAddress, String paymentMethod){
+    //     Order newOrder=new Order(this,CART.getCartItems(),shippingAddress,paymentMethod);
+    //     CART.clearCart();
+    //     ORDERS.add(newOrder);
+    // }   
+    // public void cancelOrder(Order order){
+    //     order.cancelOrder();//TODO should remove?? based on Implementation
+    //     ORDERS.remove(order);
+    // }
+    // public void addToWishlist(Product product){
+    //     WISH_LIST.addProduct(product);
+    // }
+    // public void removeFromWishlist(int index){
+    //     WISH_LIST.removeProduct(index);
+    // }
+    // public void submitHelpTicket(String complaint){
+    //     HelpTicket ticket=new HelpTicket(this, complaint);
+    //     HELP_TICKETS_SUBMITTED.add(ticket);
+    //TODO there should be an algorithm to assign to the appropirate admin in the engine
+    // }
+    // public void incrementCartItem(CartItem cartItem){
+    //     CART.incrementCartItem(cartItem);
+    // }
+    // public void decrementCartItem(int index){
+    //     CART.decrementCartItem(index);
+    // }
     //TODO should add increment/decrement?
     //TODO ADD PRODUCTS TO STORE
     //T
 //=======================================Get&Set=======================================
 
-    public int getWallet() {
-        return wallet;
+    public int getBalance() {
+        return balance;
     }
-    public Cart getCART() {
+    public Cart getCart() {
         return CART;
     }
-    public Wishlist getWISH_LIST() {
+    public Wishlist getWishList() {
         return WISH_LIST;
     }
-    public ArrayList<Order> getORDERS() {
+    public ArrayList<Order> getOrders() {
         return ORDERS;
     }
-    public Membership getMEMBERSHIP() {
+    public Membership getMembership() {
         return MEMBERSHIP;
     }
-    public ArrayList<Points> getCOLLECTED_POINTS() {
+    public ArrayList<Points> getCollectedPoints() {
         return COLLECTED_POINTS;
     }
-    public ArrayList<Coupon> getCOLLECTED_COUPON() {
+    public ArrayList<Coupon> getCollectedCoupons() {
         return COLLECTED_COUPON;
     }
-    public ArrayList<Review> getREVIEWS_SUBMITTED() {
+    public ArrayList<Review> getReviewsSubmitted() {
         return REVIEWS_SUBMITTED;
     }
-    public ArrayList<HelpTicket> getHELP_TICKETS_SUBMITTED() {
+    public ArrayList<HelpTicket> getHelpTicketsSubmitted() {
         return HELP_TICKETS_SUBMITTED;
     }
     

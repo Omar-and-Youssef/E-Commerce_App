@@ -16,16 +16,16 @@ public class Cart {
         CART_ITEMS.add(item);
         calcTotalPrice();
     }
-    public void deleteItem(int index) {
-        CART_ITEMS.remove(index);
+    public void deleteItem(CartItem item) {
+        CART_ITEMS.remove(item);
         calcTotalPrice();
     }
     public void clearCart() {
         CART_ITEMS.clear();
         this.totalPrice=0;
     }
-    public void incrementCartItem(int index){
-        CART_ITEMS.get(index).incrementProduct();
+    public void incrementCartItem(CartItem cartItem){
+        cartItem.incrementProduct();
     }
     public void decrementCartItem(int index){
         if(CART_ITEMS.get(index).decrementProduct())CART_ITEMS.remove(index);
