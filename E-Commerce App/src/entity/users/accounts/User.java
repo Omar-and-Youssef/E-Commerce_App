@@ -39,10 +39,10 @@ public abstract class User {
         this.phoneNumber=phoneNumber;
         this.gender=gender;
 }
-//=======================================Methods=======================================
-    public void changePassword(String newPassword){ 
-        //Put Conditions + salting+ hashing 
-    }   
+// //=======================================Methods=======================================
+//     public void changePassword(String newPassword){ 
+//         //Put Conditions + salting + hashing 
+//     }   
 //=======================================Get&Set=======================================
     public String getEmail() {
         return email;

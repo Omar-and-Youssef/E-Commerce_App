@@ -6,8 +6,8 @@ import exceptions.*;
 import dao.*;
 import java.util.*;
 public class CustomerService {
-//Orchestrates operations between different components (Customer,Cart,order and product)
-//Handles validation of CRUD operations and business logic
+//Orchestrates operations between a customer's different components (Cart,order and product)
+//Handles validation of CRUD operations as well as business logic
 //==================================Methods=========================================
 
 public static Customer logIn(String email,String password) throws ServiceException{
@@ -45,6 +45,8 @@ public static void updateCustomer(Customer customer) throws ServiceException{
     catch(Exception e){
         throw new ServiceException("Error updating customer: "+e.getMessage(), e);
     }
+    //Partial updates are handled in controller layer
+
 }
 public static void deleteCustomer(Customer customer) throws ServiceException{
     //if customer chooses to delete their account
@@ -121,6 +123,7 @@ Product product) throws ServiceException{
         Review review=new Review(product, customer, rating, comment);
         customerInDB.getReviewsSubmitted().add(review);
         product.addReview(review);
+        //review is added to product as well as customer's list of reviews
     } 
     catch(Exception e){
         throw new ServiceException("Error adding review: "+e.getMessage(), e);

@@ -20,15 +20,14 @@ public class Database {
         PRODUCT_DB.add(p1);
         PRODUCT_DB.add(p2);
 
-        Customer c1 = new Customer("John Doe", "john@gmail.com", "password", Gender.MALE);
-        Customer c2 = new Customer("Jane Doe", "jane@gmail.com", "password", Gender.FEMALE);
+        Customer c1 = new Customer("John Doe", "john@gmail.com", "password", Gender.MALE,Category.ELECTRONICS);
+        Customer c2 = new Customer("Jane Doe", "jane@gmail.com", "password", Gender.FEMALE,Category.CLOTHING);
 
         CUSTOMER_DB.add(c1);
         CUSTOMER_DB.add(c2);
 
-        Admin a1= new Admin("Admin1", "admin@example.com", "adminpassword", Gender.FEMALE);
-        Admin a2 = new Admin("Admin2", "admin2@example.com", "adminpassword", Gender.MALE);
-        
+        Admin a1 = new Admin("Montaser", "montaser@gmail.com", "password", Gender.MALE, "Development","8-4");
+        Admin a2 = new Admin("Yousuf", "youssef@gmail.com", "password", Gender.MALE, "Development","9-5");        
         ADMIN_DB.add(a1);
         ADMIN_DB.add(a2);
     }

@@ -17,9 +17,10 @@ public class Customer extends User{
     //TODO cutomer should be able to see tickets he left
     private final ArrayList<Review> REVIEWS_SUBMITTED;   
     private final ArrayList<HelpTicket> HELP_TICKETS_SUBMITTED; 
+    private Category preferredCategory;
 //=======================================Constructor===================================
     public Customer(String name,String email,String password,Gender gender,String phoneNumber,
-    String address){
+    String address,Category preferredCategory){
         super("C"+(++customerCounter),name,email,password,phoneNumber,address,gender);
         this.MEMBERSHIP=new Membership();
         CART = new Cart();
@@ -30,73 +31,23 @@ public class Customer extends User{
         REVIEWS_SUBMITTED=new ArrayList<Review>();
         HELP_TICKETS_SUBMITTED=new ArrayList<HelpTicket>();
     }
-    public Customer(String name,String email,String password,Gender gender){
-        this(name,email,password,gender,"NA","NA");
+    public Customer(String name,String email,String password,Gender gender,
+    Category preferredCategory){
+        this(name,email,password,gender,"NA","NA",preferredCategory);
     }
 
-    public Customer(String name,String email,String password, String address,Gender gender){
-        this(name,email,password,gender,"NA",address);
+    public Customer(String name,String email,String password, String address,Gender gender, 
+    Category preferredCategory){
+        this(name,email,password,gender,"NA",address,preferredCategory);
     }
 
-    public Customer(String name,String email,String password,Gender gender,String phoneNumber){
-        this(name,email,password,gender,phoneNumber,"NA");
+    public Customer(String name,String email,String password,Gender gender,String phoneNumber,
+    Category preferredCategory){
+        this(name,email,password,gender,phoneNumber,"NA",preferredCategory);
     }
-//=======================================Methods=======================================
-    //TODO place in services package
-    // public void addReview(String comment,double rating,Product product ){
-    //     Review review=new Review(product, this, rating, comment);
-    //     REVIEWS_SUBMITTED.add(review);
-    //     product.addReview(review);
-    // }
-    // public void deleteReview(Product product){
-    //     Review foundReview=null;
-    //     for(Review rev:REVIEWS_SUBMITTED){
-    //         if(rev.getProduct().equals(product)){
-    //             foundReview=rev;
-    //             REVIEWS_SUBMITTED.remove(rev);
-    //             break;
-    //         }
-    //     }
-    //     product.deleteReview(foundReview);//TODO FIX THE DELETE REVIEW INDEX OR WHAT?
-        
-    // }
-    // public void updateReview(String comment,int rating,Product product){
-    //     deleteReview(product);
-    //     //TODO FIX IMPLEMENTATION OFF DELETE FROM ALL ARRAYLIST STUFF (iS IT INDEX OR OBJECT)
-    //     addReview(comment, rating, product);
-    // }
-    // public void upgradeMemberShip(Date expiryDate){
-    //     MEMBERSHIP.upgradeMemberShip(expiryDate);
-    // }
-    // public void placeOrder(String shippingAddress, String paymentMethod){
-    //     Order newOrder=new Order(this,CART.getCartItems(),shippingAddress,paymentMethod);
-    //     CART.clearCart();
-    //     ORDERS.add(newOrder);
-    // }   
-    // public void cancelOrder(Order order){
-    //     order.cancelOrder();//TODO should remove?? based on Implementation
-    //     ORDERS.remove(order);
-    // }
-    // public void addToWishlist(Product product){
-    //     WISH_LIST.addProduct(product);
-    // }
-    // public void removeFromWishlist(int index){
-    //     WISH_LIST.removeProduct(index);
-    // }
-    // public void submitHelpTicket(String complaint){
-    //     HelpTicket ticket=new HelpTicket(this, complaint);
-    //     HELP_TICKETS_SUBMITTED.add(ticket);
-    //TODO there should be an algorithm to assign to the appropirate admin in the engine
-    // }
-    // public void incrementCartItem(CartItem cartItem){
-    //     CART.incrementCartItem(cartItem);
-    // }
-    // public void decrementCartItem(int index){
-    //     CART.decrementCartItem(index);
-    // }
-    //TODO should add increment/decrement?
-    //TODO ADD PRODUCTS TO STORE
-    //T
+    public Customer(String name, String email, String password, String phoneNumber, String address, Gender gender){
+        this(name, email, password, gender, phoneNumber, address, null);
+    }
 //=======================================Get&Set=======================================
 
     public int getBalance() {
@@ -126,5 +77,10 @@ public class Customer extends User{
     public ArrayList<HelpTicket> getHelpTicketsSubmitted() {
         return HELP_TICKETS_SUBMITTED;
     }
-    
+    public Category getPreferredCategory() {
+        return preferredCategory;
+    }
+    public void setPreferredCategory(Category preferredCategory) {
+        this.preferredCategory = preferredCategory;
+    }
 }

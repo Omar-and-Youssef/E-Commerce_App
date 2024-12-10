@@ -71,6 +71,7 @@ public class AdminService {
         catch(Exception e){
             throw new ServiceException("Error updating product: "+e.getMessage(), e);
         }
+        //Partial updates are handled in controller layer
     }
     public ArrayList<Product> getProductsByCategory(Category category) throws ServiceException{
         try{
@@ -120,6 +121,8 @@ public class AdminService {
         for(Admin admin:admins){
         if(admin.getHelpTicketAssigned()==null){
             helpTicket.assignAdmin(admin);
+            admin.assignHelpTicket(helpTicket);
+            //we assign admin to ticket and ticket to admin
             return;
         }
         else throw new ServiceException("No admins available to assign ticket");
@@ -130,8 +133,8 @@ public class AdminService {
         if(helpTicket.getAssignedAdmin()==null)
             throw new ServiceException("Ticket not assigned to any admin");
         else{
-            helpTicket.getAssignedAdmin().assignHelpTicket(null);
             helpTicket.assignAdmin(null);
+            helpTicket.getAssignedAdmin().assignHelpTicket(null);
         }
     }
     public void resolveHelpTicket(HelpTicket helpTicket) throws ServiceException{
