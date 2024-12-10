@@ -32,7 +32,7 @@ public void helpTicketResolved(){
 }
 //=======================================Get&Set=======================================
 
-public HelpTicket getHelpTicket(){
+public HelpTicket getHelpTicketAssigned(){
     return helpTicket;
 }
 }

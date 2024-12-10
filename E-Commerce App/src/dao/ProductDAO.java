@@ -33,6 +33,18 @@ public static Product getProductById(String id){
     }
     return null;
 }
+public static ArrayList<Product> getProductsByCategory(Category category){
+    ArrayList<Product> productsByCategory=new ArrayList<>();
+    for(Product p: products){
+        if(p.getCategory().equals(category)){
+            productsByCategory.add(p);
+        }
+    }
+    return productsByCategory;
+}
+//for search, 
+//get products by brand, by descending price, by descending rating
+//get by name get by category 
 public static boolean productInDB(Product product){
     return getProductById(product.getProductID())!=null;
 }

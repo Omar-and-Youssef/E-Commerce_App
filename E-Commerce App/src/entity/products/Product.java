@@ -97,4 +97,7 @@ public class Product {
     public BufferedImage getImage(){
         return image;
     }
+    public double getAverageRating(){
+        return rating;
+    }
 }

@@ -60,7 +60,6 @@ public static void deleteCustomer(Customer customer) throws ServiceException{
     }
 }
 
-
 public static void addToCart(Customer customer, Product product, int quantity) throws ServiceException{
     try{
         if (customer == null || product == null || quantity <= 0) {
@@ -230,12 +229,12 @@ public static void removeFromWishlist(Customer customer, int index) throws Servi
         throw new ServiceException("Error removing from wishlist: "+e.getMessage(), e);
     }
 }
-public static void submitHelpTicket(Customer customer, String complaint) throws ServiceException{
+public static void submitHelpTicket(Customer customer, String issue) throws ServiceException{
     try{
         if(!CustomerDAO.customerInDB(customer))
             throw new IllegalArgumentException("Customer not found");
 
-        HelpTicket ticket=new HelpTicket(customer, complaint);
+        HelpTicket ticket=new HelpTicket(customer, issue);
         customer.getHelpTicketsSubmitted().add(ticket);
     }
     catch(Exception e){

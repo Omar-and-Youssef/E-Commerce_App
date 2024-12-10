@@ -40,4 +40,7 @@ public static Admin getAdminByEmail(String email){
     }
     return null;
 }
+public static boolean adminInDB(Admin admin){
+    return getAdminById(admin.getUserID())!=null;
+}
 }
