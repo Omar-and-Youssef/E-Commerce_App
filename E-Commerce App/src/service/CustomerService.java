@@ -13,15 +13,16 @@ public class CustomerService {
 public static Customer logIn(String email,String password) throws ServiceException{
     try{
     Customer customer = CustomerDAO.getCustomerByEmail(email);
-    if(customer!=null&&customer.getPassword().equals(password))
-        return customer;
-    else 
-       throw new ServiceException("Invalid email or password");
+    if(customer==null) throw new ServiceException("Invalid email");
+
+    if(customer.getPassword().equals(password)) return customer;
+        else throw new ServiceException("Invalid password");
     }
     catch(Exception e){
         throw new ServiceException("Error logging in: "+e.getMessage(),e); //rethrow to caaller
     }
 }
+
 public static void registerCustomer(Customer customer) throws ServiceException{
     try{
         if(customer==null) 

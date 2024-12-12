@@ -6,12 +6,27 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Engine",
+            "name": "AppLauncher",
             "request": "launch",
-            "mainClass": "controller.Engine",
+            "mainClass": "engine.AppLauncher",
             "projectName": "E-Commerce_App_2b4c32e8",
             "vmArgs": "--module-path \"C:/Users/MONTASER YOUSUF/Desktop/javafx-sdk-21.0.5/lib\" --add-modules javafx.controls,javafx.fxml"
 
+        },
+        {
+            "type": "java",
+            "name": "Engine",
+            "request": "launch",
+            "mainClass": "engine.Engine",
+            "projectName": "E-Commerce_App_2b4c32e8"
+        },
+        {
+            "type": "java",
+            "name": "test",
+            "request": "launch",
+            "mainClass": "test",
+            "projectName": "E-Commerce_App_2b4c32e8",
+            "vmArgs": "--module-path \"C:/Users/MONTASER YOUSUF/Desktop/javafx-sdk-21.0.5/lib\" --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",
@@ -24,7 +39,7 @@
             "name": "AppLauncher",
             "request": "launch",
             "mainClass": "controller.AppLauncher",
-            "projectName": "E-Commerce_App_2b4c32e8",
+            "projectName": "E-Commerce_App_2b4c32e8"
         }
     ]
 }

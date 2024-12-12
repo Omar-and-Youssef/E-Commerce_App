@@ -9,10 +9,10 @@ public class AdminService {
     public static Admin logIn(String email,String password) throws ServiceException{
         try{
         Admin admin = AdminDAO.getAdminByEmail(email);
-        if(admin!=null&&admin.getPassword().equals(password))
-            return admin;
-        else 
-        throw new ServiceException("Invalid email or password");
+        if(admin==null) throw new ServiceException("Invalid email");
+
+        if(admin.getPassword().equals(password)) return admin;
+        else throw new ServiceException("Invalid password");
         }
         catch(Exception e){
             throw new ServiceException("Error logging in: "+e.getMessage(), e);
@@ -74,7 +74,8 @@ public class AdminService {
         //Partial updates are handled in controller layer
     }
     public ArrayList<Product> getProductsByCategory(Category category) throws ServiceException{
-        try{
+        try{//TODO handling empty product database?
+            getAllProducts();
             if(category==null)
                 throw new IllegalArgumentException("Category cannot be null");
 

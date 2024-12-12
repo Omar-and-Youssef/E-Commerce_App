@@ -1,0 +1,61 @@
+.title {
+    -fx-font-family: "Arial", "Helvetica", sans-serif; 
+    -fx-font-weight: bold; 
+    -fx-text-fill: #232F3E; 
+    -fx-padding: 10 0 10 0;
+}
+.button {
+    -fx-background-color: #FF9900; 
+    -fx-text-fill: white; 
+    -fx-font-size: 16px; 
+    -fx-font-family: "Arial", sans-serif; 
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px; 
+    -fx-border-radius: 4px; 
+    -fx-background-radius: 4px; 
+    -fx-border-color: transparent; 
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 2, 2);    
+    -fx-cursor: hand; 
+    -fx-transition: background-color 0.3s ease, transform 0.2s ease; 
+}
+
+.button:hover {
+    -fx-background-color: #FF7F00; 
+}
+.signUpButton{
+    -fx-background-color: grey;
+}
+
+.button:pressed {
+    -fx-background-color: #E67E22; 
+}
+.button:disabled {
+    -fx-background-color: #dcdcdc; 
+    -fx-text-fill: #a1a1a1; 
+    -fx-border-color: #a1a1a1; 
+    -fx-cursor: not-allowed; 
+}
+.loginPage{
+    -fx-background-color: #f2f2f2; 
+    -fx-padding: 20;
+    -fx-spacing: 15;
+    -fx-alignment: center;
+}
+.nav-bar {
+    -fx-padding: 10; 
+    -fx-spacing: 15; 
+    -fx-alignment: center-left; 
+}
+.nav-logo {
+    -fx-fit-height: 40;
+    -fx-fit-width: 100;
+}
+.nav-search-bar {
+    -fx-background-color: #fff;
+    -fx-padding: 5 10;
+    -fx-border-color: #d5d9d9;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-pref-width: 400;
+}
