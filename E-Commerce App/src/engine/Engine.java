@@ -11,7 +11,7 @@ import service.*;
 
 public class Engine {
     private Scene loginScene;
-    // private LoginController loginController;
+    private LoginController loginController;
 
     private Scene signUpScene;
     // private SignUpController signUpController;
@@ -37,9 +37,6 @@ public class Engine {
     private Scene adminProductScene;
     // private AdminProductController adminProductController;
 
-    private FXMLLoader loginLoader,signUpLoader,homeLoader,productLoader,cartLoader,
-    ordersLoader,wishlistLoader,adminDashboardLoader,adminProductLoader;
-
     private Stage stage;
     private Screen currentScreen;
     
@@ -55,6 +52,8 @@ public class Engine {
         database= new Database();
         initializeScenes();
         stage.setScene(loginScene); 
+        stage.setResizable(false);
+        stage.setTitle("E-CommerceApp");
         stage.show();
         }        
         catch(Exception e){
@@ -63,39 +62,39 @@ public class Engine {
     }
     public void initializeScenes() throws Exception{        
             //we load all the scenes 
-            loginLoader = new FXMLLoader(getClass().getResource("/gui/LogIn.fxml"));
+            FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/gui/LogIn.fxml"));
             loginScene = new Scene(loginLoader.load());
-            // setControllerEngine(loginLoader);
-
-            // signUpLoader = new FXMLLoader(getClass().getResource("/gui/SignUp.fxml"));
+            loginController =(LoginController) loginLoader.getController();
+            loginController.setEngine(this);
+            // FXMLLoader signUpLoader = new FXMLLoader(getClass().getResource("/gui/SignUp.fxml"));
             // signUpScene = new Scene(signUpLoader.load());
             // setControllerEngine(signUpLoader);
 
-            // homeLoader = new FXMLLoader(getClass().getResource("/gui/Home.fxml"));
+            // FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/gui/Home.fxml"));
             // homeScene = new Scene(homeLoader.load());
             // setControllerEngine(homeLoader);
 
-            // productLoader = new FXMLLoader(getClass().getResource("/gui/Product.fxml"));
+            // FXMLLoader productLoader = new FXMLLoader(getClass().getResource("/gui/Product.fxml"));
             // productScene = new Scene(productLoader.load());
             // setControllerEngine(productLoader);
 
-            // cartLoader = new FXMLLoader(getClass().getResource("/gui/Cart.fxml"));
+            // FXMLLoader cartLoader = new FXMLLoader(getClass().getResource("/gui/Cart.fxml"));
             // cartScene = new Scene(cartLoader.load());
             // setControllerEngine(cartLoader);
 
-            // ordersLoader = new FXMLLoader(getClass().getResource("/gui/Orders.fxml"));
+            // FXMLLoader ordersLoader = new FXMLLoader(getClass().getResource("/gui/Orders.fxml"));
             // ordersScene = new Scene(ordersLoader.load());
             // setControllerEngine(ordersLoader);
 
-            // wishlistLoader = new FXMLLoader(getClass().getResource("/gui/Wishlist.fxml"));
+            // FXMLLoader wishlistLoader = new FXMLLoader(getClass().getResource("/gui/Wishlist.fxml"));
             // wishlistScene = new Scene(wishlistLoader.load());
             // setControllerEngine(wishlistLoader);
             
-            // adminDashboardLoader = new FXMLLoader(getClass().getResource("/gui/AdminDashboard.fxml"));
+            // FXMLLoader adminDashboardLoader = new FXMLLoader(getClass().getResource("/gui/AdminDashboard.fxml"));
             // adminDashboardScene = new Scene(adminDashboardLoader.load());
             // setControllerEngine(adminDashboardLoader);
 
-            // adminProductLoader = new FXMLLoader(getClass().getResource("/gui/AdminProduct.fxml"));
+            // FXMLLoader adminProductLoader = new FXMLLoader(getClass().getResource("/gui/AdminProduct.fxml"));
             // adminProductScene = new Scene(adminProductLoader.load());
             // setControllerEngine(adminProductLoader);
     }
@@ -106,7 +105,6 @@ public class Engine {
                 stage.setScene(signUpScene);
                 break;
             case HOME: 
-                //HomeController homeController=homeLoader.getController();
                 //homeController.displayName(currentUser.getName());
                 stage.setScene(homeScene);
                 break;
@@ -142,26 +140,18 @@ public class Engine {
     }
     public User logIn(String email,String password){
         try{
-        User user=CustomerService.logIn(email, password);
-        if(user!=null){
-            currentUser=user;
-            return user;
-        }
-        else {
+            User user=CustomerService.logIn(email, password);
+            if(user!=null){
+                currentUser=user;
+                return user;
+            }
             user=AdminService.logIn(email, password);
             return user;
-        }
         }
         catch(Exception e){
             //TODO Handle alert in controller
             System.out.println("Invalid login credentials");
             return null;
-        }
-    }
-    private void setControllerEngine(FXMLLoader loader) {
-        BaseController controller = loader.getController();
-        if (controller != null) {
-            controller.setEngine(this);
         }
     }
     public Stage getStage(){

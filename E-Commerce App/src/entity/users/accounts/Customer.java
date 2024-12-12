@@ -1,6 +1,7 @@
 package entity.users.accounts;
 import entity.products.*;
 import entity.promotions.*;
+
 import entity.users.details.*;
 import java.util.*;
 public class Customer extends User{
