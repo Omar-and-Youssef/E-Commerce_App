@@ -84,4 +84,9 @@ public class Customer extends User{
     public void setPreferredCategory(Category preferredCategory) {
         this.preferredCategory = preferredCategory;
     }
+    @Override
+    public String toString() {
+        return "Customer [name=" + name + ", address=" + address + ", phoneNumber=" + phoneNumber + ", gender=" + gender
+                + "]";
+    }
 }

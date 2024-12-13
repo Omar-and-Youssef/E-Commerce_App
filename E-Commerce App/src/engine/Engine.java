@@ -1,5 +1,6 @@
 package engine;
 
+import dao.CustomerDAO;
 import database.Database;
 import entity.products.Product;
 import entity.users.details.Cart;
@@ -72,7 +73,12 @@ public class Engine {
             signUpController =(SignUpController) signUpLoader.getController();
             signUpController.setEngine(this);
             signUpController.geterrorLabel().setVisible(false);
-            
+            signUpController.getCategoryChoiceBox().getItems().addAll("Electronics","Books","Clothing",
+            "Home",
+            "Beauty",
+            "Toys",
+            "Sports");
+
             FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("Home.fxml"));
             homeScene = new Scene(homeLoader.load());
             // setControllerEngine(homeLoader);
@@ -150,6 +156,12 @@ public class Engine {
             user=AdminService.logIn(email, password);
             return user;
         
+    }
+    public void signUp(Customer customer){
+        CustomerService.registerCustomer(customer);
+    }
+    public boolean isValidEmail(String email){
+        return CustomerService.isValidEmail(email);
     }
     public Stage getStage(){
         return stage;

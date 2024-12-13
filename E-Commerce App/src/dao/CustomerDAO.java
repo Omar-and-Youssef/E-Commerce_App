@@ -44,7 +44,12 @@ public static Customer getCustomerByEmail(String email){
     return null;
 }
 public static boolean customerInDB(Customer customer){
-    return getCustomerById(customer.getUserID())!=null;
+    try{
+        getCustomerById(customer.getUserID());
+        return true;
+    }catch(Exception e){
+        return false;
+    }
 }
 
 }

@@ -19,11 +19,11 @@ public static Customer logIn(String email,String password) throws ServiceExcepti
     
 }
 
-public static void registerCustomer(Customer customer) throws ServiceException{
-        if(CustomerDAO.customerInDB(customer))
-            throw new ServiceException("Customer with this email already exists");
+public static void registerCustomer(Customer customer) {
         CustomerDAO.addCustomer(customer);
-    
+}
+public static boolean isValidEmail(String email){
+    return CustomerDAO.getCustomerByEmail(email)==null;
 }
 public static void updateCustomer(Customer customer) throws ServiceException{
         if(!CustomerDAO.updateCustomer(customer)) //if customer not found
