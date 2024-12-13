@@ -15,7 +15,7 @@ public class Engine {
     private LoginController loginController;
 
     private Scene signUpScene;
-    // private SignUpController signUpController;
+    private SignUpController signUpController;
 
     private Scene homeScene;
     // private HomeController homeController;
@@ -69,8 +69,10 @@ public class Engine {
 
             FXMLLoader signUpLoader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
             signUpScene = new Scene(signUpLoader.load());
-            // setControllerEngine(signUpLoader);
-
+            signUpController =(SignUpController) signUpLoader.getController();
+            signUpController.setEngine(this);
+            signUpController.geterrorLabel().setVisible(false);
+            
             FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("Home.fxml"));
             homeScene = new Scene(homeLoader.load());
             // setControllerEngine(homeLoader);

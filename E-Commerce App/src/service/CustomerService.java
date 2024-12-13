@@ -20,26 +20,17 @@ public static Customer logIn(String email,String password) throws ServiceExcepti
 }
 
 public static void registerCustomer(Customer customer) throws ServiceException{
-        if(customer==null) 
-            throw new IllegalArgumentException("Customer cannot be null");
-
         if(CustomerDAO.customerInDB(customer))
             throw new ServiceException("Customer with this email already exists");
         CustomerDAO.addCustomer(customer);
     
 }
 public static void updateCustomer(Customer customer) throws ServiceException{
-        if(customer==null)
-            throw new IllegalArgumentException("Customer cannot be null");
         if(!CustomerDAO.updateCustomer(customer)) //if customer not found
             throw new ServiceException("Customer not found");
         //TODO handle partial updates
 }
 public static void deleteCustomer(Customer customer) throws ServiceException{
-    //if customer chooses to delete their account
-        if(customer==null)
-            throw new IllegalArgumentException("Customer cannot be null");
-
         if(CustomerDAO.deleteCustomer(customer)) //if customer not found
             throw new ServiceException("Customer not found");
     
