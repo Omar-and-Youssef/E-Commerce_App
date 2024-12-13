@@ -6,46 +6,18 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Customer",
-            "request": "launch",
-            "mainClass": "entity.users.accounts.Customer",
-            "projectName": "E-Commerce_App_21afabd4"
-        },
-        {
-            "type": "java",
             "name": "AppLauncher",
             "request": "launch",
             "mainClass": "engine.AppLauncher",
             "projectName": "E-Commerce_App_2b4c32e8",
-            "vmArgs": "--module-path \"C:/Users/MONTASER YOUSUF/Desktop/javafx-sdk-21.0.5/lib\" --add-modules javafx.controls,javafx.fxml"
-        },
-        {
-            "type": "java",
-            "name": "Engine",
-            "request": "launch",
-            "mainClass": "engine.Engine",
-            "projectName": "E-Commerce_App_2b4c32e8"
-        },
-        {
-            "type": "java",
-            "name": "test",
-            "request": "launch",
-            "mainClass": "test",
-            "projectName": "E-Commerce_App_2b4c32e8",
-            "vmArgs": "--module-path \"C:/Users/MONTASER YOUSUF/Desktop/javafx-sdk-21.0.5/lib\" --add-modules javafx.controls,javafx.fxml"
+            "vmArgs": "--module-path \"C:/Users/MONTASER YOUSUF/Desktop/javafx-sdk-17.0.13/lib\" --add-modules javafx.controls,javafx.fxml"
+
         },
         {
             "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
-        },
-        {
-            "type": "java",
-            "name": "AppLauncher",
-            "request": "launch",
-            "mainClass": "controller.AppLauncher",
-            "projectName": "E-Commerce_App_2b4c32e8"
         }
     ]
 }

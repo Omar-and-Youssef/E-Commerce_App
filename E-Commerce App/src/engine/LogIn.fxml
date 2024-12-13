@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="loginPage" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="loginPage" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.LoginController">
    <children>
       <Label id="title" fx:id="title" alignment="BASELINE_CENTER" layoutX="28.0" layoutY="11.0" prefHeight="53.0" prefWidth="600.0" styleClass="title" stylesheets="@style.css" text="Cadabra" textAlignment="CENTER" textFill="#9f5d5d">
          <font>
@@ -25,7 +25,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField prefHeight="40.0" prefWidth="169.0" promptText="Enter your Email" styleClass="text-field" stylesheets="@style.css">
+            <TextField fx:id="userEmail" prefHeight="40.0" prefWidth="169.0" promptText="Enter your Email" styleClass="text-field" stylesheets="@style.css">
                <font>
                   <Font size="16.0" />
                </font>
@@ -33,15 +33,15 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </TextField>
-            <PasswordField promptText="Enter password">
+            <PasswordField fx:id="password" promptText="Enter password">
                <font>
                   <Font size="16.0" />
                </font>
             </PasswordField>
          </children>
       </VBox>
-      <Button fx:id="userEmail" layoutX="243.0" layoutY="324.0" mnemonicParsing="false"  prefHeight="33.0" prefWidth="140.0" stylesheets="@style.css" text="Log in" />
-      <Button fx:id="signUpButton" layoutX="243.0" layoutY="420.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="140.0" styleClass="signUpButton" stylesheets="@style.css" text="Sign Up" />
+      <Button fx:id="loginButton" layoutX="243.0" layoutY="324.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="33.0" prefWidth="140.0" stylesheets="@style.css" text="Log in" />
+      <Button fx:id="signUpButton" layoutX="243.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="33.0" prefWidth="140.0" styleClass="signUpButton" stylesheets="@style.css" text="Sign Up" />
       <Label layoutX="242.0" layoutY="393.0" text="Don't have an account?">
          <font>
             <Font size="14.0" />
