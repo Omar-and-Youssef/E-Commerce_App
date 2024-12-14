@@ -2,10 +2,11 @@ package entity.products;
 
 
 public enum Category {
+    ALL,
     ELECTRONICS,
+    FURNITURE,
     BOOKS,
     CLOTHING,
-    HOME,
     BEAUTY,
     TOYS,
     SPORTS;

@@ -10,12 +10,12 @@ public class Product {
     private String description;
     private String brand;
     private Category category;
-    private BufferedImage image; 
+    private String imagePath;
     private final ArrayList<Review>REVIEW_LIST;
     private double rating;
 //=======================================Constructor===================================
     public Product(double price, int stockQuantity,String productName,String description,
-    String brand,Category category,BufferedImage image){
+    String brand,Category category,String imagePath){
         this.PRODUCT_ID="P"+productCounter++;
         this.price=price;
         this.stockQuantity=stockQuantity;
@@ -23,7 +23,7 @@ public class Product {
         this.description=description;
         this.brand=brand;
         this.category=category;
-        this.image=image;
+        this.imagePath=imagePath;
         REVIEW_LIST=new ArrayList<Review>();
     }
     public Product(double price, int stockQuantity, String productName, String description, 
@@ -91,14 +91,20 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
-    public void setImage(BufferedImage image){
-        this.image=image;
+    public void setImage(String imagePath){
+        this.imagePath=imagePath;
     }
-    public BufferedImage getImage(){
-        return image;
+    public String getImagePath(){
+        return imagePath;
     }
     public double getRating(){
         calculateRating();
         return rating;
     }
+    @Override
+    public String toString() {
+        return "Product [price=" + price + ", productName=" + productName + ", description=" + description + ", brand="
+                + brand + ", category=" + category + ", rating=" + rating + "]";
+    }
+    
 }

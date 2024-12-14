@@ -85,28 +85,27 @@ public class Engine {
             homeController =(HomeController) homeLoader.getController();
             homeController.setEngine(this);
             homeController.populateProducts(AdminService.getAllProducts());
-            
-            // FXMLLoader productLoader = new FXMLLoader(getClass().getResource("/gui/Product.fxml"));
+            // FXMLLoader productLoader = new FXMLLoader(getClass().getResource("Product.fxml"));
             // productScene = new Scene(productLoader.load());
             // setControllerEngine(productLoader);
 
-            // FXMLLoader cartLoader = new FXMLLoader(getClass().getResource("/gui/Cart.fxml"));
+            // FXMLLoader cartLoader = new FXMLLoader(getClass().getResource("Cart.fxml"));
             // cartScene = new Scene(cartLoader.load());
             // setControllerEngine(cartLoader);
 
-            // FXMLLoader ordersLoader = new FXMLLoader(getClass().getResource("/gui/Orders.fxml"));
+            // FXMLLoader ordersLoader = new FXMLLoader(getClass().getResource("Orders.fxml"));
             // ordersScene = new Scene(ordersLoader.load());
             // setControllerEngine(ordersLoader);
 
-            // FXMLLoader wishlistLoader = new FXMLLoader(getClass().getResource("/gui/Wishlist.fxml"));
+            // FXMLLoader wishlistLoader = new FXMLLoader(getClass().getResource("Wishlist.fxml"));
             // wishlistScene = new Scene(wishlistLoader.load());
             // setControllerEngine(wishlistLoader);
             
-            // FXMLLoader adminDashboardLoader = new FXMLLoader(getClass().getResource("/gui/AdminDashboard.fxml"));
+            // FXMLLoader adminDashboardLoader = new FXMLLoader(getClass().getResource("AdminDashboard.fxml"));
             // adminDashboardScene = new Scene(adminDashboardLoader.load());
             // setControllerEngine(adminDashboardLoader);
 
-            // FXMLLoader adminProductLoader = new FXMLLoader(getClass().getResource("/gui/AdminProduct.fxml"));
+            // FXMLLoader adminProductLoader = new FXMLLoader(getClass().getResource("AdminProduct.fxml"));
             // adminProductScene = new Scene(adminProductLoader.load());
             // setControllerEngine(adminProductLoader);
     }

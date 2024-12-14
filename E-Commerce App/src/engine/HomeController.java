@@ -2,15 +2,15 @@ package engine;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.awt.Button;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import entity.products.Product;
@@ -22,6 +22,8 @@ public class HomeController extends BaseController {
     private Button logoutButton;
     @FXML
     private GridPane productGrid;
+    @FXML
+    private HBox hBox;
     
     @FXML
     public void handleLogout(){
@@ -33,43 +35,42 @@ public class HomeController extends BaseController {
         nameLabel.setText("Welcome, "+tempName);
     }
     public void populateProducts(ArrayList<Product> products){
-        productGrid.getChildren().clear();
+        hBox.getStyleClass().add("curved-hbox");
         int coloumns =3;
         int row=0,col=0;
+        System.out.println(products.isEmpty());
         for(Product product:products){
+            System.out.println("Product: "+product.getProductName());
             VBox productBox = new VBox(10);
             productBox.setAlignment(Pos.CENTER);
 
-            Image fxImage=convertToFxImage(product.getImage());
-
-            ImageView productImage=new ImageView(fxImage);
+            ImageView productImage = new ImageView();
             productImage.setFitWidth(90);
             productImage.setFitHeight(71);
             productImage.setPreserveRatio(true);
-
+            String imagePath = product.getImagePath();
+            if (getClass().getResourceAsStream(imagePath) != null) {
+                productImage.setImage(new Image(getClass().getResourceAsStream(imagePath)));
+            } else {
+                System.err.println("Image not found: " + imagePath);
+            }
+            
             ImageView productRating=new ImageView();
             productRating.setFitHeight(20); 
             productRating.setFitWidth(100);
             productRating.setPreserveRatio(true);
-            int rating =(int) Math.floor(product.getRating());
-            switch(rating){
-                case 1:
-                    productRating.setImage(new Image(getClass().getResourceAsStream("@resources/1star.png")));
-                    break;
-                case 2:
-                    productRating.setImage(new Image(getClass().getResourceAsStream("@resources/2star.png")));
-                    break;
-                case 3:
-                    productRating.setImage(new Image(getClass().getResourceAsStream("@resources/3star.png")));
-                    break;
-                case 4:
-                    productRating.setImage(new Image(getClass().getResourceAsStream("@resources/4star.png")));
-                    break;
-                case 5:
-                    productRating.setImage(new Image(getClass().getResourceAsStream("@resources/5star.png")));
-                    break;
-                default:
-                    productRating.setImage(new Image(getClass().getResourceAsStream("@resources/1star.png")));
+            int rating;
+            try{
+            rating =(int) Math.floor(product.getRating());
+            }
+            catch(Exception e){
+                rating=0;
+            }
+            String ratingPath = "resources/" + rating + "star.png";
+            if (getClass().getResourceAsStream(ratingPath) != null) {
+                productRating.setImage(new Image(getClass().getResourceAsStream(ratingPath)));
+            } else {
+                System.err.println("Rating image not found for rating: " + rating);
             }
 
 
@@ -82,7 +83,7 @@ public class HomeController extends BaseController {
             Text productPrice = new Text("$ " + product.getPrice());
             productPrice.setStyle("-fx-font-size: 14px; -fx-fill: #32CD32;");
 
-            productBox.getChildren().addAll(productImage,productName,productbrand,productPrice);
+            productBox.getChildren().addAll(productImage,productRating,productName,productbrand,productPrice);
             
             productGrid.add(productBox, col, row);
             col++;
@@ -92,22 +93,5 @@ public class HomeController extends BaseController {
             }
             if(row==3) break;
         }
-    }
-
-
-
-
-
-
-
-
-    public static Image convertToFxImage(BufferedImage bufferedImage) {
-        return SwingFXUtils.toFXImage(bufferedImage, null);
-    }
-    public GridPane getGrid(){
-        return productGrid;
-    }
-    public void setGrid(GridPane gridPane){
-        productGrid=gridPane;
     }
 }

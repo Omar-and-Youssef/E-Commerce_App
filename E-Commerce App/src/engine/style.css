@@ -169,15 +169,20 @@
     -fx-background-color: #FF7F00;
 }
 .menu-label {
+    -fx-background-color: #ffd089;
     -fx-font-family: 'Poppins', sans-serif;
     -fx-font-size: 14px;
     -fx-font-family: "Arial", sans-serif;
     -fx-padding: 10px 5px;
     -fx-text-fill: #333;
     -fx-cursor: hand;
+    -fx-border-radius: 15;
+    -fx-border-color: #F1A556;
 }
-
-.menu-label:hover {
-    -fx-background-color: #FFC107;
-    -fx-text-fill: #fff;
+.curved-hbox {
+    -fx-background-color: #FBC16D; 
+    -fx-background-radius: 15;    
+    -fx-border-radius: 15;        
+    -fx-border-color: #F1A556;    
+    -fx-padding: 10;              
 }

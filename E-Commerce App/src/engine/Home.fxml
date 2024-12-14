@@ -21,7 +21,7 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <HBox layoutX="14.0" layoutY="67.0" prefHeight="55.0" prefWidth="879.0" styleClass="navbar" stylesheets="@style.css">
+      <HBox alignment="CENTER" layoutX="14.0" layoutY="67.0" prefHeight="55.0" prefWidth="879.0" styleClass="navbar" stylesheets="@style.css">
          <children>
             <Label fx:id="nameLabel" styleClass="welcome-message" stylesheets="@style.css">
                <HBox.margin>
@@ -68,55 +68,52 @@
             <Insets />
          </opaqueInsets>
       </HBox>
-      <HBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="120.0" prefHeight="17.0" prefWidth="907.0">
+      <HBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="120.0" prefHeight="17.0" prefWidth="907.0" />
+      <HBox fx:id="hBox" alignment="CENTER" layoutX="19.0" layoutY="141.0" prefHeight="65.0" prefWidth="842.0" styleClass="menu-label" stylesheets="@style.css">
          <children>
-            <Label styleClass="menu-label" stylesheets="@style.css" text="Category">
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-            </Label>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" layoutX="-1.0" layoutY="141.0" prefHeight="65.0" prefWidth="903.0">
-         <children>
-            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="129.0" styleClass="menu-button" stylesheets="@style.css" text="Electronics">
+            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="79.0" styleClass="menu-button" stylesheets="@style.css" text="All">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="103.0" styleClass="menu-button" stylesheets="@style.css" text="Books">
+            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" styleClass="menu-button" stylesheets="@style.css" text="Electronics">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="103.0" styleClass="menu-button" stylesheets="@style.css" text="Clothing">
+            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="114.0" styleClass="menu-button" stylesheets="@style.css" text="Furniture">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="103.0" styleClass="menu-button" stylesheets="@style.css" text="Home">
+            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" styleClass="menu-button" stylesheets="@style.css" text="Books">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="103.0" styleClass="menu-button" stylesheets="@style.css" text="Beauty">
+            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="menu-button" stylesheets="@style.css" text="Clothing">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="103.0" styleClass="menu-button" stylesheets="@style.css" text="Toys">
+            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="92.0" styleClass="menu-button" stylesheets="@style.css" text="Beauty">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="103.0" styleClass="menu-button" stylesheets="@style.css" text="Sports">
+            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" styleClass="menu-button" stylesheets="@style.css" text="Toys">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="92.0" styleClass="menu-button" stylesheets="@style.css" text="Sports">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
-      <GridPane fx:id="productGrid" layoutX="95.0" layoutY="227.0" prefHeight="371.0" prefWidth="703.0">
+      <GridPane fx:id="productGrid" layoutX="95.0" layoutY="227.0" prefHeight="365.0" prefWidth="703.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
