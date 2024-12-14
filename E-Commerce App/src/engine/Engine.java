@@ -47,13 +47,16 @@ public class Engine {
     private Cart cart;
     private User currentUser;
     private Database database;
-
+    private AdminService adminService;
+    private CustomerService customerService;
     public Engine(Stage stage){
         try{
         initializeScenes();
         this.stage=stage;
         currentScreen=Screen.LOGIN;
         database= new Database();
+        adminService = new AdminService(database);
+        customerService = new CustomerService(database);
         stage.setScene(loginScene); 
         stage.setResizable(false);
         stage.setTitle("E-CommerceApp");
@@ -84,7 +87,7 @@ public class Engine {
             homeScene = new Scene(homeLoader.load());
             homeController =(HomeController) homeLoader.getController();
             homeController.setEngine(this);
-            homeController.populateProducts(AdminService.getAllProducts());
+            homeController.populateProducts(adminService.getAllProducts());
             // FXMLLoader productLoader = new FXMLLoader(getClass().getResource("Product.fxml"));
             // productScene = new Scene(productLoader.load());
             // setControllerEngine(productLoader);
@@ -150,20 +153,20 @@ public class Engine {
         }
     }
     public User logIn(String email,String password) throws ServiceException{
-            User user=CustomerService.logIn(email, password);
+            User user=customerService.logIn(email, password);
             if(user!=null){
                 currentUser=user;
                 return user;
             }
-            user=AdminService.logIn(email, password);
+            user=adminService.logIn(email, password);
             return user;
         
     }
     public void signUp(Customer customer){
-        CustomerService.registerCustomer(customer);
+        customerService.registerCustomer(customer);
     }
     public boolean isValidEmail(String email){
-        return CustomerService.isValidEmail(email);
+        return customerService.isValidEmail(email);
     }
     public Stage getStage(){
         return stage;

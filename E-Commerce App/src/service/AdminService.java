@@ -3,75 +3,87 @@ import entity.users.accounts.*;
 import entity.users.details.*;
 import exceptions.ServiceException;
 import entity.products.*; 
-import dao.*; 
+import dao.*;
+import database.Database;
+
 import java.util.*;
 public class AdminService {
-    public static Admin logIn(String email,String password) throws ServiceException{
-        Admin admin = AdminDAO.getAdminByEmail(email);
+    AdminDAO adminDAO;
+    ProductDAO productDAO;
+    CustomerDAO customerDAO;
+    OrderDAO orderDAO;
+    public AdminService(Database database){
+        adminDAO=new AdminDAO(database);
+        productDAO=new ProductDAO(database);
+        customerDAO=new CustomerDAO(database);
+        orderDAO=new OrderDAO(database);
+    }
+    public Admin logIn(String email,String password) throws ServiceException{
+        Admin admin = adminDAO.getAdminByEmail(email);
         if(admin==null) throw new ServiceException("Invalid email");
 
         if(admin.getPassword().equals(password)) return admin;
         else throw new ServiceException("Invalid password");
     }
-    public static void addAdmin(Admin admin) throws ServiceException{
+    public void addAdmin(Admin admin) throws ServiceException{
             if(admin==null)
                 throw new IllegalArgumentException("Admin cannot be null");
 
-            if(AdminDAO.adminInDB(admin))
+            if(adminDAO.adminInDB(admin))
                 throw new ServiceException("Admin already exists");
 
-            AdminDAO.addAdmin(admin);
+            adminDAO.addAdmin(admin);
     }
-    public static void addProduct(Product product)throws ServiceException{
+    public void addProduct(Product product)throws ServiceException{
             if(product==null) 
                 throw new IllegalArgumentException("Product cannot be null");
     
-            if(ProductDAO.productInDB(product))
+            if(productDAO.productInDB(product))
                 throw new ServiceException("Product already exists");
-            ProductDAO.addProduct(product);
+            productDAO.addProduct(product);
     }
-    public static void deleteProduct(Product product) throws ServiceException{
+    public void deleteProduct(Product product) throws ServiceException{
             if(product==null) 
                 throw new IllegalArgumentException("Product cannot be null");
     
-            if(!ProductDAO.deleteProduct(product))
+            if(!productDAO.deleteProduct(product))
                 throw new ServiceException("Product does not exist");
     }
-    public static void updateProduct(Product product) throws ServiceException{
+    public void updateProduct(Product product) throws ServiceException{
 
             if(product==null)
                 throw new IllegalArgumentException("Product cannot be null");
 
-            if(!ProductDAO.productInDB(product))
+            if(!productDAO.productInDB(product))
                 throw new ServiceException("Product does not exist");
 
-            ProductDAO.updateProduct(product);
+            productDAO.updateProduct(product);
     }
-    public static ArrayList<Product> getProductsByCategory(Category category) throws ServiceException{
+    public ArrayList<Product> getProductsByCategory(Category category) throws ServiceException{
         //TODO handling empty product database?
             getAllProducts();
             if(category==null)
                 throw new IllegalArgumentException("Category cannot be null");
 
-            return ProductDAO.getProductsByCategory(category);
+            return productDAO.getProductsByCategory(category);
         
   
     }
-    public static ArrayList<Customer> getAllCustomers(){
-            return CustomerDAO.getAllCustomers();
+    public ArrayList<Customer> getAllCustomers(){
+            return customerDAO.getAllCustomers();
     }
-    public static ArrayList<Product> getAllProducts(){
-        return ProductDAO.getAllProducts();
+    public ArrayList<Product> getAllProducts(){
+        return productDAO.getAllProducts();
     }
-    public static ArrayList<Order> getAllOrders() throws ServiceException{
-            if(OrderDAO.getAllOrders().isEmpty())
+    public ArrayList<Order> getAllOrders() throws ServiceException{
+            if(orderDAO.getAllOrders().isEmpty())
                 throw new ServiceException("No orders found");
-            return OrderDAO.getAllOrders();
+            return orderDAO.getAllOrders();
     }
     
-    public static void assignHelpTicket(HelpTicket helpTicket)
+    public void assignHelpTicket(HelpTicket helpTicket)
     throws ServiceException{
-        ArrayList<Admin> admins=AdminDAO.getAllAdmins();
+        ArrayList<Admin> admins=adminDAO.getAllAdmins();
         for(Admin admin:admins){
         if(admin.getHelpTicketAssigned()==null){
             helpTicket.assignAdmin(admin);
@@ -83,7 +95,7 @@ public class AdminService {
         }
     }
 //unsure of helpticket algorithm
-    public static void unassignHelpTicket(HelpTicket helpTicket) throws ServiceException{
+    public void unassignHelpTicket(HelpTicket helpTicket) throws ServiceException{
         if(helpTicket.getAssignedAdmin()==null)
             throw new ServiceException("Ticket not assigned to any admin");
         else{
@@ -91,7 +103,7 @@ public class AdminService {
             helpTicket.getAssignedAdmin().assignHelpTicket(null);
         }
     }
-    public static void resolveHelpTicket(HelpTicket helpTicket) throws ServiceException{
+    public void resolveHelpTicket(HelpTicket helpTicket) throws ServiceException{
         if(!(helpTicket.getTicketStatus()==TicketStatus.RESOLVED))
             {
                 helpTicket.updateTicketStatus(TicketStatus.RESOLVED);

@@ -2,16 +2,23 @@ package dao;
 import java.util.ArrayList;
 import entity.users.accounts.Customer;
 import database.Database;
+
+
 public class CustomerDAO {
-private static ArrayList<Customer> customers= Database.getCustomerDB();
+    private Database database;
+    public CustomerDAO(Database database){
+        this.database=database;
+    }
+private ArrayList<Customer> customers= database.getCustomerDB();
+
 //=======================================CRUD=======================================
-public static void addCustomer(Customer customer){
+public void addCustomer(Customer customer){
     customers.add(customer);
 }
-public static boolean deleteCustomer(Customer c){
+public boolean deleteCustomer(Customer c){
     return customers.remove(c);
 }
-public static boolean updateCustomer(Customer customer) {
+public boolean updateCustomer(Customer customer) {
     for (int i=0;i<customers.size();i++) {
         if (customers.get(i).getUserID().equals(customer.getUserID())) {
             customers.set(i, customer);
@@ -24,10 +31,10 @@ public static boolean updateCustomer(Customer customer) {
 // public void updatePassword()
 // all handled in the control layer 
 
-public static ArrayList<Customer> getAllCustomers(){
+public ArrayList<Customer> getAllCustomers(){
     return customers;
 }
-public static Customer getCustomerById(String id){
+public Customer getCustomerById(String id){
     try{
     for(Customer c: customers){
         if(c.getUserID().equals(id)){
@@ -40,7 +47,7 @@ public static Customer getCustomerById(String id){
     }
     return null;
 }
-public static Customer getCustomerByEmail(String email){
+public Customer getCustomerByEmail(String email){
     try{
     for(Customer c: customers){
         if(c.getEmail().equals(email)){
@@ -51,7 +58,7 @@ public static Customer getCustomerByEmail(String email){
     catch(Exception e){return null;}
     return null;
 }
-public static boolean customerInDB(Customer customer){
+public boolean customerInDB(Customer customer){
     try{
         getCustomerById(customer.getUserID());
         return true;

@@ -186,3 +186,25 @@
     -fx-border-color: #F1A556;    
     -fx-padding: 10;              
 }
+.product-box {
+    -fx-padding: 10;
+    -fx-border-color: lightgray;
+    -fx-border-radius: 5;
+    -fx-spacing: 10;
+    -fx-alignment: center;
+}
+
+.product-name {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.product-brand {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.product-price {
+    -fx-font-size: 14px;
+    -fx-fill: #32CD32;
+}

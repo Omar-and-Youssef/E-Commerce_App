@@ -1,13 +1,19 @@
 package engine;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -24,6 +30,7 @@ public class HomeController extends BaseController {
     private GridPane productGrid;
     @FXML
     private HBox hBox;
+
     
     @FXML
     public void handleLogout(){
@@ -35,19 +42,43 @@ public class HomeController extends BaseController {
         nameLabel.setText("Welcome, "+tempName);
     }
     public void populateProducts(ArrayList<Product> products){
+
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(productGrid);
+        scrollPane.setFitToWidth(true); // Makes content width adapt to ScrollPane's width
+        scrollPane.setPannable(true);
+        
         hBox.getStyleClass().add("curved-hbox");
         int coloumns =3;
         int row=0,col=0;
-        System.out.println(products.isEmpty());
+        
+        productGrid.getChildren().clear();
+        productGrid.getColumnConstraints().clear();
+        productGrid.getRowConstraints().clear();
+        
+        for (int i = 0; i < coloumns; i++) {
+            ColumnConstraints colConstraints = new ColumnConstraints();
+            colConstraints.setHgrow(Priority.ALWAYS);
+            colConstraints.setPercentWidth(100.0 / coloumns);
+            productGrid.getColumnConstraints().add(colConstraints);
+        }
+        RowConstraints rowConstraints = new RowConstraints();
+        rowConstraints.setVgrow(Priority.ALWAYS);
+        productGrid.getRowConstraints().add(rowConstraints);
+        
         for(Product product:products){
             System.out.println("Product: "+product.getProductName());
             VBox productBox = new VBox(10);
             productBox.setAlignment(Pos.CENTER);
+            productBox.getStyleClass().add("product-box");
+            productBox.setPrefWidth(220);
+            productBox.setStyle("-fx-padding: 5; -fx-border-color: lightgray; -fx-border-radius: 5;");
+
+
 
             ImageView productImage = new ImageView();
-            productImage.setFitWidth(90);
-            productImage.setFitHeight(71);
             productImage.setPreserveRatio(true);
+            productImage.setFitHeight(50);
             String imagePath = product.getImagePath();
             if (getClass().getResourceAsStream(imagePath) != null) {
                 productImage.setImage(new Image(getClass().getResourceAsStream(imagePath)));
@@ -83,6 +114,11 @@ public class HomeController extends BaseController {
             Text productPrice = new Text("$ " + product.getPrice());
             productPrice.setStyle("-fx-font-size: 14px; -fx-fill: #32CD32;");
 
+            productBox.getStyleClass().add("product-box");
+            productName.getStyleClass().add("product-name");
+            productbrand.getStyleClass().add("product-brand");
+            productPrice.getStyleClass().add("product-price");
+            
             productBox.getChildren().addAll(productImage,productRating,productName,productbrand,productPrice);
             
             productGrid.add(productBox, col, row);
@@ -91,7 +127,6 @@ public class HomeController extends BaseController {
                 col=0;
                 row++;
             }
-            if(row==3) break;
         }
     }
 }

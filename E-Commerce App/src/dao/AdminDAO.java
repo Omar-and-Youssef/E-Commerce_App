@@ -5,16 +5,20 @@ import java.util.ArrayList;
 import database.Database;
 import entity.users.accounts.Admin;
 
-public class AdminDAO {
-private static ArrayList<Admin> admins= Database.getAdminDB();
+public class AdminDAO{
+Database database;
+public AdminDAO(Database database){
+    this.database=database;
+}
+private ArrayList<Admin> admins= database.getAdminDB();
 
-public static void addAdmin(Admin admin){
+public void addAdmin(Admin admin){
     admins.add(admin);
 }
-public static boolean deleteAdmin(Admin admin){
+public boolean deleteAdmin(Admin admin){
     return admins.remove(admin);
 }
-public static boolean updateAdmin(Admin admin){
+public boolean updateAdmin(Admin admin){
     for (int i=0;i<admins.size();i++) {
         if (admins.get(i).getUserID().equals(admin.getUserID())) {
             admins.set(i, admin);
@@ -24,15 +28,15 @@ public static boolean updateAdmin(Admin admin){
 return false;
 }
 //=======================================Get&Set=======================================
-public static ArrayList<Admin> getAllAdmins(){
+public ArrayList<Admin> getAllAdmins(){
     return admins;
 }
-public static Admin getAdminById(String id){
+public Admin getAdminById(String id){
     for(Admin a: admins)
         if(a.getUserID().equals(id)) return a;
     return null;
 }
-public static Admin getAdminByEmail(String email){
+public Admin getAdminByEmail(String email){
     for(Admin a: admins){
         if(a.getEmail().equals(email)){
             return a;
@@ -40,7 +44,7 @@ public static Admin getAdminByEmail(String email){
     }
     return null;
 }
-public static boolean adminInDB(Admin admin){
+public boolean adminInDB(Admin admin){
     return getAdminById(admin.getUserID())!=null;
 }
 }

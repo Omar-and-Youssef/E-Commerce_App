@@ -6,23 +6,27 @@ import database.Database;
 import entity.users.details.*;
 
 public class OrderDAO {
-private static ArrayList<Order> orders= Database.getOrderDB();
+Database database;
+public OrderDAO(Database database){
+    this.database=database;
+}
+private  ArrayList<Order> orders= database.getOrderDB();
 //=======================================CRUD=======================================
-public static void addOrder(Order order){
+public void addOrder(Order order){
     orders.add(order);
 }
-public static boolean deleteOrder(Order order){
+public boolean deleteOrder(Order order){
     return orders.remove(order);
 }
-public static void updateOrder(Order newOrder){
+public void updateOrder(Order newOrder){
     Order o=getOrderById(newOrder.getOrderId());
     o.setOrderStatus(newOrder.getOrderStatus());
 }
 
-public static ArrayList<Order> getAllOrders(){
+public ArrayList<Order> getAllOrders(){
     return orders;
 }
-public static Order getOrderById(String id){
+public Order getOrderById(String id){
     for(Order o: orders){
         if(o.getOrderId().equals(id)){
             return o;
@@ -30,7 +34,7 @@ public static Order getOrderById(String id){
     }
     return null;
 } 
-public static boolean orderInDB(Order order){
+public boolean orderInDB(Order order){
     return getOrderById(order.getOrderId())!=null;
 }
 }
