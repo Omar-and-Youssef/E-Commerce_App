@@ -13,7 +13,7 @@ public class AdminService {
         if(admin.getPassword().equals(password)) return admin;
         else throw new ServiceException("Invalid password");
     }
-    public void addAdmin(Admin admin) throws ServiceException{
+    public static void addAdmin(Admin admin) throws ServiceException{
             if(admin==null)
                 throw new IllegalArgumentException("Admin cannot be null");
 
@@ -22,7 +22,7 @@ public class AdminService {
 
             AdminDAO.addAdmin(admin);
     }
-    public void addProduct(Product product)throws ServiceException{
+    public static void addProduct(Product product)throws ServiceException{
             if(product==null) 
                 throw new IllegalArgumentException("Product cannot be null");
     
@@ -30,14 +30,14 @@ public class AdminService {
                 throw new ServiceException("Product already exists");
             ProductDAO.addProduct(product);
     }
-    public void deleteProduct(Product product) throws ServiceException{
+    public static void deleteProduct(Product product) throws ServiceException{
             if(product==null) 
                 throw new IllegalArgumentException("Product cannot be null");
     
             if(!ProductDAO.deleteProduct(product))
                 throw new ServiceException("Product does not exist");
     }
-    public void updateProduct(Product product) throws ServiceException{
+    public static void updateProduct(Product product) throws ServiceException{
 
             if(product==null)
                 throw new IllegalArgumentException("Product cannot be null");
@@ -47,7 +47,7 @@ public class AdminService {
 
             ProductDAO.updateProduct(product);
     }
-    public ArrayList<Product> getProductsByCategory(Category category) throws ServiceException{
+    public static ArrayList<Product> getProductsByCategory(Category category) throws ServiceException{
         //TODO handling empty product database?
             getAllProducts();
             if(category==null)
@@ -57,23 +57,19 @@ public class AdminService {
         
   
     }
-    public ArrayList<Customer> getAllCustomers() throws ServiceException{
-            if(CustomerDAO.getAllCustomers().isEmpty()) 
-                throw new ServiceException("No customers found");
+    public static ArrayList<Customer> getAllCustomers(){
             return CustomerDAO.getAllCustomers();
     }
-    public ArrayList<Product> getAllProducts() throws ServiceException{
-            if(ProductDAO.getAllProducts().isEmpty())
-                throw new ServiceException("No products found");
-            return ProductDAO.getAllProducts();
+    public static ArrayList<Product> getAllProducts(){
+        return ProductDAO.getAllProducts();
     }
-    public ArrayList<Order> getAllOrders() throws ServiceException{
+    public static ArrayList<Order> getAllOrders() throws ServiceException{
             if(OrderDAO.getAllOrders().isEmpty())
                 throw new ServiceException("No orders found");
             return OrderDAO.getAllOrders();
     }
     
-    public void assignHelpTicket(HelpTicket helpTicket)
+    public static void assignHelpTicket(HelpTicket helpTicket)
     throws ServiceException{
         ArrayList<Admin> admins=AdminDAO.getAllAdmins();
         for(Admin admin:admins){
@@ -87,7 +83,7 @@ public class AdminService {
         }
     }
 //unsure of helpticket algorithm
-    public void unassignHelpTicket(HelpTicket helpTicket) throws ServiceException{
+    public static void unassignHelpTicket(HelpTicket helpTicket) throws ServiceException{
         if(helpTicket.getAssignedAdmin()==null)
             throw new ServiceException("Ticket not assigned to any admin");
         else{
@@ -95,7 +91,7 @@ public class AdminService {
             helpTicket.getAssignedAdmin().assignHelpTicket(null);
         }
     }
-    public void resolveHelpTicket(HelpTicket helpTicket) throws ServiceException{
+    public static void resolveHelpTicket(HelpTicket helpTicket) throws ServiceException{
         if(!(helpTicket.getTicketStatus()==TicketStatus.RESOLVED))
             {
                 helpTicket.updateTicketStatus(TicketStatus.RESOLVED);

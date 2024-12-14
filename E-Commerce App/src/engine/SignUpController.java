@@ -126,6 +126,7 @@ public class SignUpController extends BaseController{
             System.out.println(customer.toString()); 
             engine.setCurrentUser(customer);
             engine.switchScene(Screen.HOME);
+            engine.getHomeController().displayName(customer.getName());
         } 
         catch(Exception e){
             if(e.getMessage()==null) e=new IllegalArgumentException("All fields are required");

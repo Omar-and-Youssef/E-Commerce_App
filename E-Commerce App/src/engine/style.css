@@ -76,6 +76,31 @@
     -fx-border-color: #a1a1a1;
     -fx-cursor: not-allowed;
 }
+.logoutButton{
+    -fx-background-color: white;
+    -fx-text-fill: grey;
+    -fx-font-size: 12px;
+    -fx-font-family: "Arial", sans-serif;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 2, 2);
+    -fx-cursor: hand;
+    -fx-transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.logoutButton:hover {
+    -fx-background-color: red;
+    -fx-text-fill: white;
+}
+
+.logoutButton:disabled {
+    -fx-background-color: #dcdcdc;
+    -fx-text-fill: #a1a1a1;
+    -fx-border-color: #a1a1a1;
+    -fx-cursor: not-allowed;
+}
 
 .loginPage{
     -fx-background-color: #f2f2f2; 

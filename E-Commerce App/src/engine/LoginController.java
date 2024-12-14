@@ -29,6 +29,7 @@ public class LoginController extends BaseController {
             if(user instanceof Customer){
                 engine.setCurrentUser(user);
                 engine.switchScene(Screen.HOME);
+                engine.getHomeController().displayName(user.getName());
             }
             else if(user instanceof Admin){
                 engine.setCurrentUser(user);

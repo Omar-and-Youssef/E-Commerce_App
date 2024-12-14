@@ -8,6 +8,7 @@ import exceptions.ServiceException;
 import entity.users.accounts.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+import javafx.scene.layout.GridPane;
 import javafx.stage.*;
 import service.*;
 //TODO Handle alerts in controller
@@ -19,7 +20,7 @@ public class Engine {
     private SignUpController signUpController;
 
     private Scene homeScene;
-    // private HomeController homeController;
+    private HomeController homeController;
 
     private Scene productScene;
     // private ProductController productController;
@@ -81,8 +82,10 @@ public class Engine {
 
             FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("Home.fxml"));
             homeScene = new Scene(homeLoader.load());
-            // setControllerEngine(homeLoader);
-
+            homeController =(HomeController) homeLoader.getController();
+            homeController.setEngine(this);
+            homeController.populateProducts(AdminService.getAllProducts());
+            
             // FXMLLoader productLoader = new FXMLLoader(getClass().getResource("/gui/Product.fxml"));
             // productScene = new Scene(productLoader.load());
             // setControllerEngine(productLoader);
@@ -174,5 +177,8 @@ public class Engine {
     }
     public Database getDatabase(){
         return database;
+    }
+    public HomeController getHomeController(){
+        return homeController;
     }
 } 

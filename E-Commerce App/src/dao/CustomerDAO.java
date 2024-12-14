@@ -28,19 +28,27 @@ public static ArrayList<Customer> getAllCustomers(){
     return customers;
 }
 public static Customer getCustomerById(String id){
+    try{
     for(Customer c: customers){
         if(c.getUserID().equals(id)){
             return c;
         }
     }
+    }
+    catch(Exception e){
+        return null;
+    }
     return null;
 }
 public static Customer getCustomerByEmail(String email){
+    try{
     for(Customer c: customers){
         if(c.getEmail().equals(email)){
             return c;
         }
     }
+    }
+    catch(Exception e){return null;}
     return null;
 }
 public static boolean customerInDB(Customer customer){

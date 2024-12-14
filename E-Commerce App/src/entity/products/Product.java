@@ -97,4 +97,8 @@ public class Product {
     public BufferedImage getImage(){
         return image;
     }
+    public double getRating(){
+        calculateRating();
+        return rating;
+    }
 }
