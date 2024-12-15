@@ -22,6 +22,7 @@ import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
+import entity.products.Category;
 import entity.products.Product;
 
 public class HomeController extends BaseController {
@@ -65,7 +66,6 @@ public class HomeController extends BaseController {
     
         for (int i=startingIndex; i<startingIndex+PRODUCTS_PER_PAGE && i<products.size(); i++) {
             Product product = products.get(i);
-            System.out.println("Product: " + product.getProductName());
     
             VBox productBox = createProductBox(product);
             productGrid.add(productBox, col, row);
@@ -167,6 +167,48 @@ public class HomeController extends BaseController {
             populateProducts(engine.getProductDatabase(), productCount);
         }
     }
+    @FXML
+    public void handleCategoryAll() {
+        productCount = 0;
+        populateProducts(engine.getProductDatabase(), productCount);
+    }
+    @FXML
+    public void handleCategoryElectronics() {
+        productCount = 0;
+        populateProducts(engine.getProductsByCategory(Category.ELECTRONICS), productCount);
+    }
+    @FXML
+    public void handleCategoryClothing() {
+        productCount = 0;
+        populateProducts(engine.getProductsByCategory(Category.CLOTHING), productCount);
+    }
+    @FXML
+    public void handleCategoryFurniture() {
+        productCount = 0;
+        populateProducts(engine.getProductsByCategory(Category.FURNITURE), productCount);
+    }
+    @FXML
+    public void handleCategoryBooks() {
+        productCount = 0;
+        ArrayList<Product> books = engine.getProductsByCategory(Category.BOOKS);
+        populateProducts(books, productCount);
+    }
+    @FXML
+    public void handleCategoryBeauty() {
+        productCount = 0;
+        populateProducts(engine.getProductsByCategory(Category.BEAUTY), productCount);
+    }
+    @FXML
+    public void handleCategoryToys() {
+        productCount = 0;
+        populateProducts(engine.getProductsByCategory(Category.TOYS), productCount);
+    }
+    @FXML
+    public void handleCategorySports() {
+        productCount = 0;
+        populateProducts(engine.getProductsByCategory(Category.SPORTS), productCount);
+    }
+    
     public Button getnavLeftButton(){
         return navLeftButton;
     }

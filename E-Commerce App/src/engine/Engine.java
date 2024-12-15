@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import dao.CustomerDAO;
 import database.Database;
+import entity.products.Category;
 import entity.products.Product;
 import entity.users.details.Cart;
 import exceptions.ServiceException;
@@ -184,6 +185,9 @@ public class Engine {
     }
     public ArrayList<Product> getProductDatabase(){
         return adminService.getAllProducts();
+    }
+    public ArrayList<Product> getProductsByCategory(Category category){
+        return adminService.getProductsByCategory(category);
     }
     public HomeController getHomeController(){
         return homeController;

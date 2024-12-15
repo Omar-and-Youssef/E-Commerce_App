@@ -59,15 +59,9 @@ public class AdminService {
 
             productDAO.updateProduct(product);
     }
-    public ArrayList<Product> getProductsByCategory(Category category) throws ServiceException{
-        //TODO handling empty product database?
+    public ArrayList<Product> getProductsByCategory(Category category){
             getAllProducts();
-            if(category==null)
-                throw new IllegalArgumentException("Category cannot be null");
-
             return productDAO.getProductsByCategory(category);
-        
-  
     }
     public ArrayList<Customer> getAllCustomers(){
             return customerDAO.getAllCustomers();
