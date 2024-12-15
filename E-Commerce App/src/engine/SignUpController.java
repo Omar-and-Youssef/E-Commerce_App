@@ -1,9 +1,5 @@
 package engine;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import entity.products.Category;
 import entity.users.accounts.Customer;
@@ -14,29 +10,6 @@ import javafx.scene.control.*;
 
 
 public class SignUpController extends BaseController{
-    //Validations:
-        //Name:  cannot be empty & only alphabets, 
-            //min 2 characters, max 50 characters
-        //Email:emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$"; then email.matches(emailRegex)
-            //throw Password must be at least 8 characters long
-        //Password:String passwordRegex = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+])[A-Za-z\\d!@#$%^&*()_+]{8,}";
-            //throw Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character
-        //Phone number : matches("[0-9]+")
-            //throw Phone number must be 10 digits long and contain only numbers
-        //Date: check:
-             // Check if the user has selected a date
-        //LocalDate dob = dobPicker.getValue();
-        // if (dob == null) {
-        //     throw new IllegalArgumentException("Date of birth is required");
-        // }
-
-        // // Check if the user is at least 18 years old
-        // LocalDate today = LocalDate.now();
-        // Period age = Period.between(dob, today);
-        
-        // if (age.getYears() < 18) {
-        //     throw new IllegalArgumentException("User must be at least 18 years old");
-        // }
     @FXML 
     private Button backButton;
     @FXML 
@@ -63,8 +36,6 @@ public class SignUpController extends BaseController{
     private Label errorLabel;
     @FXML 
     private Button signUpButton;
-    // @FXML
-    // private Label title;
     
     @FXML
     private void handleSignUp(ActionEvent event){
@@ -124,9 +95,12 @@ public class SignUpController extends BaseController{
             
             Customer customer = new Customer(name, email, password,gender,phoneNumber, address, category);
             System.out.println(customer.toString()); 
+            engine.signUp(customer);
             engine.setCurrentUser(customer);
             engine.switchScene(Screen.HOME);
             engine.getHomeController().displayName(customer.getName());
+
+            // resetSignUpScreen();
         } 
         catch(Exception e){
             if(e.getMessage()==null) e=new IllegalArgumentException("All fields are required");
@@ -136,13 +110,6 @@ public class SignUpController extends BaseController{
         }    
         errorLabel.setVisible(false);
     }
-    // private void showAlert(String title, String message) {
-    //     Alert alert = new Alert(Alert.AlertType.ERROR);
-    //     alert.setTitle(title);
-    //     alert.setHeaderText(null);
-    //     alert.setContentText(message);
-    //     alert.showAndWait();
-    // }
     private boolean isValidPassword(String password) {
         String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
         return password.matches(passwordRegex);
@@ -158,5 +125,17 @@ public class SignUpController extends BaseController{
     public ChoiceBox<String> getCategoryChoiceBox(){
         return categoryChoiceBox;
     }
+
+    //TODO
+    // public void resetSignUpScreen(){
+    //     nameField.setText("");
+    //     emailField.setText("");
+    //     passwordField.setText("");
+    //     addressField.setText("");
+    //     phoneNumberField.setText("");
+    //     genderToggleGroup.selectToggle(null);
+    //     categoryChoiceBox.setValue(null);
+    //     errorLabel.setVisible(false);
+    // }
 
 }

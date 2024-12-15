@@ -13,10 +13,10 @@ private ProductDAO productDAO;
 private CustomerDAO customerDAO;
 private OrderDAO orderDAO;
 //==================================Methods=========================================
-public CustomerService(Database database){
-    productDAO=new ProductDAO(database);
-    customerDAO=new CustomerDAO(database);
-    orderDAO=new OrderDAO(database);
+public CustomerService(){
+    productDAO=new ProductDAO();
+    customerDAO=new CustomerDAO();
+    orderDAO=new OrderDAO();
 }
 
 public  Customer logIn(String email,String password) throws ServiceException{

@@ -193,18 +193,14 @@
     -fx-spacing: 10;
     -fx-alignment: center;
 }
-
-.product-name {
-    -fx-font-size: 12px;
+.black-button {
+    -fx-background-color: white;
+    -fx-text-fill: grey;
     -fx-font-weight: bold;
+    -fx-font-size: 30px;
+    -fx-cursor: hand;
+    -fx-effect: null;
 }
-
-.product-brand {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-}
-
-.product-price {
-    -fx-font-size: 14px;
-    -fx-fill: #32CD32;
+.black-button:hover {
+    -fx-effect: dropshadow(gaussian, #888888, 10, 0, 0, 5);
 }

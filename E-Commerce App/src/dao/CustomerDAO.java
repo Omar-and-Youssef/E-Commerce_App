@@ -5,10 +5,7 @@ import database.Database;
 
 
 public class CustomerDAO {
-    private Database database;
-    public CustomerDAO(Database database){
-        this.database=database;
-    }
+Database database=new Database();
 private ArrayList<Customer> customers= database.getCustomerDB();
 
 //=======================================CRUD=======================================

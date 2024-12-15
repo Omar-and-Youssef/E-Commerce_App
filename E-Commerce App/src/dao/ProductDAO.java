@@ -4,10 +4,7 @@ import entity.products.*;
 
 import java.util.*;
 public class ProductDAO {
-    Database database;
-    public ProductDAO(Database database){
-        this.database=database;
-    }
+    Database database=new Database();
     private ArrayList<Product> products= database.getProductDB();
 //=======================================Methods=======================================
 

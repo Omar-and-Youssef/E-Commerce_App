@@ -12,11 +12,11 @@ public class AdminService {
     ProductDAO productDAO;
     CustomerDAO customerDAO;
     OrderDAO orderDAO;
-    public AdminService(Database database){
-        adminDAO=new AdminDAO(database);
-        productDAO=new ProductDAO(database);
-        customerDAO=new CustomerDAO(database);
-        orderDAO=new OrderDAO(database);
+    public AdminService(){
+        adminDAO=new AdminDAO();
+        productDAO=new ProductDAO();
+        customerDAO=new CustomerDAO();
+        orderDAO=new OrderDAO();
     }
     public Admin logIn(String email,String password) throws ServiceException{
         Admin admin = adminDAO.getAdminByEmail(email);

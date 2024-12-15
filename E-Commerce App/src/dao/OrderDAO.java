@@ -6,10 +6,7 @@ import database.Database;
 import entity.users.details.*;
 
 public class OrderDAO {
-Database database;
-public OrderDAO(Database database){
-    this.database=database;
-}
+Database database=new Database();
 private  ArrayList<Order> orders= database.getOrderDB();
 //=======================================CRUD=======================================
 public void addOrder(Order order){

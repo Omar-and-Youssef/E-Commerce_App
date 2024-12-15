@@ -1,5 +1,7 @@
 package engine;
 
+import java.util.ArrayList;
+
 import dao.CustomerDAO;
 import database.Database;
 import entity.products.Product;
@@ -46,27 +48,25 @@ public class Engine {
     private Product viewedProduct;
     private Cart cart;
     private User currentUser;
-    private Database database;
     private AdminService adminService;
     private CustomerService customerService;
     public Engine(Stage stage){
         try{
-        initializeScenes();
-        this.stage=stage;
-        currentScreen=Screen.LOGIN;
-        database= new Database();
-        adminService = new AdminService(database);
-        customerService = new CustomerService(database);
-        stage.setScene(loginScene); 
-        stage.setResizable(false);
-        stage.setTitle("E-CommerceApp");
-        stage.show();
+            adminService = new AdminService();
+            customerService = new CustomerService();
+            initializeScenes();
+            this.stage=stage;
+            currentScreen=Screen.LOGIN;
+            stage.setScene(loginScene); 
+            stage.setResizable(false);
+            stage.setTitle("E-CommerceApp");
+            stage.show();
         }        
         catch(Exception e){
             e.printStackTrace();
         }
     }
-    public void initializeScenes() throws Exception{        
+    public void initializeScenes() throws Exception{ 
             FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("LogIn.fxml"));
             loginScene = new Scene(loginLoader.load());
             loginController =(LoginController) loginLoader.getController();
@@ -87,7 +87,12 @@ public class Engine {
             homeScene = new Scene(homeLoader.load());
             homeController =(HomeController) homeLoader.getController();
             homeController.setEngine(this);
-            homeController.populateProducts(adminService.getAllProducts());
+            if(adminService.getAllProducts().size()<6) 
+                homeController.getnavRightButton().setVisible(false);
+            
+            homeController.getnavLeftButton().setVisible(false);
+            
+            homeController.populateProducts(adminService.getAllProducts(),0);
             // FXMLLoader productLoader = new FXMLLoader(getClass().getResource("Product.fxml"));
             // productScene = new Scene(productLoader.load());
             // setControllerEngine(productLoader);
@@ -177,8 +182,8 @@ public class Engine {
     public void setCurrentUser(User user){
         currentUser=user;
     }
-    public Database getDatabase(){
-        return database;
+    public ArrayList<Product> getProductDatabase(){
+        return adminService.getAllProducts();
     }
     public HomeController getHomeController(){
         return homeController;

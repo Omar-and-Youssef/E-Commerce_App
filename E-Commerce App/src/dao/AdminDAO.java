@@ -6,10 +6,7 @@ import database.Database;
 import entity.users.accounts.Admin;
 
 public class AdminDAO{
-Database database;
-public AdminDAO(Database database){
-    this.database=database;
-}
+Database database=new Database();
 private ArrayList<Admin> admins= database.getAdminDB();
 
 public void addAdmin(Admin admin){
