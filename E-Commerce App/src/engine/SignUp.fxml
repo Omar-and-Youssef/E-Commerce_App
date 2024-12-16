@@ -86,7 +86,7 @@
             <Label text="Date of Birth:" />
             <DatePicker fx:id="birthDayPicker" prefHeight="25.0" prefWidth="288.0" />
             <Label text="Favorite Product Category: " />
-            <ChoiceBox fx:id="categoryChoiceBox" prefHeight="25.0" prefWidth="291.0" />
+            <ChoiceBox fx:id="categoryChoiceBox" prefHeight="25.0" prefWidth="291.0" style="-fx-background-color: white; -fx-border-color: gray;" />
          </children>
          <opaqueInsets>
             <Insets />

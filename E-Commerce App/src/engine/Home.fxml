@@ -81,7 +81,7 @@
          </opaqueInsets>
       </HBox>
       <HBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="120.0" prefHeight="17.0" prefWidth="907.0" />
-      <HBox fx:id="hBox" alignment="CENTER" layoutX="19.0" layoutY="141.0" prefHeight="65.0" prefWidth="842.0" styleClass="menu-label" stylesheets="@style.css">
+      <HBox fx:id="hBox" alignment="CENTER" layoutX="18.0" layoutY="141.0" prefHeight="65.0" prefWidth="842.0" styleClass="menu-label" stylesheets="@style.css">
          <children>
             <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCategoryAll" prefHeight="40.0" prefWidth="79.0" styleClass="menu-button" stylesheets="@style.css" text="All">
                <HBox.margin>

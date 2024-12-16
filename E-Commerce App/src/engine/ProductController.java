@@ -46,6 +46,7 @@ public class ProductController extends BaseController {
             new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 1);
         quantitySpinner.setValueFactory(valueFactory);
         quantitySpinner.setEditable(false);
+        quantitySpinner.setPrefWidth(80);
     }
     // public Label getCartErrorLabel(){
     //     return cartErrorLabel;

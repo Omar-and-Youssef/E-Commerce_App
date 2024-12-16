@@ -284,10 +284,12 @@
     -fx-background-color: #E67E22; 
 }
 
-.quantity-spinner .increment-arrow,
-.quantity-spinner .decrement-arrow {
+.quantity-spinner .increment-arrow{
     -fx-background-color: white;
     -fx-shape: "M10 5 L5 10 L15 10 Z"; 
+}
+.quantity-spinner .decrement-arrow{
+    -fx-background-color: white;
 }
 
 .quantity-spinner .text-field {
@@ -309,4 +311,26 @@
     -fx-alignment: center;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 8, 0.3, 0, 1);
     -fx-opacity: 0.95;     
+}
+
+.cart-header {
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555555;
+    -fx-alignment: center;
+    -fx-padding: 5px;
+}
+
+
+.cart-header-border {
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-style: solid;
+}
+
+
+#image-header, #details-header, #quantity-header, #subtotal-header {
+    -fx-text-fill: #F09D00;
+    -fx-font-size: 16px;
 }
