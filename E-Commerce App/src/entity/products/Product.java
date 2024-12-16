@@ -55,6 +55,9 @@ public class Product {
         this.rating=total/REVIEW_LIST.size();
     }
 //=======================================Get&Set=======================================
+    public String getProductID(){
+        return PRODUCT_ID;
+    }
     public double getPrice() {
         return price;
     }

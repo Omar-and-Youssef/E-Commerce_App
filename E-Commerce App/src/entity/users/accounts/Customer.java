@@ -12,7 +12,6 @@ public class Customer extends User{
     private final Wishlist WISH_LIST;
     private final ArrayList<Order>ORDERS; //MY ORDERS, WHICH SHOULD BE ADDED TO ORDERS DATABASE
     private final Membership MEMBERSHIP;
-    private final ArrayList<Point> COLLECTED_POINTS; //only for  PRIME
     private final ArrayList<Coupon> COLLECTED_COUPON;
     //TODO customer should have some way to see all reviews he left
     //TODO cutomer should be able to see tickets he left
@@ -28,7 +27,6 @@ public class Customer extends User{
         WISH_LIST=new Wishlist();
         ORDERS=new ArrayList<Order>();
         COLLECTED_COUPON=new ArrayList<Coupon>();
-        COLLECTED_POINTS=new ArrayList<Point>();
         REVIEWS_SUBMITTED=new ArrayList<Review>();
         HELP_TICKETS_SUBMITTED=new ArrayList<HelpTicket>();
     }
@@ -65,9 +63,6 @@ public class Customer extends User{
     }
     public Membership getMembership() {
         return MEMBERSHIP;
-    }
-    public ArrayList<Point> getCollectedPoints() {
-        return COLLECTED_POINTS;
     }
     public ArrayList<Coupon> getCollectedCoupons() {
         return COLLECTED_COUPON;
