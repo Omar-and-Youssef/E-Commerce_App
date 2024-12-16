@@ -14,6 +14,9 @@ public class Product {
     private final ArrayList<Review>REVIEW_LIST;
     private double rating;
 //=======================================Constructor===================================
+    public Product(){
+        this(0,0,"NA","NA","NA",Category.ALL,null);
+    }
     public Product(double price, int stockQuantity,String productName,String description,
     String brand,Category category,String imagePath){
         this.PRODUCT_ID="P"+productCounter++;
@@ -52,9 +55,6 @@ public class Product {
         this.rating=total/REVIEW_LIST.size();
     }
 //=======================================Get&Set=======================================
-    public String getProductID() {
-        return PRODUCT_ID;
-    }
     public double getPrice() {
         return price;
     }

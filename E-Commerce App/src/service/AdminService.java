@@ -63,6 +63,9 @@ public class AdminService {
             getAllProducts();
             return productDAO.getProductsByCategory(category);
     }
+    public ArrayList<Product> getProductsByName(String name){
+        return productDAO.getProductsByName(name);
+    }
     public ArrayList<Customer> getAllCustomers(){
             return customerDAO.getAllCustomers();
     }

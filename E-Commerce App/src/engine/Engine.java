@@ -2,8 +2,6 @@ package engine;
 
 import java.util.ArrayList;
 
-import dao.CustomerDAO;
-import database.Database;
 import entity.products.Category;
 import entity.products.Product;
 import entity.users.details.Cart;
@@ -11,7 +9,6 @@ import exceptions.ServiceException;
 import entity.users.accounts.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
-import javafx.scene.layout.GridPane;
 import javafx.stage.*;
 import service.*;
 //TODO Handle alerts in controller
@@ -26,7 +23,7 @@ public class Engine {
     private HomeController homeController;
 
     private Scene productScene;
-    // private ProductController productController;
+    private ProductController productController;
 
     private Scene cartScene;
     // private CartController cartController;
@@ -62,6 +59,7 @@ public class Engine {
             stage.setResizable(false);
             stage.setTitle("E-CommerceApp");
             stage.show();
+            viewedProduct = new Product();
         }        
         catch(Exception e){
             e.printStackTrace();
@@ -77,12 +75,7 @@ public class Engine {
             signUpScene = new Scene(signUpLoader.load());
             signUpController =(SignUpController) signUpLoader.getController();
             signUpController.setEngine(this);
-            signUpController.geterrorLabel().setVisible(false);
-            signUpController.getCategoryChoiceBox().getItems().addAll("Electronics","Books","Clothing",
-            "Home",
-            "Beauty",
-            "Toys",
-            "Sports");
+
 
             FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("Home.fxml"));
             homeScene = new Scene(homeLoader.load());
@@ -94,9 +87,12 @@ public class Engine {
             homeController.getnavLeftButton().setVisible(false);
             
             homeController.populateProducts(adminService.getAllProducts(),0);
-            // FXMLLoader productLoader = new FXMLLoader(getClass().getResource("Product.fxml"));
-            // productScene = new Scene(productLoader.load());
-            // setControllerEngine(productLoader);
+            
+            FXMLLoader productLoader = new FXMLLoader(getClass().getResource("Product.fxml"));
+            productScene = new Scene(productLoader.load());
+            productController =(ProductController) productLoader.getController();
+            productController.setEngine(this);
+
 
             // FXMLLoader cartLoader = new FXMLLoader(getClass().getResource("Cart.fxml"));
             // cartScene = new Scene(cartLoader.load());
@@ -122,17 +118,19 @@ public class Engine {
         currentScreen=nextScreen;
         switch(currentScreen){
             case SIGNUP:
+                signUpController.geterrorLabel().setVisible(false);
+                signUpController.getCategoryChoiceBox().getItems().addAll("Electronics","Books","Clothing",
+                "Home",
+                "Beauty",
+                "Toys",
+                "Sports");
                 stage.setScene(signUpScene);
                 break;
             case HOME: 
-                //homeController.displayName(currentUser.getName());
+                homeController.displayName(currentUser.getName());
                 stage.setScene(homeScene);
                 break;
             case PRODUCT:
-                // ProductController productController = productLoader.getController();
-                // change viewed product in controller so when we go back we get the same product
-                //if we want to display the same product
-                // update cart, wishlist if invoked(in controller)
                 stage.setScene(productScene);
                 break;
             case CART:
@@ -183,6 +181,12 @@ public class Engine {
     public void setCurrentUser(User user){
         currentUser=user;
     }
+    public void setViewedProduct(Product product){
+        viewedProduct=product;
+    }
+    public Product getViewedProduct(){
+        return viewedProduct;
+    }
     public ArrayList<Product> getProductDatabase(){
         return adminService.getAllProducts();
     }
@@ -192,4 +196,8 @@ public class Engine {
     public HomeController getHomeController(){
         return homeController;
     }
+    public ProductController getProductController(){
+        return productController;
+    }
+
 } 

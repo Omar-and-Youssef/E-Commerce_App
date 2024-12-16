@@ -44,6 +44,15 @@ public  ArrayList<Product> getProductsByCategory(Category category){
     }
     return productsByCategory;
 }
+public ArrayList<Product> getProductsByName(String name){
+    ArrayList<Product> productsByName=new ArrayList<>();
+    for(Product p: products){
+        if(p.getProductName().equals(name)){
+            productsByName.add(p);
+        }
+    }
+    return productsByName;
+}
 //for search, 
 //get products by brand, by descending price, by descending rating
 //get by name get by category 

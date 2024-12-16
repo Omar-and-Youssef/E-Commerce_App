@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -21,13 +23,23 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" layoutX="14.0" layoutY="67.0" prefHeight="55.0" prefWidth="879.0" styleClass="navbar" stylesheets="@style.css">
+      <HBox alignment="CENTER" layoutX="14.0" layoutY="59.0" prefHeight="55.0" prefWidth="879.0" styleClass="navbar" stylesheets="@style.css">
          <children>
-            <Label fx:id="nameLabel" styleClass="welcome-message" stylesheets="@style.css">
+            <Button graphicTextGap="0.0" maxHeight="94.0" maxWidth="63.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="50.0" prefWidth="63.0" styleClass="search-button" stylesheets="@style.css" text="🔍">
                <HBox.margin>
-                  <Insets right="260.0" />
+                  <Insets right="10.0" />
+               </HBox.margin></Button>
+            <TextField fx:id="searchField" minHeight="-Infinity" prefHeight="50.0" prefWidth="277.0" promptText="Search for products" stylesheets="@style.css">
+               <styleClass>
+                  <String fx:value="search-bar" />
+                  <String fx:value="text-field" />
+               </styleClass>
+               <HBox.margin>
+                  <Insets right="130.0" />
                </HBox.margin>
-            </Label>
+               <font>
+                  <Font size="18.0" />
+               </font></TextField>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="nav-item" text="Orders">
                <HBox.margin>
                   <Insets left="2.0" right="5.0" />
@@ -113,7 +125,7 @@
             </Button>
          </children>
       </HBox>
-      <Button fx:id="backButton" layoutX="39.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="42.0" prefWidth="105.0" styleClass="logoutButton" stylesheets="@style.css" text="Log out">
+      <Button fx:id="logoutButton" layoutX="767.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="42.0" prefWidth="105.0" styleClass="logoutButton" stylesheets="@style.css" text="Log out">
          <font>
             <Font size="15.0" />
          </font>
@@ -122,17 +134,17 @@
          </effect>
       </Button>
       <GridPane fx:id="productGrid" alignment="CENTER" hgap="20.0" layoutX="114.0" layoutY="216.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="348.0" prefWidth="685.0" vgap="20.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="306.7142595563616" minWidth="10.0" prefWidth="230.42852783203125" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="388.8571166992187" minWidth="10.0" prefWidth="244.71432931082586" />
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="306.7142595563616" minWidth="10.0" prefWidth="230.42852783203125" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="388.8571166992187" minWidth="10.0" prefWidth="244.71432931082586" />
             <ColumnConstraints hgrow="NEVER" maxWidth="262.571533203125" minWidth="10.0" prefWidth="210.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="149.99998256138394" minHeight="10.0" prefHeight="149.99998256138394" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="122.57139369419644" minHeight="0.0" prefHeight="49.285723005022305" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="141.14283098493303" minHeight="10.0" prefHeight="41.857195172991055" vgrow="SOMETIMES" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="149.99998256138394" minHeight="10.0" prefHeight="149.99998256138394" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="122.57139369419644" minHeight="0.0" prefHeight="49.285723005022305" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="141.14283098493303" minHeight="10.0" prefHeight="41.857195172991055" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="185.14289202008928" minHeight="0.0" prefHeight="46.99994768415178" vgrow="ALWAYS" />
-        </rowConstraints>
+         </rowConstraints>
          <padding>
             <Insets top="20.0" />
          </padding>
@@ -147,5 +159,6 @@
             <Font size="10.0" />
          </font>
       </Button>
+      <Label fx:id="nameLabel" layoutX="28.0" layoutY="17.0" prefHeight="49.0" prefWidth="253.0" styleClass="welcome-message" stylesheets="@style.css" />
    </children>
 </AnchorPane>

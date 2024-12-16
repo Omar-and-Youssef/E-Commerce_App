@@ -1,26 +1,20 @@
 package engine;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import entity.products.Category;
 import entity.products.Product;
@@ -38,6 +32,8 @@ public class HomeController extends BaseController {
     private Button navRightButton;
     @FXML
     private Button navLeftButton;
+    @FXML 
+    private TextField searchField;
 
     
     @FXML
@@ -86,8 +82,8 @@ public class HomeController extends BaseController {
         VBox productBox = new VBox();
         productBox.setAlignment(Pos.CENTER);
         productBox.getStyleClass().add("product-box");
-        productBox.setPrefWidth(140);
-        productBox.setPrefHeight(140);
+        productBox.setPrefWidth(160);
+        productBox.setPrefHeight(160);
         DropShadow shadow = new DropShadow();
         shadow.setColor(Color.GRAY);
         shadow.setRadius(10); 
@@ -100,11 +96,16 @@ public class HomeController extends BaseController {
             productBox.setEffect(null);
             productBox.setStyle("-fx-cursor: default;");
         });
+        productBox.setOnMouseClicked(event -> {
+            engine.setViewedProduct(product);
+            engine.getProductController().loadProduct();
+            engine.switchScene(Screen.PRODUCT);
+        });
 
 
         ImageView productImage = new ImageView();
         productImage.setPreserveRatio(true);
-        productImage.setFitHeight(50);
+        productImage.setFitHeight(90);
         String imagePath = product.getImagePath();
         if (getClass().getResourceAsStream(imagePath) != null) {
             productImage.setImage(new Image(getClass().getResourceAsStream(imagePath)));
@@ -124,11 +125,11 @@ public class HomeController extends BaseController {
             rating=0;
         }
         String ratingPath = "resources/" + rating + "star.png";
-        if (getClass().getResourceAsStream(ratingPath) != null) {
+        if (getClass().getResourceAsStream(ratingPath) != null)
             productRating.setImage(new Image(getClass().getResourceAsStream(ratingPath)));
-        } else {
+        else
             System.err.println("Rating image not found for rating: " + rating);
-        }
+    
 
 
         Text productName = new Text(product.getProductName());
@@ -208,7 +209,24 @@ public class HomeController extends BaseController {
         productCount = 0;
         populateProducts(engine.getProductsByCategory(Category.SPORTS), productCount);
     }
-    
+    @FXML
+    public void handleSearch(){
+        String searchedProduct=searchField.getText();
+        if (searchedProduct.isEmpty()) {
+            populateProducts(engine.getProductDatabase(), 0);
+            return;
+        }
+        ArrayList<Product> searchedProducts = engine.getProductDatabase()
+        .stream()
+        .filter(product -> 
+            product.getProductName().toLowerCase().contains(searchedProduct.toLowerCase()) ||
+            product.getCategory().name().toLowerCase().contains(searchedProduct.toLowerCase()) || // Enum value search
+            (product.getBrand() != null && product.getBrand().toLowerCase().contains(searchedProduct.toLowerCase())) // Brand search
+        )
+        .collect(Collectors.toCollection(ArrayList::new));
+        productCount = 0;
+        populateProducts(searchedProducts, productCount);
+    }
     public Button getnavLeftButton(){
         return navLeftButton;
     }
