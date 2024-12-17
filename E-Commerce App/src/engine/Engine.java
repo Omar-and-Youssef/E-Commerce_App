@@ -25,6 +25,9 @@ public class Engine {
     private Scene productScene;
     private ProductController productController;
 
+    private Scene modifyScene;
+    private ModifyProductController modifyController;
+
     private Scene cartScene;
     // private CartController cartController;
 
@@ -59,7 +62,7 @@ public class Engine {
             stage.setResizable(false);
             stage.setTitle("E-CommerceApp");
             stage.show();
-            viewedProduct = new Product();
+            viewedProduct = new Product();//wtf is this //TODO
         }        
         catch(Exception e){
             e.printStackTrace();
@@ -92,6 +95,11 @@ public class Engine {
             productScene = new Scene(productLoader.load());
             productController =(ProductController) productLoader.getController();
             productController.setEngine(this);
+
+            FXMLLoader ModifyLoader = new FXMLLoader(getClass().getResource("ModifyProduct.fxml"));
+            modifyScene = new Scene(ModifyLoader.load());
+            modifyController =(ModifyProductController) ModifyLoader.getController();
+            modifyController.setEngine(this);
 
 
             // FXMLLoader cartLoader = new FXMLLoader(getClass().getResource("Cart.fxml"));
@@ -128,9 +136,11 @@ public class Engine {
                 break;
             case HOME: 
                 homeController.displayName(currentUser.getName());
+                homeController.handleCategoryAll();
                 stage.setScene(homeScene);
                 break;
             case PRODUCT:
+                productController.configureScreenByRole();
                 stage.setScene(productScene);
                 break;
             case CART:
@@ -153,6 +163,11 @@ public class Engine {
                 stage.setScene(loginScene); 
                 //after user logged out, we save cart and wishlist in database
                 break;
+            case MODIFYPRODUCT:
+                if(productController.isUpdating)
+                modifyController.setScreen(viewedProduct);
+                else modifyController.setScreen(null);
+                stage.setScene(modifyScene);
             default: break;
         }
     }
@@ -189,6 +204,15 @@ public class Engine {
     }
     public ArrayList<Product> getProductDatabase(){
         return adminService.getAllProducts();
+    }
+    public void deleteViewedProdcut(){
+        try{
+        adminService.deleteProduct(viewedProduct);
+        }catch(Exception ex){
+            System.out.println("Couldnot find product");
+            ex.printStackTrace();           
+             //TODO FIX THIS AS U LIKE
+        }
     }
     public ArrayList<Product> getProductsByCategory(Category category){
         return adminService.getProductsByCategory(category);

@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.ProductController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.ProductController">
    <children>
       <Label id="title" fx:id="title" alignment="BASELINE_CENTER" layoutX="-14.0" layoutY="-3.0" prefHeight="85.0" prefWidth="932.0" styleClass="title" stylesheets="@style.css" text="★Cadabra" textFill="#9f5d5d">
          <font>
@@ -91,7 +91,7 @@
          </effect>
       </Button>
       <Label fx:id="nameLabel" layoutX="28.0" layoutY="17.0" prefHeight="49.0" prefWidth="253.0" styleClass="welcome-message" stylesheets="@style.css" />
-      <HBox layoutX="179.0" layoutY="227.0" prefHeight="340.0" prefWidth="551.0">
+      <HBox layoutX="179.0" layoutY="227.0" prefHeight="340.0" prefWidth="306.0">
          <children>
             <VBox alignment="CENTER" prefHeight="340.0" prefWidth="287.0">
                <children>
@@ -106,28 +106,6 @@
                   <Label fx:id="descriptionLabel" alignment="CENTER" prefHeight="108.0" prefWidth="292.0" styleClass="product-view-description" stylesheets="@style.css" text="Description" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="340.0" prefWidth="182.0">
-               <HBox.margin>
-                  <Insets left="50.0" />
-               </HBox.margin>
-               <children>
-                  <Label styleClass="quantity-label" stylesheets="@style.css" text="Quantity:">
-                     <VBox.margin>
-                        <Insets top="100.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="5.0" />
-                     </padding>
-                  </Label>
-                  <Spinner fx:id="quantitySpinner" editable="true" prefHeight="33.0" prefWidth="101.0" styleClass="quantity-spinner" stylesheets="@style.css" />
-                  <Button fx:id="addToCartButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="38.0" prefWidth="141.0" styleClass="menu-button" stylesheets="@style.css" text="Add to cart">
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="30.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="addToWishlistButton" mnemonicParsing="false" styleClass="menu-button" stylesheets="@style.css" text="Add to wishlist" />
-               </children>
-            </VBox>
          </children>
       </HBox>
       <Button fx:id="backButton" layoutX="36.0" layoutY="225.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="42.0" prefWidth="105.0" styleClass="backButton" stylesheets="@style.css" text="← Back">
@@ -139,7 +117,7 @@
          </effect>
       </Button>
       <Label fx:id="cartErrorLabel" layoutX="707.0" layoutY="455.0" styleClass="successful-add" stylesheets="@style.css" text="Added to cart!" />
-      <Label fx:id="wishlistErrorLabel" layoutX="700.0" layoutY="512.0" styleClass="successful-add" stylesheets="@style.css" text="Added to wishlist!" />
+      <Label fx:id="wishlistErrorLabel" layoutX="700.0" layoutY="512.0" styleClass="successful-add" stylesheets="@style.css" text="Added to wishlist!" visible="false" />
       <HBox fx:id="hBox" alignment="CENTER" layoutX="18.0" layoutY="141.0" prefHeight="65.0" prefWidth="842.0" styleClass="menu-label" stylesheets="@style.css">
          <children>
             <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCategoryAll" prefHeight="40.0" prefWidth="79.0" styleClass="menu-button" stylesheets="@style.css" text="All">
@@ -184,5 +162,15 @@
             </Button>
          </children>
       </HBox>
+      <Label fx:id="QuantityLabel" layoutX="538.0" layoutY="347.0" styleClass="quantity-label" stylesheets="@style.css" text="Quantity:">
+         <padding>
+            <Insets bottom="5.0" />
+         </padding>
+      </Label>
+      <Spinner fx:id="quantitySpinner" editable="true" layoutX="523.0" layoutY="387.0" prefHeight="33.0" prefWidth="101.0" styleClass="quantity-spinner" stylesheets="@style.css" />
+      <Button fx:id="addToCartButton" alignment="CENTER" contentDisplay="CENTER" layoutX="503.0" layoutY="452.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="141.0" styleClass="menu-button" stylesheets="@style.css" text="Add to cart" />
+      <Button fx:id="addToWishlistButton" layoutX="503.0" layoutY="510.0" mnemonicParsing="false" styleClass="menu-button" stylesheets="@style.css" text="Add to wishlist" visible="false" />
+      <Button fx:id="DelProductButton" layoutX="707.0" layoutY="535.0" mnemonicParsing="false" onAction="#delProductB" styleClass="menu-button" stylesheets="@style.css" text="Delete Product" />
+      <Button fx:id="UpProductButton" layoutX="500.0" layoutY="536.0" mnemonicParsing="false" onAction="#upProductB" styleClass="menu-button" stylesheets="@style.css" text="Update Product" />
    </children>
 </AnchorPane>

@@ -1,15 +1,19 @@
 package engine;
 
 import entity.products.Product;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 
 public class ProductController extends BaseController {
+    boolean isUpdating;
     @FXML
     private Label productNameLabel;
     @FXML
@@ -35,10 +39,15 @@ public class ProductController extends BaseController {
     @FXML
     private Label wishlistErrorLabel;
  
-
+    @FXML
+    private Label QuantityLabel;
     
 
+    @FXML
+    private Button DelProductButton;
 
+    @FXML
+    private Button UpProductButton;
 
 
     public void resetQuantity(){
@@ -58,6 +67,34 @@ public class ProductController extends BaseController {
         cartErrorLabel.setVisible(false);
         wishlistErrorLabel.setVisible(false);
         resetQuantity();
+    }
+    public void configureScreenByRole(){//all admin stuff do !
+    //    // boolean isCustomer=engine.getCurrentUser().getUserID().charAt(0)!='A';
+         boolean isCustomer=true;
+    //     //Customer stuff
+        addToWishlistButton.setVisible(isCustomer);
+        addToCartButton.setVisible(isCustomer);
+        quantitySpinner.setVisible(isCustomer);
+        QuantityLabel.setVisible(isCustomer);
+    //     //Admin stuff
+        DelProductButton.setVisible(!isCustomer);
+        UpProductButton.setVisible(!isCustomer);
+        loadProduct();
+    }
+    @FXML
+    public void delProductB(ActionEvent e){
+        engine.deleteViewedProdcut();
+        handleBack();
+    }
+    public boolean getIsUpdating(){
+        boolean temp=isUpdating;
+        isUpdating=false;
+        return temp;
+    }
+    @FXML
+    public void upProductB(ActionEvent e){
+        isUpdating=true;
+        engine.switchScene(Screen.MODIFYPRODUCT);
     }
     public void loadProduct(){
         if(engine ==null) return;
