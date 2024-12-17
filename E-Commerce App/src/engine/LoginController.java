@@ -40,16 +40,7 @@ public class LoginController extends BaseController {
         catch(Exception e){
             String message=e.getMessage();
             if(e instanceof NullPointerException)
-            switch(message){
-                case "Email is required":
-                    System.out.println(message);
-                    //handle alert based on exception, if message ==..alert ...
-                    break;
-                case "Password is required":
-                    System.out.println(message);;
-                    //handle alert based on exception, if message ==..alert ...
-                    break;
-            }
+            System.out.print(e.getMessage());
             if(e instanceof ServiceException)
             //handle alert based on exception, if message ==..alert ...
             System.out.println("Invalid login credentials");

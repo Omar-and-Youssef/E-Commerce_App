@@ -30,7 +30,13 @@ public class CartItem {
     public int getQuantity() {
         return quantity;
     }
-    public double getTotalPrice() {
+    public double getSubTotal() {
         return totalPrice;
     }
+    @Override
+    public String toString() {
+        return "CartItem [product=" + product.getProductName() + ", quantity=" + quantity + ", totalPrice=" + totalPrice + "]";
+    }
+
 }
+

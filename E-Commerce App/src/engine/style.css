@@ -114,30 +114,33 @@
     -fx-padding: 15px 30px;
     -fx-alignment: center-left;
 }
-.navbar .nav-item {
+#nav-item {
     -fx-font-size: 18px;
     -fx-font-family: "Segoe UI", "Helvetica", sans-serif;
     -fx-text-fill: #333333;
     -fx-padding: 0 15px;
     -fx-background-color: transparent;
-    -fx-cursor: pointer;
+    -fx-cursor: hand;
     -fx-border-width: 0;
     -fx-background-radius: 4px;
 }
-.navbar .nav-item .icon {
-    -fx-font-size: 20px;
-    -fx-padding-right: 8px;
-    -fx-text-fill: #ff7f00;
+#nav-item:hover{
+    -fx-text-fill:#FF7F00;
 }
-.navbar .welcome-message {
+#nav-item:pressed{
+    -fx-font-weight:400;
+}
+.icon {
+    -fx-cursor: hand;
+}
+
+.welcome-message {
     -fx-font-family: "Segoe UI", "Helvetica", sans-serif;
-    -fx-font-size: 25px;
+    -fx-font-size: 1px;
     -fx-text-fill: #232F3E;
     -fx-padding-right: 30px;
 }
-.navbar .nav-item:hover {
-    -fx-text-fill: #ff7f00;
-}
+
 .errorLabel {
     -fx-text-fill: white;
     -fx-font-size: 13px;
@@ -181,10 +184,8 @@
 }
 .curved-hbox {
     -fx-background-color: #FBC16D; 
-    -fx-background-radius: 15;    
     -fx-border-radius: 15;        
-    -fx-border-color: #F1A556;    
-    -fx-padding: 10;              
+    -fx-border-color: #F1A556;               
 }
 .product-box {
     -fx-padding: 10;
@@ -334,3 +335,16 @@
     -fx-text-fill: #F09D00;
     -fx-font-size: 16px;
 }
+.place-order-button{
+    -fx-background-color: white;
+    -fx-text-fill: grey;
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+    -fx-cursor: hand;
+    -fx-effect: null;
+}
+.place-order-button:hover{
+    -fx-effect: dropshadow(gaussian, #888888, 10, 0, 0, 5);
+    -fx-background-color:#FF7F00;
+}
+

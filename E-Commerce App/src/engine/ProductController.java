@@ -31,10 +31,11 @@ public class ProductController extends BaseController {
     @FXML
     private Spinner<Integer>  quantitySpinner;
     @FXML
-    private Label cartErrorLabel;
+    private Label cartSuccessLabel;
     @FXML
-    private Label wishlistErrorLabel;
- 
+    private Label wishlistSuccessLabel;
+    @FXML
+    private ImageView ratingImage;
 
     
 
@@ -55,8 +56,8 @@ public class ProductController extends BaseController {
     //     return wishlistErrorLabel;
     // }
     public void initialize(){
-        cartErrorLabel.setVisible(false);
-        wishlistErrorLabel.setVisible(false);
+        cartSuccessLabel.setVisible(false);
+        wishlistSuccessLabel.setVisible(false);
         resetQuantity();
     }
     public void loadProduct(){
@@ -68,6 +69,7 @@ public class ProductController extends BaseController {
 
 
         productNameLabel.setText(viewedProduct.getProductName());
+        categoryLabel.setText(viewedProduct.getCategory().toString());
         brandLabel.setText(viewedProduct.getBrand());
         priceLabel.setText("$"+viewedProduct.getPrice());
         descriptionLabel.setText(viewedProduct.getDescription());
@@ -79,20 +81,23 @@ public class ProductController extends BaseController {
         productImage.setLayoutX(0);
         productImage.setLayoutY(0);
         productImage.setPickOnBounds(false);
+
+        ratingImage.setImage(new Image(getClass().getResourceAsStream("resources/"+engine.getIntegerRating(viewedProduct)+"star.png")));
     }
     public void handleBack(){
+        cartSuccessLabel.setVisible(false);
         engine.switchScene(Screen.HOME);
     }
 
-    // public void handleAddToCart(){
-    //     int quantity = quantitySpinner.getValue();
-    //     if(engine.addToCart(viewedProduct, quantity)){
-    //         cartErrorLabel.setVisible(false);
-    //     }
-    //     else{
-    //         cartErrorLabel.setVisible(true);
-    //     }
-    // }
+    @FXML
+    public void handleAddToCart(){
+        int quantity = quantitySpinner.getValue();
+        engine.addToCart(quantity);//the viewed product
+        cartSuccessLabel.setVisible(true);
+    }
+    @FXML 
+    private Label stockAvailability;//TODO handle after order is placed
+
     // public void handleAddToWishlist(){
     //     if(engine.addToWishlist(viewedProduct)){
     //         wishlistErrorLabel.setVisible(false);
@@ -152,5 +157,10 @@ public class ProductController extends BaseController {
         engine.switchScene(Screen.HOME);
         engine.getHomeController().handleCategorySports();
     }
-
+    @FXML
+    public void handleCart(){
+        engine.switchScene(Screen.CART);
+    }
 }
+
+

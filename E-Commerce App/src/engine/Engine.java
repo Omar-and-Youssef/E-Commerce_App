@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import entity.products.Category;
 import entity.products.Product;
 import entity.users.details.Cart;
+import entity.users.details.CartItem;
 import exceptions.ServiceException;
 import entity.users.accounts.*;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +27,7 @@ public class Engine {
     private ProductController productController;
 
     private Scene cartScene;
-    // private CartController cartController;
+    private CartController cartController;
 
     private Scene wishlistScene;
     // private WishlistController wishlistController;
@@ -44,8 +45,9 @@ public class Engine {
     private Screen currentScreen;
     
     private Product viewedProduct;
-    private Cart cart;
     private User currentUser;
+    private Customer currentCustomer;
+    private Admin currentAdmin;
     private AdminService adminService;
     private CustomerService customerService;
     public Engine(Stage stage){
@@ -55,7 +57,7 @@ public class Engine {
             initializeScenes();
             this.stage=stage;
             currentScreen=Screen.LOGIN;
-            stage.setScene(loginScene); 
+            stage.setScene(loginScene);
             stage.setResizable(false);
             stage.setTitle("E-CommerceApp");
             stage.show();
@@ -94,9 +96,10 @@ public class Engine {
             productController.setEngine(this);
 
 
-            // FXMLLoader cartLoader = new FXMLLoader(getClass().getResource("Cart.fxml"));
-            // cartScene = new Scene(cartLoader.load());
-            // setControllerEngine(cartLoader);
+            FXMLLoader cartLoader = new FXMLLoader(getClass().getResource("Cart.fxml"));
+            cartScene = new Scene(cartLoader.load());
+            cartController =(CartController) cartLoader.getController();
+            cartController.setEngine(this);
 
             // FXMLLoader ordersLoader = new FXMLLoader(getClass().getResource("Orders.fxml"));
             // ordersScene = new Scene(ordersLoader.load());
@@ -132,9 +135,10 @@ public class Engine {
                 break;
             case PRODUCT:
                 stage.setScene(productScene);
+                cartController.getOrderSuccessLabel().setVisible(false);
                 break;
             case CART:
-                //will have checkout here, will empty cart after checkout
+                cartController.populateCart(0);
                 stage.setScene(cartScene);
                 break;
             case ORDERS:
@@ -159,7 +163,7 @@ public class Engine {
     public User logIn(String email,String password) throws ServiceException{
             User user=customerService.logIn(email, password);
             if(user!=null){
-                currentUser=user;
+                currentCustomer=(Customer)user;
                 return user;
             }
             user=adminService.logIn(email, password);
@@ -168,10 +172,20 @@ public class Engine {
     }
     public void signUp(Customer customer){
         customerService.registerCustomer(customer);
+        cartController.populateCart(0);
     }
     public boolean isValidEmail(String email){
         return customerService.isValidEmail(email);
     }
+    public void addToCart(int quantity){
+        customerService.addToCart(currentCustomer, viewedProduct, quantity);
+        cartController.populateCart(0);
+    }
+    public void removeFromCart(int i){
+        customerService.removeFromCart(currentCustomer, null);
+        cartController.populateCart(0);
+    }
+    
     public Stage getStage(){
         return stage;
     }
@@ -198,6 +212,17 @@ public class Engine {
     }
     public ProductController getProductController(){
         return productController;
+    }
+    public Customer getCurrentCustomer(){
+        return currentCustomer;
+    }
+    public int getIntegerRating(Product product){
+        try{
+            return(int) Math.floor(product.getRating());
+        }
+        catch(Exception e){
+            return 0;
+        }
     }
 
 } 

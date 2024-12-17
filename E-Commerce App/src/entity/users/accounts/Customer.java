@@ -23,7 +23,7 @@ public class Customer extends User{
     String address,Category preferredCategory){
         super("C"+(++customerCounter),name,email,password,phoneNumber,address,gender);
         this.MEMBERSHIP=new Membership();
-        CART = new Cart();
+        CART =new Cart();
         WISH_LIST=new Wishlist();
         ORDERS=new ArrayList<Order>();
         COLLECTED_COUPON=new ArrayList<Coupon>();

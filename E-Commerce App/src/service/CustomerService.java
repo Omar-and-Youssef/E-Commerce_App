@@ -45,22 +45,13 @@ public void deleteCustomer(Customer customer) throws ServiceException{
     
 }
 
-public void addToCart(Customer customer, Product product, int quantity) throws ServiceException{
-        if (customer == null || product == null || quantity <= 0) {
-            throw new IllegalArgumentException("Invalid input parameters");
-        }
+public void addToCart(Customer customer, Product product, int quantity){
         if(customerDAO.customerInDB(customer)) 
             customer.getCart().addItem(new CartItem(product, quantity));
-        else 
-            throw new ServiceException("Customer not found");
 }
-public void removeFromCart(Customer customer, CartItem cartItem) throws ServiceException{
-        if(customer==null||cartItem==null)
-            throw new IllegalArgumentException("Customer cannot be null");
+public void removeFromCart(Customer customer, CartItem cartItem){
         if(customerDAO.customerInDB(customer))
             customer.getCart().deleteItem(cartItem);
-        else 
-            throw new ServiceException("Customer not found");
 }
 public void clearCart(Customer customer) throws ServiceException{
         if(customer==null)

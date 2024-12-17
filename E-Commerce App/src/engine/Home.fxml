@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -14,7 +15,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.HomeController">
    <children>
@@ -23,63 +23,6 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" layoutX="14.0" layoutY="59.0" prefHeight="55.0" prefWidth="879.0" styleClass="navbar" stylesheets="@style.css">
-         <children>
-            <Button graphicTextGap="0.0" maxHeight="94.0" maxWidth="63.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="50.0" prefWidth="63.0" styleClass="search-button" stylesheets="@style.css" text="🔍">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin></Button>
-            <TextField fx:id="searchField" minHeight="-Infinity" prefHeight="50.0" prefWidth="277.0" promptText="Search for products" stylesheets="@style.css">
-               <styleClass>
-                  <String fx:value="search-bar" />
-                  <String fx:value="text-field" />
-               </styleClass>
-               <HBox.margin>
-                  <Insets right="130.0" />
-               </HBox.margin>
-               <font>
-                  <Font size="18.0" />
-               </font></TextField>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="nav-item" text="Orders">
-               <HBox.margin>
-                  <Insets left="2.0" right="5.0" />
-               </HBox.margin>
-            </Text>
-            <ImageView fitHeight="30.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" styleClass="icon">
-               <image>
-                  <Image url="@resources/orders.png" />
-               </image>
-               <HBox.margin>
-                  <Insets left="5.0" right="40.0" />
-               </HBox.margin>
-            </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="nav-item" text="Cart">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </Text>
-            <ImageView fitHeight="34.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" styleClass="icon">
-               <image>
-                  <Image url="@resources/cart-logo.png" />
-               </image>
-               <HBox.margin>
-                  <Insets right="40.0" />
-               </HBox.margin>
-            </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="nav-item" text="WishList" />
-            <ImageView fitHeight="34.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@resources/wishlist.png" />
-               </image>
-               <HBox.margin>
-                  <Insets left="5.0" />
-               </HBox.margin>
-            </ImageView>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </HBox>
       <HBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="120.0" prefHeight="17.0" prefWidth="907.0" />
       <HBox fx:id="hBox" alignment="CENTER" layoutX="18.0" layoutY="141.0" prefHeight="65.0" prefWidth="842.0" styleClass="menu-label" stylesheets="@style.css">
          <children>
@@ -160,5 +103,59 @@
          </font>
       </Button>
       <Label fx:id="nameLabel" layoutX="28.0" layoutY="17.0" prefHeight="49.0" prefWidth="253.0" styleClass="welcome-message" stylesheets="@style.css" />
+      <HBox id="nav-item" alignment="CENTER" layoutX="13.0" layoutY="74.0" prefHeight="55.0" prefWidth="879.0" stylesheets="@style.css">
+         <children>
+            <Button graphicTextGap="0.0" maxHeight="94.0" maxWidth="63.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="50.0" prefWidth="63.0" styleClass="search-button" stylesheets="@style.css" text="🔍">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <TextField fx:id="searchField" minHeight="-Infinity" prefHeight="50.0" prefWidth="277.0" promptText="Search for products" stylesheets="@style.css">
+               <styleClass>
+                  <String fx:value="search-bar" />
+                  <String fx:value="text-field" />
+               </styleClass>
+               <HBox.margin>
+                  <Insets right="130.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <Label id="nav-item" alignment="CENTER_RIGHT" graphicTextGap="3.0" onMouseClicked="#handleCart" prefHeight="23.0" prefWidth="82.0" stylesheets="@style.css" text="Cart" />
+            <ImageView fitHeight="34.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" styleClass="icon">
+               <image>
+                  <Image url="@resources/cart-logo.png" />
+               </image>
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label id="nav-item" alignment="CENTER_RIGHT" graphicTextGap="3.0" prefHeight="23.0" prefWidth="103.0" stylesheets="@style.css" text="Wishlist" />
+            <ImageView fitHeight="34.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/wishlist.png" />
+               </image>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ImageView>
+            <Label id="nav-item" alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="103.0" stylesheets="@style.css" text="Orders" />
+            <ImageView fitHeight="30.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" styleClass="icon">
+               <image>
+                  <Image url="@resources/orders.png" />
+               </image>
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
    </children>
 </AnchorPane>

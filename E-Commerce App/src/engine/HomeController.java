@@ -41,13 +41,25 @@ public class HomeController extends BaseController {
         engine.switchScene(Screen.LOGIN);
         //TODO ensure saving cart, wishlist, orders,... 
     }
+    @FXML
+    public void handleCart(){
+        engine.switchScene(Screen.CART);
+    }
+    // @FXML
+    // public void handleWishlist(){
+    //     engine.switchScene(Screen.WISHLIST);
+    // }
+    // @FXML
+    // public void handleProfile(){
+    //     engine.switchScene(Screen.PROFILE);
+    // }
     public void displayName(String name){
         String tempName=name.substring(0,name.indexOf(" "));
         nameLabel.setText("Welcome, "+tempName);
     }
 
-    int PRODUCTS_PER_PAGE = 8; 
-    int productCount = 0;  
+    int PRODUCTS_PER_PAGE=8; 
+    int productCount;  
     
     public void populateProducts(ArrayList<Product> products, int startingIndex) {
         hBox.getStyleClass().add("curved-hbox");
@@ -55,7 +67,6 @@ public class HomeController extends BaseController {
         final int MAX_ROWS = 2;
     
         int row = 0, col = 0;
-    
         productGrid.getChildren().clear();
         productGrid.getColumnConstraints().clear();
         productGrid.getRowConstraints().clear();
@@ -117,13 +128,7 @@ public class HomeController extends BaseController {
         productRating.setFitHeight(15); 
         productRating.setFitWidth(80);
         productRating.setPreserveRatio(true);
-        int rating;
-        try{
-        rating =(int) Math.floor(product.getRating());
-        }
-        catch(Exception e){
-            rating=0;
-        }
+        int rating=engine.getIntegerRating(product);
         String ratingPath = "resources/" + rating + "star.png";
         if (getClass().getResourceAsStream(ratingPath) != null)
             productRating.setImage(new Image(getClass().getResourceAsStream(ratingPath)));

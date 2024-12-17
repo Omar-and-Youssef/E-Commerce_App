@@ -14,8 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.ProductController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.CartController">
    <children>
       <Label id="title" fx:id="title" alignment="BASELINE_CENTER" layoutX="-14.0" layoutY="-3.0" prefHeight="85.0" prefWidth="932.0" styleClass="title" stylesheets="@style.css" text="★Cadabra" textFill="#9f5d5d">
          <font>
@@ -23,7 +24,7 @@
          </font>
       </Label>
       <HBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="120.0" prefHeight="17.0" prefWidth="907.0" />
-      <Button fx:id="logoutButton" layoutX="767.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="42.0" prefWidth="105.0" styleClass="logoutButton" stylesheets="@style.css" text="Log out">
+      <Button fx:id="logoutButton" layoutX="767.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleLogout" onMouseClicked="#handleLogout" prefHeight="42.0" prefWidth="105.0" styleClass="logoutButton" stylesheets="@style.css" text="Log out">
          <font>
             <Font size="15.0" />
          </font>
@@ -40,46 +41,22 @@
             <Blend />
          </effect>
       </Button>
-      <VBox layoutX="49.0" layoutY="122.0" prefHeight="410.0" prefWidth="493.0" spacing="20.0">
+      <VBox fx:id="cartVBox" layoutX="18.0" layoutY="80.0" prefHeight="409.0" prefWidth="493.0" spacing="20.0">
          <children>
-            <HBox prefHeight="125.0" prefWidth="483.0">
+            <Text fx:id="emptyCartText" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <HBox fx:id="cartItemHBox1" prefHeight="130.0" prefWidth="443.0" style="-fx-background-color: transparent; -fx-padding: 0;" styleClass="curved-hbox" stylesheets="@style.css">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
                <children>
-                  <ImageView fitHeight="125.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
-                  <VBox alignment="CENTER" prefHeight="86.0" prefWidth="71.0">
+                  <ImageView fx:id="cartImage1" fitHeight="110.0" fitWidth="110.0" preserveRatio="true" HBox.hgrow="NEVER">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <VBox alignment="CENTER" prefHeight="98.0" prefWidth="71.0">
                      <children>
-                        <Label fx:id="productNameLabel" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-name" stylesheets="@style.css" text="Name" />
-                        <Label fx:id="brandLabel" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-brand" stylesheets="@style.css" text="Brand" />
-                        <Label fx:id="priceLabel" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-price" stylesheets="@style.css" text="Price" />
-                     </children>
-                     <HBox.margin>
-                        <Insets left="25.0" />
-                     </HBox.margin>
-                  </VBox>
-                  <Spinner fx:id="quantitySpinner" editable="true" prefHeight="20.0" prefWidth="73.0" styleClass="quantity-spinner" stylesheets="@style.css">
-                     <HBox.margin>
-                        <Insets left="65.0" top="40.0" />
-                     </HBox.margin>
-                  </Spinner>
-                  <Label stylesheets="@style.css" text="\$0.00">
-                     <styleClass>
-                        <String fx:value="subtotal" />
-                        <String fx:value="subtotal-background" />
-                     </styleClass>
-                     <HBox.margin>
-                        <Insets left="70.0" top="45.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox prefHeight="125.0" prefWidth="483.0">
-               <children>
-                  <ImageView fitHeight="125.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
-                  <VBox alignment="CENTER" prefHeight="86.0" prefWidth="71.0">
-                     <children>
-                        <Label fx:id="productNameLabel1" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-name" stylesheets="@style.css" text="Name" />
+                        <Label fx:id="nameLabel1" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-name" stylesheets="@style.css" text="Name" />
                         <Label fx:id="brandLabel1" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-brand" stylesheets="@style.css" text="Brand" />
                         <Label fx:id="priceLabel1" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-price" stylesheets="@style.css" text="Price" />
                      </children>
@@ -92,23 +69,35 @@
                         <Insets left="65.0" top="40.0" />
                      </HBox.margin>
                   </Spinner>
-                  <Label stylesheets="@style.css" text="\$0.00">
+                  <Button fx:id="removeButton1" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="66.0" prefWidth="63.0" style="-fx-background-color: transparent;" text="🗑" textFill="RED">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="30.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label fx:id="subTotalLabel1" stylesheets="@style.css" text="\$0.00">
                      <styleClass>
                         <String fx:value="subtotal" />
                         <String fx:value="subtotal-background" />
                      </styleClass>
                      <HBox.margin>
-                        <Insets left="70.0" top="45.0" />
+                        <Insets left="20.0" top="45.0" />
                      </HBox.margin>
                   </Label>
                </children>
             </HBox>
-            <HBox prefHeight="125.0" prefWidth="483.0">
+            <HBox fx:id="cartItemHBox2" prefHeight="122.0" prefWidth="493.0" style="-fx-background-color: transparent; -fx-padding: 0;" styleClass="curved-hbox" stylesheets="@style.css">
                <children>
-                  <ImageView fitHeight="125.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
-                  <VBox alignment="CENTER" prefHeight="86.0" prefWidth="71.0">
+                  <ImageView fx:id="cartImage2" fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="SOMETIMES">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <VBox alignment="CENTER" prefHeight="107.0" prefWidth="71.0">
                      <children>
-                        <Label fx:id="productNameLabel2" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-name" stylesheets="@style.css" text="Name" />
+                        <Label fx:id="nameLabel2" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-name" stylesheets="@style.css" text="Name" />
                         <Label fx:id="brandLabel2" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-brand" stylesheets="@style.css" text="Brand" />
                         <Label fx:id="priceLabel2" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-price" stylesheets="@style.css" text="Price" />
                      </children>
@@ -121,20 +110,69 @@
                         <Insets left="65.0" top="40.0" />
                      </HBox.margin>
                   </Spinner>
-                  <Label stylesheets="@style.css" text="\$0.00">
+                  <Button fx:id="removeButton2" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="66.0" prefWidth="77.0" style="-fx-background-color: transparent;" text="🗑" textFill="RED">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="30.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label fx:id="subTotalLabel2" stylesheets="@style.css" text="\$0.00">
                      <styleClass>
                         <String fx:value="subtotal" />
                         <String fx:value="subtotal-background" />
                      </styleClass>
                      <HBox.margin>
-                        <Insets left="70.0" top="45.0" />
+                        <Insets top="45.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="cartItemHBox3" prefHeight="130.0" prefWidth="443.0" style="-fx-background-color: transparent; -fx-padding: 0;" styleClass="curved-hbox" stylesheets="@style.css">
+               <children>
+                  <ImageView fx:id="cartImage3" fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="SOMETIMES">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <VBox alignment="CENTER" prefHeight="86.0" prefWidth="71.0">
+                     <children>
+                        <Label fx:id="nameLabel3" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-name" stylesheets="@style.css" text="Name" />
+                        <Label fx:id="brandLabel3" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-brand" stylesheets="@style.css" text="Brand" />
+                        <Label fx:id="priceLabel3" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-price" stylesheets="@style.css" text="Price" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <Spinner fx:id="quantitySpinner3" editable="true" prefHeight="20.0" prefWidth="73.0" styleClass="quantity-spinner" stylesheets="@style.css">
+                     <HBox.margin>
+                        <Insets left="65.0" top="40.0" />
+                     </HBox.margin>
+                  </Spinner>
+                  <Button fx:id="removeButton3" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="67.0" prefWidth="76.0" style="-fx-background-color: transparent;" text="🗑" textFill="RED">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="30.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label fx:id="subTotalLabel3" stylesheets="@style.css" text="\$0.00">
+                     <styleClass>
+                        <String fx:value="subtotal" />
+                        <String fx:value="subtotal-background" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets top="45.0" />
                      </HBox.margin>
                   </Label>
                </children>
             </HBox>
          </children>
       </VBox>
-      <HBox layoutX="50.0" layoutY="92.0" prefHeight="36.0" prefWidth="493.0" stylesheets="@style.css">
+      <HBox layoutX="20.0" layoutY="75.0" prefHeight="36.0" prefWidth="493.0" stylesheets="@style.css">
          <children>
             <Label id="image-header" stylesheets="@style.css" text="Image">
                <HBox.margin>
@@ -162,12 +200,12 @@
             <String fx:value="cart-header-border" />
          </styleClass>
       </HBox>
-      <Button fx:id="navLeftButton" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="204.0" layoutY="531.0" mnemonicParsing="false" onAction="#navigateProductsLeft" prefHeight="0.0" prefWidth="0.0" styleClass="black-button" stylesheets="@style.css" text="&lt;">
+      <Button fx:id="navigateCartLeft" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="228.0" layoutY="560.0" mnemonicParsing="false" onAction="#navigateCartLeft" prefHeight="33.0" prefWidth="23.0" style="-fx-font-size: 14;" styleClass="black-button" stylesheets="@style.css" text="&lt;">
          <font>
-            <Font size="36.0" />
+            <Font size="10.0" />
          </font>
       </Button>
-      <Button fx:id="navLeftButton1" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="304.0" layoutY="532.0" mnemonicParsing="false" onAction="#navigateProductsLeft" prefHeight="0.0" prefWidth="0.0" styleClass="black-button" stylesheets="@style.css" text="&gt;">
+      <Button fx:id="navigateCartRight" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="276.0" layoutY="561.0" mnemonicParsing="false" onAction="#navigateCartRight" prefHeight="0.0" prefWidth="0.0" style="-fx-font-size: 14;" styleClass="black-button" stylesheets="@style.css" text="&gt;">
          <font>
             <Font size="36.0" />
          </font>
@@ -182,12 +220,29 @@
                   <String fx:value="cart-header-border" />
                </styleClass>
             </Label>
-            <Label style="-fx-font-size: 18;" styleClass="cart-header" stylesheets="@style.css" text="Shipping Address">
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label style="-fx-font-size: 18;" styleClass="cart-header" stylesheets="@style.css" text="Wallet:">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+                  <Label fx:id="walletLabel" style="-fx-font-size: 23;" text="\$0.00">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <Label style="-fx-font-size: 16;" styleClass="cart-header" stylesheets="@style.css" text="Shipping Address">
                <VBox.margin>
-                  <Insets bottom="10.0" left="20.0" top="10.0" />
+                  <Insets left="20.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="addressField" prefHeight="35.0" prefWidth="265.0" promptText="City, Area, Building, Apt. no." styleClass="text-field" stylesheets="@style.css">
+            <TextField fx:id="addressField" prefHeight="63.0" prefWidth="285.0" promptText="City, Area, Building, Apt. no." styleClass="text-field" stylesheets="@style.css">
                <font>
                   <Font size="16.0" />
                </font>
@@ -195,12 +250,12 @@
                   <Insets left="30.0" />
                </VBox.margin>
             </TextField>
-            <Label style="-fx-font-size: 18;" styleClass="cart-header" stylesheets="@style.css" text="Payment method">
+            <Label style="-fx-font-size: 16;" styleClass="cart-header" stylesheets="@style.css" text="Payment method">
                <VBox.margin>
-                  <Insets bottom="10.0" left="20.0" top="15.0" />
+                  <Insets left="20.0" />
                </VBox.margin>
             </Label>
-            <ChoiceBox prefHeight="27.0" prefWidth="294.0" style="-fx-background-color: white; -fx-border-color: gray;" stylesheets="@style.css">
+            <ChoiceBox fx:id="paymemtChoiceBox" prefHeight="27.0" prefWidth="285.0" style="-fx-background-color: white; -fx-border-color: gray;" stylesheets="@style.css">
                <VBox.margin>
                   <Insets left="30.0" />
                </VBox.margin>
@@ -212,23 +267,24 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Label>
-                  <Label style="-fx-font-size: 23;" text="\$0.00">
+                  <Label fx:id="orderTotal" style="-fx-font-size: 23;" text="\$0.00">
                      <HBox.margin>
-                        <Insets left="180.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
                </children>
                <VBox.margin>
-                  <Insets top="50.0" />
+                  <Insets />
                </VBox.margin>
             </HBox>
-            <Button mnemonicParsing="false" prefWidth="204.0" styleClass="black-button" stylesheets="@style.css" text="Place Order">
+            <Button fx:id="placeOrderButton" mnemonicParsing="false" prefWidth="204.0" style="-fx-font-size: 18;" styleClass="black-button" stylesheets="@style.css" text="Place Order">
                <VBox.margin>
                   <Insets left="40.0" top="20.0" />
                </VBox.margin>
             </Button>
          </children>
       </VBox>
-      <Label fx:id="cartErrorLabel" layoutX="602.0" layoutY="97.0" prefHeight="32.0" prefWidth="216.0" styleClass="successful-add" stylesheets="@style.css" text="Order placed successfully!" />
+      <Label fx:id="orderSuccessLabel" layoutX="602.0" layoutY="97.0" prefHeight="32.0" prefWidth="216.0" styleClass="successful-add" stylesheets="@style.css" text="Order placed successfully!" />
+      <VBox fx:id="deleteButtons" layoutX="798.0" layoutY="232.0" prefHeight="375.0" prefWidth="74.0" />
    </children>
 </AnchorPane>

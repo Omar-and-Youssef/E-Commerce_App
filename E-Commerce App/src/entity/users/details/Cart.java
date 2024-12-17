@@ -33,7 +33,7 @@ public class Cart {
     }
     public void calcTotalPrice(){
         for (CartItem item : CART_ITEMS) {
-            totalPrice += item.getTotalPrice();
+            totalPrice += item.getSubTotal();
         }
     }
 //=======================================Get&Set=======================================
