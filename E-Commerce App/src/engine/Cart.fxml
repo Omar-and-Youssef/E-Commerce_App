@@ -2,10 +2,10 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.ImageView?>
@@ -41,7 +41,7 @@
             <Blend />
          </effect>
       </Button>
-      <VBox fx:id="cartVBox" layoutX="14.0" layoutY="79.0" prefHeight="502.0" prefWidth="497.0" spacing="20.0">
+      <VBox fx:id="cartVBox" layoutX="18.0" layoutY="80.0" prefHeight="409.0" prefWidth="493.0" spacing="20.0">
          <children>
             <Text fx:id="emptyCartText" strokeType="OUTSIDE" strokeWidth="0.0" />
             <HBox fx:id="cartItemHBox1" prefHeight="130.0" prefWidth="443.0" style="-fx-background-color: transparent; -fx-padding: 0;" styleClass="curved-hbox" stylesheets="@style.css">
@@ -61,19 +61,14 @@
                         <Label fx:id="priceLabel1" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-price" stylesheets="@style.css" text="Price" />
                      </children>
                      <HBox.margin>
-                        <Insets />
+                        <Insets left="25.0" />
                      </HBox.margin>
                   </VBox>
-                  <HBox prefHeight="33.0" prefWidth="75.0">
+                  <Spinner fx:id="quantitySpinner1" editable="true" prefHeight="20.0" prefWidth="73.0" styleClass="quantity-spinner" stylesheets="@style.css">
                      <HBox.margin>
-                        <Insets bottom="40.0" left="50.0" top="40.0" />
+                        <Insets left="65.0" top="40.0" />
                      </HBox.margin>
-                     <children>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="22.0" style="-fx-padding: 2;" styleClass="menu-button" text="+" />
-                        <Label alignment="CENTER" prefHeight="38.0" prefWidth="27.0" text="1" textAlignment="CENTER" />
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="22.0" style="-fx-padding: 2;" styleClass="menu-button" text="-" />
-                     </children>
-                  </HBox>
+                  </Spinner>
                   <Button fx:id="removeButton1" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="66.0" prefWidth="63.0" style="-fx-background-color: transparent;" text="🗑" textFill="RED">
                      <font>
                         <Font size="30.0" />
@@ -81,11 +76,8 @@
                      <HBox.margin>
                         <Insets top="30.0" />
                      </HBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                   </Button>
-                  <Label fx:id="subTotalLabel1" alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="79.0" prefWidth="99.0" style="-fx-font-size: 20;" stylesheets="@style.css" text="\$0.00">
+                  <Label fx:id="subTotalLabel1" stylesheets="@style.css" text="\$0.00">
                      <styleClass>
                         <String fx:value="subtotal" />
                         <String fx:value="subtotal-background" />
@@ -96,100 +88,84 @@
                   </Label>
                </children>
             </HBox>
-            <HBox fx:id="cartItemHBox11" prefHeight="130.0" prefWidth="443.0" style="-fx-background-color: transparent; -fx-padding: 0;" styleClass="curved-hbox" stylesheets="@style.css">
+            <HBox fx:id="cartItemHBox2" prefHeight="122.0" prefWidth="493.0" style="-fx-background-color: transparent; -fx-padding: 0;" styleClass="curved-hbox" stylesheets="@style.css">
                <children>
-                  <ImageView fx:id="cartImage2" fitHeight="110.0" fitWidth="110.0" preserveRatio="true" HBox.hgrow="NEVER">
+                  <ImageView fx:id="cartImage2" fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" top="10.0" />
                      </HBox.margin>
                   </ImageView>
-                  <VBox alignment="CENTER" prefHeight="98.0" prefWidth="71.0">
+                  <VBox alignment="CENTER" prefHeight="107.0" prefWidth="71.0">
                      <children>
                         <Label fx:id="nameLabel2" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-name" stylesheets="@style.css" text="Name" />
                         <Label fx:id="brandLabel2" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-brand" stylesheets="@style.css" text="Brand" />
                         <Label fx:id="priceLabel2" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-price" stylesheets="@style.css" text="Price" />
                      </children>
                      <HBox.margin>
-                        <Insets />
+                        <Insets left="25.0" />
                      </HBox.margin>
                   </VBox>
-                  <HBox prefHeight="33.0" prefWidth="75.0">
+                  <Spinner fx:id="quantitySpinner2" editable="true" prefHeight="20.0" prefWidth="73.0" styleClass="quantity-spinner" stylesheets="@style.css">
                      <HBox.margin>
-                        <Insets bottom="40.0" left="50.0" top="40.0" />
+                        <Insets left="65.0" top="40.0" />
                      </HBox.margin>
-                     <children>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="22.0" style="-fx-padding: 2;" styleClass="menu-button" text="+" />
-                        <Label alignment="CENTER" prefHeight="38.0" prefWidth="27.0" text="1" textAlignment="CENTER" />
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="22.0" style="-fx-padding: 2;" styleClass="menu-button" text="-" />
-                     </children>
-                  </HBox>
-                  <Button fx:id="removeButton2" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="66.0" prefWidth="63.0" style="-fx-background-color: transparent;" text="🗑" textFill="RED">
+                  </Spinner>
+                  <Button fx:id="removeButton2" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="66.0" prefWidth="77.0" style="-fx-background-color: transparent;" text="🗑" textFill="RED">
                      <font>
                         <Font size="30.0" />
                      </font>
                      <HBox.margin>
                         <Insets top="30.0" />
                      </HBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                   </Button>
-                  <Label fx:id="subTotalLabel2" alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="79.0" prefWidth="99.0" style="-fx-font-size: 20;" stylesheets="@style.css" text="\$0.00">
+                  <Label fx:id="subTotalLabel2" stylesheets="@style.css" text="\$0.00">
                      <styleClass>
                         <String fx:value="subtotal" />
                         <String fx:value="subtotal-background" />
                      </styleClass>
                      <HBox.margin>
-                        <Insets left="20.0" top="45.0" />
+                        <Insets top="45.0" />
                      </HBox.margin>
                   </Label>
                </children>
             </HBox>
-            <HBox fx:id="cartItemHBox12" prefHeight="130.0" prefWidth="443.0" style="-fx-background-color: transparent; -fx-padding: 0;" styleClass="curved-hbox" stylesheets="@style.css">
+            <HBox fx:id="cartItemHBox3" prefHeight="130.0" prefWidth="443.0" style="-fx-background-color: transparent; -fx-padding: 0;" styleClass="curved-hbox" stylesheets="@style.css">
                <children>
-                  <ImageView fx:id="cartImage3" fitHeight="110.0" fitWidth="110.0" preserveRatio="true" HBox.hgrow="NEVER">
+                  <ImageView fx:id="cartImage3" fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" top="10.0" />
                      </HBox.margin>
                   </ImageView>
-                  <VBox alignment="CENTER" prefHeight="98.0" prefWidth="71.0">
+                  <VBox alignment="CENTER" prefHeight="86.0" prefWidth="71.0">
                      <children>
                         <Label fx:id="nameLabel3" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-name" stylesheets="@style.css" text="Name" />
                         <Label fx:id="brandLabel3" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-brand" stylesheets="@style.css" text="Brand" />
                         <Label fx:id="priceLabel3" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-price" stylesheets="@style.css" text="Price" />
                      </children>
                      <HBox.margin>
-                        <Insets />
+                        <Insets left="25.0" />
                      </HBox.margin>
                   </VBox>
-                  <HBox prefHeight="33.0" prefWidth="75.0">
+                  <Spinner fx:id="quantitySpinner3" editable="true" prefHeight="20.0" prefWidth="73.0" styleClass="quantity-spinner" stylesheets="@style.css">
                      <HBox.margin>
-                        <Insets bottom="40.0" left="50.0" top="40.0" />
+                        <Insets left="65.0" top="40.0" />
                      </HBox.margin>
-                     <children>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="22.0" style="-fx-padding: 2;" styleClass="menu-button" text="+" />
-                        <Label alignment="CENTER" prefHeight="39.0" prefWidth="27.0" text="1" textAlignment="CENTER" />
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="22.0" style="-fx-padding: 2;" styleClass="menu-button" text="-" />
-                     </children>
-                  </HBox>
-                  <Button fx:id="removeButton3" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="66.0" prefWidth="63.0" style="-fx-background-color: transparent;" text="🗑" textFill="RED">
+                  </Spinner>
+                  <Button fx:id="removeButton3" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="67.0" prefWidth="76.0" style="-fx-background-color: transparent;" text="🗑" textFill="RED">
                      <font>
                         <Font size="30.0" />
                      </font>
                      <HBox.margin>
                         <Insets top="30.0" />
                      </HBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                   </Button>
-                  <Label fx:id="subTotalLabel3" alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="79.0" prefWidth="99.0" style="-fx-font-size: 20;" stylesheets="@style.css" text="\$0.00">
+                  <Label fx:id="subTotalLabel3" stylesheets="@style.css" text="\$0.00">
                      <styleClass>
                         <String fx:value="subtotal" />
                         <String fx:value="subtotal-background" />
                      </styleClass>
                      <HBox.margin>
-                        <Insets left="20.0" top="45.0" />
+                        <Insets top="45.0" />
                      </HBox.margin>
                   </Label>
                </children>
@@ -198,6 +174,11 @@
       </VBox>
       <HBox layoutX="20.0" layoutY="75.0" prefHeight="36.0" prefWidth="493.0" stylesheets="@style.css">
          <children>
+            <Label id="image-header" stylesheets="@style.css" text="Image">
+               <HBox.margin>
+                  <Insets left="20.0" right="75.0" />
+               </HBox.margin>
+            </Label>
             <Label id="details-header" stylesheets="@style.css" text="Details">
                <HBox.margin>
                   <Insets right="75.0" />
@@ -205,12 +186,12 @@
             </Label>
             <Label id="quantity-header" stylesheets="@style.css" text="Quantity">
                <HBox.margin>
-                  <Insets left="70.0" right="60.0" />
+                  <Insets right="75.0" />
                </HBox.margin>
             </Label>
             <Label id="subtotal-header" stylesheets="@style.css" text="Subtotal">
                <HBox.margin>
-                  <Insets left="20.0" />
+                  <Insets />
                </HBox.margin>
             </Label>
          </children>

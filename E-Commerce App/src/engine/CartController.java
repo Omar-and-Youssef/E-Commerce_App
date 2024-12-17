@@ -102,7 +102,7 @@ public class CartController extends BaseController{
             quantitySpinner.setEditable(false);
             final int itemIndex = startingIndex+i; 
             quantitySpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
-                if (newValue != null) {
+                if (newValue != null&&oldValue!=newValue) {
                     engine.setQuantityInCart(itemIndex, newValue);
                     double newSubTotal = cartItem.getSubTotal();
                     subTotalLabels[itemIndex].setText("$" + String.format("%.2f", newSubTotal));
