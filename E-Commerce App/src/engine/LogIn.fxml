@@ -47,5 +47,6 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <Label fx:id="errorLabel" layoutX="299.0" layoutY="457.0" prefHeight="33.0" prefWidth="316.0" styleClass="errorLabel" stylesheets="@style.css" text="test" visible="false" />
    </children>
 </AnchorPane>

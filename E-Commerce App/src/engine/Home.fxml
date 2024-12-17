@@ -103,14 +103,14 @@
          </font>
       </Button>
       <Label fx:id="nameLabel" layoutX="28.0" layoutY="17.0" prefHeight="49.0" prefWidth="253.0" styleClass="welcome-message" stylesheets="@style.css" />
-      <HBox id="nav-item" alignment="CENTER" layoutX="13.0" layoutY="74.0" prefHeight="55.0" prefWidth="879.0" stylesheets="@style.css">
+      <HBox id="nav-item" alignment="CENTER" layoutX="9.0" layoutY="74.0" prefHeight="55.0" prefWidth="879.0" stylesheets="@style.css">
          <children>
-            <Button graphicTextGap="0.0" maxHeight="94.0" maxWidth="63.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="50.0" prefWidth="63.0" styleClass="search-button" stylesheets="@style.css" text="🔍">
+            <Button graphicTextGap="0.0" maxHeight="94.0" maxWidth="67.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="55.0" prefWidth="67.0" styleClass="search-button" stylesheets="@style.css" text="🔍">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <TextField fx:id="searchField" minHeight="-Infinity" prefHeight="50.0" prefWidth="277.0" promptText="Search for products" stylesheets="@style.css">
+            <TextField fx:id="searchField" minHeight="-Infinity" prefHeight="50.0" prefWidth="241.0" promptText="Search for products" stylesheets="@style.css">
                <styleClass>
                   <String fx:value="search-bar" />
                   <String fx:value="text-field" />
@@ -122,8 +122,8 @@
                   <Font size="18.0" />
                </font>
             </TextField>
-            <Label id="nav-item" alignment="CENTER_RIGHT" graphicTextGap="3.0" onMouseClicked="#handleCart" prefHeight="23.0" prefWidth="82.0" stylesheets="@style.css" text="Cart" />
-            <ImageView fitHeight="34.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" styleClass="icon">
+            <Label id="nav-item" fx:id="cartLabel" alignment="CENTER_RIGHT" graphicTextGap="3.0" onMouseClicked="#handleCart" prefHeight="23.0" prefWidth="74.0" stylesheets="@style.css" text="Cart" />
+            <ImageView fx:id="cartIcon" fitHeight="34.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" styleClass="icon">
                <image>
                   <Image url="@resources/cart-logo.png" />
                </image>
@@ -131,8 +131,8 @@
                   <Insets right="15.0" />
                </HBox.margin>
             </ImageView>
-            <Label id="nav-item" alignment="CENTER_RIGHT" graphicTextGap="3.0" prefHeight="23.0" prefWidth="103.0" stylesheets="@style.css" text="Wishlist" />
-            <ImageView fitHeight="34.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+            <Label id="nav-item" fx:id="wishlistLabel" alignment="CENTER_RIGHT" graphicTextGap="3.0" prefHeight="23.0" prefWidth="103.0" stylesheets="@style.css" text="Wishlist" />
+            <ImageView fx:id="wishlistIcon" fitHeight="34.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@resources/wishlist.png" />
                </image>
@@ -140,8 +140,8 @@
                   <Insets />
                </HBox.margin>
             </ImageView>
-            <Label id="nav-item" alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="103.0" stylesheets="@style.css" text="Orders" />
-            <ImageView fitHeight="30.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" styleClass="icon">
+            <Label id="nav-item" fx:id="ordersLabel" alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="103.0" stylesheets="@style.css" text="Orders" />
+            <ImageView fx:id="ordersIcon" fitHeight="30.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" styleClass="icon">
                <image>
                   <Image url="@resources/orders.png" />
                </image>

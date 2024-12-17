@@ -20,23 +20,7 @@ import entity.products.Category;
 import entity.products.Product;
 
 public class HomeController extends BaseController {
-    @FXML
-    private Label nameLabel;
-    @FXML
-    private Button logoutButton;
-    @FXML
-    private GridPane productGrid;
-    @FXML
-    private HBox hBox;
-    @FXML
-    private Button navRightButton;
-    @FXML
-    private Button navLeftButton;
-    @FXML 
-    private TextField searchField;
-
-    
-    @FXML
+   @FXML
     public void handleLogout(){
         engine.switchScene(Screen.LOGIN);
         //TODO ensure saving cart, wishlist, orders,... 
@@ -54,7 +38,9 @@ public class HomeController extends BaseController {
     //     engine.switchScene(Screen.PROFILE);
     // }
     public void displayName(String name){
-        String tempName=name.substring(0,name.indexOf(" "));
+        String tempName;
+        if(name.contains(" ")) tempName= name.substring(0,name.indexOf(" "));
+        else tempName=name;
         nameLabel.setText("Welcome, "+tempName);
     }
 
@@ -101,7 +87,6 @@ public class HomeController extends BaseController {
         productBox.setOnMouseEntered(event -> {
             productBox.setEffect(shadow);
             productBox.setStyle("-fx-cursor: hand;");
-            
         });
         productBox.setOnMouseExited(event -> {
             productBox.setEffect(null);
@@ -238,4 +223,50 @@ public class HomeController extends BaseController {
     public Button getnavRightButton(){
         return navRightButton;
     }
+
+    public void setNavigationMenu(boolean isCustomer){
+        if(isCustomer){
+            cartLabel.setVisible(true);
+            cartIcon.setVisible(true);
+            wishlistLabel.setText("Wishlist");
+            wishlistIcon.setImage((new Image(getClass().getResourceAsStream("resources/wishlist.png"))));
+            ordersLabel.setText("Orders");
+            ordersIcon.setImage((new Image(getClass().getResourceAsStream("resources/orders.png"))));
+        }
+        else{
+            cartLabel.setVisible(false);
+            cartIcon.setVisible(false);
+            wishlistLabel.setText("Add");
+            wishlistIcon.setImage((new Image(getClass().getResourceAsStream("resources/addIcon.png"))));
+            ordersLabel.setText("Analytics");
+            ordersIcon.setImage((new Image(getClass().getResourceAsStream("resources/analyticsIcon.png"))));
+        }
+    }
+    @FXML
+    private Label cartLabel;
+    @FXML
+    private Label wishlistLabel;
+    @FXML
+    private Label ordersLabel;
+    @FXML
+    private ImageView cartIcon;
+    @FXML
+    private ImageView wishlistIcon;
+    @FXML
+    private ImageView ordersIcon;
+    @FXML
+    private Label nameLabel;
+    @FXML
+    private Button logoutButton;
+    @FXML
+    private GridPane productGrid;
+    @FXML
+    private HBox hBox;
+    @FXML
+    private Button navRightButton;
+    @FXML
+    private Button navLeftButton;
+    @FXML 
+    private TextField searchField;
+
 }

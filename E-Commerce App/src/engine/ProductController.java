@@ -1,23 +1,27 @@
 package engine;
 
 import entity.products.Product;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 
 public class ProductController extends BaseController {
+    boolean isUpdating;
     @FXML
     private Label productNameLabel;
     @FXML
     private Label brandLabel;
     @FXML
     private Label priceLabel;
-    @FXML
-    private Label categoryLabel;  
+    // @FXML
+    // private Label categoryLabel;  
     @FXML
     private Label descriptionLabel;
     @FXML
@@ -26,16 +30,35 @@ public class ProductController extends BaseController {
     private Button backButton;
     @FXML
     private Button addToCartButton;
-    @FXML
-    private Button addToWishlistButton;
+    // @FXML
+    // private Button addToWishlistButton;
     @FXML
     private Spinner<Integer>  quantitySpinner;
     @FXML
     private Label cartSuccessLabel;
     @FXML
     private Label wishlistSuccessLabel;
+    //TODO
+    // @FXML
+    // private ImageView ratingImage;
     @FXML
-    private ImageView ratingImage;
+    private Label QuantityLabel;
+    @FXML
+    private Button DelProductButton;
+    @FXML
+    private Button UpProductButton;
+    @FXML
+    private Label cartLabel;
+    @FXML
+    private Label wishlistLabel;
+    @FXML
+    private Label ordersLabel;
+    @FXML
+    private ImageView cartIcon;
+    @FXML
+    private ImageView wishlistIcon;
+    @FXML
+    private ImageView ordersIcon;
 
     
 
@@ -57,8 +80,54 @@ public class ProductController extends BaseController {
     // }
     public void initialize(){
         cartSuccessLabel.setVisible(false);
-        wishlistSuccessLabel.setVisible(false);
+        // wishlistSuccessLabel.setVisible(false);
         resetQuantity();
+    }
+
+    public void configureScreenByRole(){//all admin stuff do !
+        //    // boolean isCustomer=engine.getCurrentUser().getUserID().charAt(0)!='A';
+            boolean isCustomer=engine.isCustomer;
+
+            if(isCustomer){
+                cartLabel.setVisible(true);
+                cartIcon.setVisible(true);
+                wishlistLabel.setText("Wishlist");
+                wishlistIcon.setImage((new Image(getClass().getResourceAsStream("resources/wishlist.png"))));
+                ordersLabel.setText("Orders");
+                ordersIcon.setImage((new Image(getClass().getResourceAsStream("resources/orders.png"))));
+            }
+            else{
+                cartLabel.setVisible(false);
+                cartIcon.setVisible(false);
+                wishlistLabel.setText("Add");
+                wishlistIcon.setImage((new Image(getClass().getResourceAsStream("resources/addIcon.png"))));
+                ordersLabel.setText("Analytics");
+                ordersIcon.setImage((new Image(getClass().getResourceAsStream("resources/analyticsIcon.png"))));
+            }
+            
+            // addToWishlistButton.setVisible(isCustomer);
+            addToCartButton.setVisible(isCustomer);
+            quantitySpinner.setVisible(isCustomer);
+            QuantityLabel.setVisible(isCustomer);
+
+            DelProductButton.setVisible(!isCustomer);
+            UpProductButton.setVisible(!isCustomer);
+            loadProduct();
+        }
+    @FXML
+    public void delProductB(ActionEvent e){
+        engine.deleteViewedProdcut();
+        handleBack();
+    }
+    public boolean getIsUpdating(){
+        boolean temp=isUpdating;
+        isUpdating=false;
+        return temp;
+    }
+    @FXML
+    public void upProductB(ActionEvent e){
+        isUpdating=true;
+        engine.switchScene(Screen.MODIFYPRODUCT);
     }
     public void loadProduct(){
         if(engine ==null) return;
@@ -69,7 +138,7 @@ public class ProductController extends BaseController {
 
 
         productNameLabel.setText(viewedProduct.getProductName());
-        categoryLabel.setText(viewedProduct.getCategory().toString());
+        // categoryLabel.setText(viewedProduct.getCategory().toString());
         brandLabel.setText(viewedProduct.getBrand());
         priceLabel.setText("$"+viewedProduct.getPrice());
         descriptionLabel.setText(viewedProduct.getDescription());
@@ -82,7 +151,10 @@ public class ProductController extends BaseController {
         productImage.setLayoutY(0);
         productImage.setPickOnBounds(false);
 
-        ratingImage.setImage(new Image(getClass().getResourceAsStream("resources/"+engine.getIntegerRating(viewedProduct)+"star.png")));
+        cartSuccessLabel.setVisible(false);
+
+
+        // ratingImage.setImage(new Image(getClass().getResourceAsStream("resources/"+engine.getIntegerRating(viewedProduct)+"star.png")));
     }
     public void handleBack(){
         cartSuccessLabel.setVisible(false);
@@ -111,55 +183,71 @@ public class ProductController extends BaseController {
     public void handleSearch(){
         engine.switchScene(Screen.HOME);
         engine.getHomeController().handleSearch();
+        cartSuccessLabel.setVisible(false);
     }
     @FXML
     public void handleLogout(){
-        engine.setCurrentUser(null);
+        engine.logout();
         engine.switchScene(Screen.LOGIN);
+        cartSuccessLabel.setVisible(false);
+
     }
     @FXML
     public void handleCategoryAll() {
         engine.switchScene(Screen.HOME);
         engine.getHomeController().handleCategoryAll();
+        cartSuccessLabel.setVisible(false);
+
     }
     @FXML
     public void handleCategoryElectronics() {
         engine.switchScene(Screen.HOME);
         engine.getHomeController().handleCategoryElectronics();
+        cartSuccessLabel.setVisible(false);
     }
     @FXML
     public void handleCategoryClothing() {
         engine.switchScene(Screen.HOME);
         engine.getHomeController().handleCategoryClothing();
+        cartSuccessLabel.setVisible(false);
     }
     @FXML
     public void handleCategoryFurniture() {
         engine.switchScene(Screen.HOME);
         engine.getHomeController().handleCategoryFurniture();
+        cartSuccessLabel.setVisible(false);
+
     }
     @FXML
     public void handleCategoryBooks() {
         engine.switchScene(Screen.HOME);
         engine.getHomeController().handleCategoryBooks();
+        cartSuccessLabel.setVisible(false);
     }
     @FXML 
     public void handleCategoryBeauty() {
         engine.switchScene(Screen.HOME);
         engine.getHomeController().handleCategoryBeauty();
+        cartSuccessLabel.setVisible(false);
     }
     @FXML
     public void handleCategoryToys() {
         engine.switchScene(Screen.HOME);
         engine.getHomeController().handleCategoryToys();
+        cartSuccessLabel.setVisible(false);
+
     }
     @FXML
     public void handleCategorySports() {
         engine.switchScene(Screen.HOME);
         engine.getHomeController().handleCategorySports();
+        cartSuccessLabel.setVisible(false);
+
     }
     @FXML
     public void handleCart(){
         engine.switchScene(Screen.CART);
+        cartSuccessLabel.setVisible(false);
     }
 }
 

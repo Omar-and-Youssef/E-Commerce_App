@@ -34,12 +34,13 @@ public Admin getAdminById(String id){
     return null;
 }
 public Admin getAdminByEmail(String email){
-    for(Admin a: admins){
-        if(a.getEmail().equals(email)){
+    try{
+    for(Admin a: admins)
+        if(a.getEmail().equals(email))
             return a;
-        }
     }
-    return null;
+    catch(Exception e){return null;}
+        return null;
 }
 public boolean adminInDB(Admin admin){
     return getAdminById(admin.getUserID())!=null;

@@ -16,9 +16,14 @@ public class Database {
 
         Customer c1 = new Customer("John Doe", "q", "q", Gender.MALE,Category.ELECTRONICS);
         Customer c2 = new Customer("Jane Doe", "jane@gmail.com", "password", Gender.FEMALE,Category.CLOTHING);
-
         CUSTOMER_DB.add(c1);
-        CUSTOMER_DB.add(c2);
+        CUSTOMER_DB.add(c2);   
+        
+        Admin a1 = new Admin("Montaser", "w", "w", Gender.MALE, "Development","8-4");
+        Admin a2 = new Admin("Yousuf", "youssef@gmail.com", "password", Gender.MALE, "Development","9-5");        
+
+        ADMIN_DB.add(a1);
+        ADMIN_DB.add(a2);
 
             // Create product objects
             // Electronics
@@ -67,12 +72,6 @@ public class Database {
             PRODUCT_DB.add(new Product(120.00, 50, "Treadmill", "Electric treadmill with digital display", "NordicTrack", Category.SPORTS, "resources/default.png"));
             PRODUCT_DB.add(new Product(25.99, 200, "Soccer Ball", "Standard size 5 soccer ball", "Adidas", Category.SPORTS, "resources/default.png"));
             PRODUCT_DB.add(new Product(60.00, 150, "Tennis Racket", "Professional tennis racket with strings", "Wilson", Category.SPORTS, "resources/default.png"));
-
-                
-                Admin a1 = new Admin("Montaser", "montaser@gmail.com", "password", Gender.MALE, "Development","8-4");
-                Admin a2 = new Admin("Yousuf", "youssef@gmail.com", "password", Gender.MALE, "Development","9-5");        
-                ADMIN_DB.add(a1);
-                ADMIN_DB.add(a2);
             
     } 
     catch(Exception e) {

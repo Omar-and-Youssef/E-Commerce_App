@@ -96,7 +96,6 @@ public class SignUpController extends BaseController{
             Customer customer = new Customer(name, email, password,gender,phoneNumber, address, category);
             System.out.println(customer.toString()); 
             engine.signUp(customer);
-            engine.setCurrentUser(customer);
             engine.switchScene(Screen.HOME);
             engine.getHomeController().displayName(customer.getName());
 

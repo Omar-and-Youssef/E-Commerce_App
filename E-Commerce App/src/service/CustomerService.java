@@ -19,13 +19,11 @@ public CustomerService(){
     orderDAO=new OrderDAO();
 }
 
-public  Customer logIn(String email,String password) throws ServiceException{
-    Customer customer = customerDAO.getCustomerByEmail(email);
-    if(customer==null) throw new ServiceException("Invalid email");
-
-    if(customer.getPassword().equals(password)) return customer;
-    else throw new ServiceException("Invalid password");
-    
+public  Customer logIn(String email,String password){
+    Customer customer=customerDAO.getCustomerByEmail(email);
+    if(customer!=null&&customer.getPassword().equals(password)) 
+        return customer;  
+    return null;  
 }
 
 public void registerCustomer(Customer customer) {
@@ -67,6 +65,10 @@ public void incrementCartItem(Customer customer,CartItem cartItem){
 } 
 public void decrementCartItem(Customer customer, int index){
     customer.getCart().decrementCartItem(index);
+}
+public void setQuantityInCart(Customer customer, int index, int quantity){
+    CartItem cartItem=customer.getCart().getCartItems().get(index);
+    customer.getCart().setQuantityInCart(cartItem, quantity);
 }
 public void addReview(Customer customer, String comment,double rating,
 Product product) throws ServiceException{

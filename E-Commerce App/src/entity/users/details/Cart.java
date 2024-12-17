@@ -27,6 +27,9 @@ public class Cart {
     public void incrementCartItem(CartItem cartItem){
         cartItem.incrementProduct();
     }
+    public void setQuantityInCart(CartItem cartItem, int quantity){
+        cartItem.setQuantity(quantity);
+    }
     public void decrementCartItem(int index){
         if(CART_ITEMS.get(index).decrementProduct())CART_ITEMS.remove(index);
         calcTotalPrice();

@@ -18,12 +18,11 @@ public class AdminService {
         customerDAO=new CustomerDAO();
         orderDAO=new OrderDAO();
     }
-    public Admin logIn(String email,String password) throws ServiceException{
+    public Admin logIn(String email,String password){
         Admin admin = adminDAO.getAdminByEmail(email);
-        if(admin==null) throw new ServiceException("Invalid email");
-
-        if(admin.getPassword().equals(password)) return admin;
-        else throw new ServiceException("Invalid password");
+        if(admin!=null&&admin.getPassword().equals(password)) 
+        return admin;
+        return null;
     }
     public void addAdmin(Admin admin) throws ServiceException{
             if(admin==null)
@@ -68,6 +67,9 @@ public class AdminService {
     }
     public ArrayList<Customer> getAllCustomers(){
             return customerDAO.getAllCustomers();
+    }
+    public ArrayList<Admin> getAllAdmins(){
+            return adminDAO.getAllAdmins();
     }
     public ArrayList<Product> getAllProducts(){
         return productDAO.getAllProducts();

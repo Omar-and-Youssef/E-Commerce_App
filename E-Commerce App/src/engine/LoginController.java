@@ -3,7 +3,6 @@ package engine;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import entity.users.accounts.*;
 import exceptions.ServiceException;
 
 public class LoginController extends BaseController {
@@ -16,38 +15,39 @@ public class LoginController extends BaseController {
     private Button loginButton;
     @FXML
     private Button signUpButton;
+    @FXML
+    private Label errorLabel;
 
 
     @FXML
-    private void handleLogin(ActionEvent event){
+    private void handleLogin(){
         String email=userEmail.getText();
         String pass=password.getText();
         try{
-            if(email==null) throw new NullPointerException("Email is required");
-            if(pass==null) throw new NullPointerException("Password is required");
-            User user= engine.logIn(email,pass);
-            if(user instanceof Customer){
-                engine.setCurrentUser(user);
-                engine.switchScene(Screen.HOME);
-                engine.getHomeController().displayName(user.getName());
-            }
-            else if(user instanceof Admin){
-                engine.setCurrentUser(user);
-                //TODO ADMIN
-                // engine.switchAdminScene(Screen.ADMIN_DASHBOARD);
-            }
+            if (email == null || email.isEmpty())
+                throw new Exception("Email is required");
+            if (pass == null || pass.isEmpty())
+                throw new Exception("Password is required");
+            if (!engine.logIn(email, pass)) 
+                throw new Exception("Invalid email or password");
+            if(!engine.logIn(email,pass)) 
+                throw new Exception("Invalid email or password");
+            engine.switchScene(Screen.HOME);
+            errorLabel.setVisible(false);
         }
         catch(Exception e){
-            String message=e.getMessage();
-            if(e instanceof NullPointerException)
-            System.out.print(e.getMessage());
-            if(e instanceof ServiceException)
-            //handle alert based on exception, if message ==..alert ...
-            System.out.println("Invalid login credentials");
+            e.printStackTrace();
+            errorLabel.setVisible(true);
+            errorLabel.setText(e.getMessage());
         }        
     }
     @FXML
     private void handleSignUp(ActionEvent event){
         engine.switchScene(Screen.SIGNUP);
+        errorLabel.setVisible(false);
+
+    }
+    public Label getErrorLabel(){
+        return errorLabel;
     }
 }

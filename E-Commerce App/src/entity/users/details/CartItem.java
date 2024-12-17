@@ -30,6 +30,10 @@ public class CartItem {
     public int getQuantity() {
         return quantity;
     }
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+        totalPrice=product.getPrice()*quantity;
+    }
     public double getSubTotal() {
         return totalPrice;
     }

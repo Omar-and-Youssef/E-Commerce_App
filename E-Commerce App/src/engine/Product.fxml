@@ -32,46 +32,19 @@
          </effect>
       </Button>
       <Label fx:id="nameLabel" layoutX="28.0" layoutY="17.0" prefHeight="49.0" prefWidth="253.0" styleClass="welcome-message" stylesheets="@style.css" />
-      <HBox layoutX="179.0" layoutY="227.0" prefHeight="367.0" prefWidth="551.0">
+      <HBox layoutX="179.0" layoutY="227.0" prefHeight="340.0" prefWidth="306.0">
          <children>
             <VBox alignment="CENTER" prefHeight="340.0" prefWidth="287.0">
                <children>
-                  <ImageView fx:id="productImage" fitHeight="197.0" fitWidth="243.0" pickOnBounds="true" preserveRatio="true" style="-fx-alignment: center;">
+                  <ImageView fx:id="productImage" fitHeight="217.0" fitWidth="236.0" pickOnBounds="true" preserveRatio="true" style="-fx-alignment: center;">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </ImageView>
-                  <Label fx:id="priceLabel" alignment="CENTER" prefHeight="27.0" prefWidth="287.0" styleClass="product-view-price" stylesheets="@style.css" text="Price">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin></Label>
-                  <ImageView fx:id="ratingImage" fitHeight="31.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="categoryLabel" style="-fx-font-size: 12; -fx-font-family: Comic Sans MS;" styleClass="product-view-name" stylesheets="@style.css" text="Category" />
-                  <Label fx:id="brandLabel" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-brand" stylesheets="@style.css" text="Brand" />
                   <Label fx:id="productNameLabel" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-name" stylesheets="@style.css" text="Name" />
-                  <Label fx:id="descriptionLabel" alignment="CENTER" prefHeight="40.0" prefWidth="287.0" styleClass="product-view-description" stylesheets="@style.css" text="Description" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="340.0" prefWidth="182.0">
-               <HBox.margin>
-                  <Insets left="50.0" />
-               </HBox.margin>
-               <children>
-                  <Label styleClass="quantity-label" stylesheets="@style.css" text="Quantity:">
-                     <VBox.margin>
-                        <Insets top="100.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="5.0" />
-                     </padding>
-                  </Label>
-                  <Spinner fx:id="quantitySpinner" editable="true" prefHeight="33.0" prefWidth="101.0" styleClass="quantity-spinner" stylesheets="@style.css" />
-                  <Button fx:id="addToCartButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddToCart" prefHeight="38.0" prefWidth="141.0" styleClass="menu-button" stylesheets="@style.css" text="Add to cart">
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="30.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="addToWishlistButton" mnemonicParsing="false" styleClass="menu-button" stylesheets="@style.css" text="Add to wishlist" />
+                  <Label fx:id="brandLabel" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-brand" stylesheets="@style.css" text="Brand" />
+                  <Label fx:id="priceLabel" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-price" stylesheets="@style.css" text="Price" />
+                  <Label fx:id="descriptionLabel" alignment="CENTER" prefHeight="108.0" prefWidth="292.0" styleClass="product-view-description" stylesheets="@style.css" text="Description" />
                </children>
             </VBox>
          </children>
@@ -84,8 +57,8 @@
             <Blend />
          </effect>
       </Button>
-      <Label fx:id="cartSuccessLabel" layoutX="707.0" layoutY="470.0" styleClass="successful-add" stylesheets="@style.css" text="Added to cart!" />
-      <Label fx:id="wishlistSuccessLabel" layoutX="700.0" layoutY="527.0" styleClass="successful-add" stylesheets="@style.css" text="Added to wishlist!" />
+      <Label fx:id="cartSuccessLabel" layoutX="707.0" layoutY="455.0" styleClass="successful-add" stylesheets="@style.css" text="Added to cart!" />
+      <Label fx:id="wishlistErrorLabel" layoutX="700.0" layoutY="512.0" styleClass="successful-add" stylesheets="@style.css" text="Added to wishlist!" visible="false" />
       <HBox fx:id="hBox" alignment="CENTER" layoutX="18.0" layoutY="141.0" prefHeight="65.0" prefWidth="842.0" styleClass="menu-label" stylesheets="@style.css">
          <children>
             <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCategoryAll" prefHeight="40.0" prefWidth="79.0" styleClass="menu-button" stylesheets="@style.css" text="All">
@@ -130,14 +103,24 @@
             </Button>
          </children>
       </HBox>
-      <HBox id="nav-item" alignment="CENTER" layoutX="13.0" layoutY="75.0" prefHeight="55.0" prefWidth="879.0" stylesheets="@style.css">
+      <Label fx:id="QuantityLabel" layoutX="538.0" layoutY="347.0" styleClass="quantity-label" stylesheets="@style.css" text="Quantity:">
+         <padding>
+            <Insets bottom="5.0" />
+         </padding>
+      </Label>
+      <Spinner fx:id="quantitySpinner" editable="true" layoutX="523.0" layoutY="387.0" prefHeight="33.0" prefWidth="101.0" styleClass="quantity-spinner" stylesheets="@style.css" />
+      <Button fx:id="addToCartButton" alignment="CENTER" contentDisplay="CENTER" layoutX="503.0" layoutY="452.0" mnemonicParsing="false" onAction="#handleAddToCart" prefHeight="38.0" prefWidth="141.0" styleClass="menu-button" stylesheets="@style.css" text="Add to cart" />
+      <Button fx:id="addToWishlistButton" layoutX="503.0" layoutY="510.0" mnemonicParsing="false" styleClass="menu-button" stylesheets="@style.css" text="Add to wishlist" visible="false" />
+      <Button fx:id="DelProductButton" layoutX="707.0" layoutY="535.0" mnemonicParsing="false" onAction="#delProductB" styleClass="menu-button" stylesheets="@style.css" text="Delete Product" />
+      <Button fx:id="UpProductButton" layoutX="500.0" layoutY="536.0" mnemonicParsing="false" onAction="#upProductB" styleClass="menu-button" stylesheets="@style.css" text="Update Product" />
+      <HBox id="nav-item" alignment="CENTER" layoutX="9.0" layoutY="74.0" prefHeight="55.0" prefWidth="879.0" stylesheets="@style.css">
          <children>
-            <Button graphicTextGap="0.0" maxHeight="94.0" maxWidth="63.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="50.0" prefWidth="63.0" styleClass="search-button" stylesheets="@style.css" text="🔍">
+            <Button graphicTextGap="0.0" maxHeight="94.0" maxWidth="67.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="55.0" prefWidth="67.0" styleClass="search-button" stylesheets="@style.css" text="🔍">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <TextField fx:id="searchField" minHeight="-Infinity" prefHeight="50.0" prefWidth="277.0" promptText="Search for products" stylesheets="@style.css">
+            <TextField fx:id="searchField" minHeight="-Infinity" prefHeight="50.0" prefWidth="241.0" promptText="Search for products" stylesheets="@style.css">
                <styleClass>
                   <String fx:value="search-bar" />
                   <String fx:value="text-field" />
@@ -149,8 +132,8 @@
                   <Font size="18.0" />
                </font>
             </TextField>
-            <Label id="nav-item" alignment="CENTER_RIGHT" graphicTextGap="3.0" onMouseClicked="#handleCart" prefHeight="23.0" prefWidth="82.0" stylesheets="@style.css" text="Cart" />
-            <ImageView fitHeight="34.0" fitWidth="48.0" onMouseClicked="#handleCart" pickOnBounds="true" preserveRatio="true" styleClass="icon">
+            <Label id="nav-item" fx:id="cartLabel" alignment="CENTER_RIGHT" graphicTextGap="3.0" onMouseClicked="#handleCart" prefHeight="23.0" prefWidth="74.0" stylesheets="@style.css" text="Cart" />
+            <ImageView fx:id="cartIcon" fitHeight="34.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" styleClass="icon">
                <image>
                   <Image url="@resources/cart-logo.png" />
                </image>
@@ -158,8 +141,8 @@
                   <Insets right="15.0" />
                </HBox.margin>
             </ImageView>
-            <Label id="nav-item" alignment="CENTER_RIGHT" graphicTextGap="3.0" prefHeight="23.0" prefWidth="103.0" stylesheets="@style.css" text="Wishlist" />
-            <ImageView fitHeight="34.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+            <Label id="nav-item" fx:id="wishlistLabel" alignment="CENTER_RIGHT" graphicTextGap="3.0" prefHeight="23.0" prefWidth="103.0" stylesheets="@style.css" text="Wishlist" />
+            <ImageView fx:id="wishlistIcon" fitHeight="34.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@resources/wishlist.png" />
                </image>
@@ -167,8 +150,8 @@
                   <Insets />
                </HBox.margin>
             </ImageView>
-            <Label id="nav-item" alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="103.0" stylesheets="@style.css" text="Orders" />
-            <ImageView fitHeight="30.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" styleClass="icon">
+            <Label id="nav-item" fx:id="ordersLabel" alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="103.0" stylesheets="@style.css" text="Orders" />
+            <ImageView fx:id="ordersIcon" fitHeight="30.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" styleClass="icon">
                <image>
                   <Image url="@resources/orders.png" />
                </image>
