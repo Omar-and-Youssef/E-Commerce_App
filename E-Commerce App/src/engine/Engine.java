@@ -141,6 +141,7 @@ public class Engine {
                 break;
             case CART:
                 cartController.populateCart(0);
+                cartController.updateOrderTotal();
                 stage.setScene(cartScene);
                 break;
             case ORDERS:
@@ -195,9 +196,21 @@ public boolean logIn(String email, String password) {
     public void addToCart(int quantity){
         customerService.addToCart(currentCustomer, viewedProduct, quantity);
         cartController.populateCart(0);
+        cartController.updateOrderTotal();
     }
     public void removeFromCart(int i){
         customerService.removeFromCart(currentCustomer, null);
+    }
+    public void incrementCartItem(int index){
+        CartItem cartItem=currentCustomer.getCart().getCartItems().get(index);
+        customerService.incrementCartItem(currentCustomer, cartItem);
+    }
+    public void decrementCartItem(int index){
+        CartItem cartItem=currentCustomer.getCart().getCartItems().get(index);
+        customerService.decrementCartItem(currentCustomer, cartItem);
+    }
+    public double getCartTotal(){
+        return customerService.getCartTotal(currentCustomer);
     }
     //===============================ADMIN====================================
     public void deleteViewedProdcut(){

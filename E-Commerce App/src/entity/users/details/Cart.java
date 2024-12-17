@@ -29,18 +29,21 @@ public class Cart {
     }
     public void setQuantityInCart(CartItem cartItem, int quantity){
         cartItem.setQuantity(quantity);
+        calcTotalPrice();
     }
-    public void decrementCartItem(int index){
-        if(CART_ITEMS.get(index).decrementProduct())CART_ITEMS.remove(index);
+    public void decrementCartItem(CartItem cartItem){
+        if(cartItem.decrementProduct())CART_ITEMS.remove(cartItem);
         calcTotalPrice();
     }
     public void calcTotalPrice(){
+        totalPrice=0;
         for (CartItem item : CART_ITEMS) {
             totalPrice += item.getSubTotal();
         }
     }
 //=======================================Get&Set=======================================
     public double getTotalPrice() {
+        calcTotalPrice();
         return totalPrice;
     }
     public ArrayList<CartItem> getCartItems() {

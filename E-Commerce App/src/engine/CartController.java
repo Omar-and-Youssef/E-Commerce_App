@@ -99,25 +99,20 @@ public class CartController extends BaseController{
 
             Spinner<Integer> quantitySpinner=quantitySpinners.get(i);
             quantitySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, cartItem.getQuantity()));
-            final int index=i;
             quantitySpinner.setEditable(false);
+            final int itemIndex = startingIndex+i; 
             quantitySpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
                 if (newValue != null) {
-                    // Update the quantity in the cart item
-                    engine.setQuantityInCart(index, newValue);
-            
-                    // Update the subtotal label dynamically
-                    double newSubTotal = cartItems.get(index).getSubTotal();
-                    subTotalLabels[index].setText("$" + String.format("%.2f", newSubTotal));
-            
-                    // TODO updateOrderTotal();
+                    engine.setQuantityInCart(itemIndex, newValue);
+                    double newSubTotal = cartItem.getSubTotal();
+                    subTotalLabels[itemIndex].setText("$" + String.format("%.2f", newSubTotal));
+                    updateOrderTotal(); 
                 }
             });
-
             subTotalLabels[i].setText("$"+cartItem.getSubTotal());
             cartItemHBoxes[i].setVisible(true);
 
-            removeButtons[i].setOnAction(event -> removeCartItem(index));
+            removeButtons[i].setOnAction(event -> removeCartItem(itemIndex));
         }
 
         for (int j=i; j<3; j++)
@@ -125,6 +120,10 @@ public class CartController extends BaseController{
 
             navigateCartLeft.setVisible(startingIndex>0);
             navigateCartRight.setVisible(startingIndex+3<cartItems.size());
+    }
+    public void updateOrderTotal(){
+        double total=engine.getCartTotal();
+        orderTotal.setText("$"+String.format("%.2f", total));
     }
     public void displayEmptyCartMessage(){
         displayClearCart();
@@ -137,22 +136,9 @@ public class CartController extends BaseController{
         cartItemHBox3.setVisible(false);
     }
     public void removeCartItem(int i){
-        switch(i){ //ensuring that cartItemCount will always be <i
-            case 0:
-                engine.removeFromCart(i);
-                populateCart(cartItemCount);
-                break;
-            case 1:
-                engine.removeFromCart(i);
-                populateCart(cartItemCount);
-                break;
-            case 2:
-                engine.removeFromCart(i+1);
-                populateCart(cartItemCount);
-                break;
-        }
+        engine.removeFromCart(cartItemCount + i);
         populateCart(cartItemCount);
-        // updateOrderTotal();
+        updateOrderTotal(); 
     }
     public Label getOrderSuccessLabel(){
         return orderSuccessLabel;

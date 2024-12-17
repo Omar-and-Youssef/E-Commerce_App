@@ -44,31 +44,26 @@ public void deleteCustomer(Customer customer) throws ServiceException{
 }
 
 public void addToCart(Customer customer, Product product, int quantity){
-        if(customerDAO.customerInDB(customer)) 
             customer.getCart().addItem(new CartItem(product, quantity));
 }
 public void removeFromCart(Customer customer, CartItem cartItem){
-        if(customerDAO.customerInDB(customer))
             customer.getCart().deleteItem(cartItem);
 }
-public void clearCart(Customer customer) throws ServiceException{
-        if(customer==null)
-            throw new IllegalArgumentException("Customer cannot be null");
-        if(customerDAO.customerInDB(customer))
+public void clearCart(Customer customer){
             customer.getCart().clearCart();
-        else
-            throw new ServiceException("Customer not found");
 }
 public void incrementCartItem(Customer customer,CartItem cartItem){
-//TODO Find a way to getCartItem from gui
     customer.getCart().incrementCartItem(cartItem);
 } 
-public void decrementCartItem(Customer customer, int index){
-    customer.getCart().decrementCartItem(index);
+public void decrementCartItem(Customer customer, CartItem cartItem){
+    customer.getCart().decrementCartItem(cartItem);
 }
 public void setQuantityInCart(Customer customer, int index, int quantity){
     CartItem cartItem=customer.getCart().getCartItems().get(index);
     customer.getCart().setQuantityInCart(cartItem, quantity);
+}
+public double getCartTotal(Customer customer){
+    return customer.getCart().getTotalPrice();
 }
 public void addReview(Customer customer, String comment,double rating,
 Product product) throws ServiceException{
