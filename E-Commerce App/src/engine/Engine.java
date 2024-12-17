@@ -10,6 +10,7 @@ import exceptions.ServiceException;
 import entity.users.accounts.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+import javafx.scene.image.Image;
 import javafx.stage.*;
 import service.*;
 //TODO Handle alerts in controller
@@ -60,6 +61,8 @@ public class Engine {
             stage.setScene(loginScene);
             stage.setResizable(false);
             stage.setTitle("E-CommerceApp");
+            Image star = new Image(getClass().getResourceAsStream("resources/wishlist.png"));
+            stage.getIcons().add(star);
             stage.show();
             viewedProduct = new Product();
         }        

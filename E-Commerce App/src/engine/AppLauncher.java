@@ -1,6 +1,7 @@
 package engine;
 
 import javafx.application.*;
+import javafx.scene.image.Image;
 import javafx.stage.*;
 
 
