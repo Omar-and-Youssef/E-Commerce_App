@@ -5,6 +5,7 @@ import entity.products.Category;
 import entity.products.Product;
 import entity.users.details.Cart;
 import entity.users.details.CartItem;
+import entity.users.details.Order;
 import exceptions.ServiceException;
 import entity.users.accounts.*;
 import javafx.fxml.FXMLLoader;
@@ -122,6 +123,7 @@ public class Engine {
         switch(currentScreen){
             case SIGNUP:
                 signUpController.geterrorLabel().setVisible(false);
+                signUpController.getCategoryChoiceBox().getItems().clear();
                 signUpController.getCategoryChoiceBox().getItems().addAll("Electronics","Books","Clothing",
                 "Home",
                 "Beauty",
@@ -137,11 +139,13 @@ public class Engine {
             case PRODUCT:
                 productController.configureScreenByRole();
                 stage.setScene(productScene);
-                //TODO add to cart label problem
                 break;
             case CART:
                 cartController.populateCart(0);
                 cartController.updateOrderTotal();
+                cartController.getPaymentChoiceBox().getItems().clear();
+                cartController.getPaymentChoiceBox().getItems().addAll(
+                    "Wallet","Credit Card", "Cash On Delivery");
                 stage.setScene(cartScene);
                 break;
             case ORDERS:
@@ -152,7 +156,6 @@ public class Engine {
                 break;
             case LOGIN:
                 stage.setScene(loginScene); 
-                //after user logged out, we save cart and wishlist in database
                 break;
             case MODIFYPRODUCT:
                 if(productController.isUpdating)
@@ -164,27 +167,26 @@ public class Engine {
     }
     
 //=================================CUSTOMER===================================    
-public boolean logIn(String email, String password) {  
-    if (!userService.userInDB(email)) {
+    public boolean logIn(String email, String password) {  
+        if (!userService.userInDB(email)) {
+            return false;
+        }
+
+        currentUser = customerService.logIn(email, password);
+        if (currentUser != null) {
+            currentCustomer = (Customer) currentUser;
+            isCustomer=true;//will b used in product controller
+            return true;
+        }
+        currentUser = adminService.logIn(email, password);
+        if (currentUser != null) {
+            currentAdmin = (Admin) currentUser;
+            isCustomer=false;
+            return true;
+        }
+        currentUser = null;
         return false;
     }
-
-    currentUser = customerService.logIn(email, password);
-    if (currentUser != null) {
-        currentCustomer = (Customer) currentUser;
-        isCustomer=true;//will b used in product controller
-        return true;
-    }
-    currentUser = adminService.logIn(email, password);
-    if (currentUser != null) {
-        currentAdmin = (Admin) currentUser;
-        isCustomer=false;
-        return true;
-    }
-    currentUser = null;
-    return false;
-}
-
     public void signUp(Customer customer){
         customerService.registerCustomer(customer);
         logIn(customer.getEmail(),customer.getPassword());
@@ -193,26 +195,43 @@ public boolean logIn(String email, String password) {
     public boolean isValidEmail(String email){
         return customerService.isValidEmail(email);
     }
+    public boolean isEmptyCart(){
+        return customerService.isEmptyCart(currentCustomer);
+    }
     public void addToCart(int quantity){
         customerService.addToCart(currentCustomer, viewedProduct, quantity);
         cartController.populateCart(0);
         cartController.updateOrderTotal();
     }
     public void removeFromCart(int i){
-        customerService.removeFromCart(currentCustomer, null);
+        customerService.removeFromCart(currentCustomer,i);
     }
     public void incrementCartItem(int index){
-        CartItem cartItem=currentCustomer.getCart().getCartItems().get(index);
-        customerService.incrementCartItem(currentCustomer, cartItem);
+        customerService.incrementCartItem(currentCustomer, index);
     }
     public void decrementCartItem(int index){
-        CartItem cartItem=currentCustomer.getCart().getCartItems().get(index);
-        customerService.decrementCartItem(currentCustomer, cartItem);
+        customerService.decrementCartItem(currentCustomer,index);
     }
     public double getCartTotal(){
         return customerService.getCartTotal(currentCustomer);
     }
-    //===============================ADMIN====================================
+    public boolean validWalletPayment(){
+        return customerService.validWalletPayment(currentCustomer,currentCustomer.getCart().getTotalPrice());
+    }
+    public void orderByWallet(String address){
+        customerService.deductFromWallet(currentCustomer,currentCustomer.getCart().getTotalPrice());
+        customerService.placeOrder(currentCustomer, address, "Wallet");
+        //we cleared the cart, and placed an order
+        cartController.populateCart(0);
+        cartController.updateOrderTotal();
+    }
+    public void orderByCOD(String address){
+        customerService.placeOrder(currentCustomer,address, "Cash On Delivery");
+        cartController.populateCart(0);
+        cartController.updateOrderTotal();
+
+    }
+//==================================ADMIN====================================
     public void deleteViewedProdcut(){
         try{
         adminService.deleteProduct(viewedProduct);
@@ -264,6 +283,9 @@ public boolean logIn(String email, String password) {
         catch(Exception e){
             return 0;
         }
+    }
+    public ArrayList<Order> getOrders(){
+        return currentCustomer.getOrders();
     }
 
 } 

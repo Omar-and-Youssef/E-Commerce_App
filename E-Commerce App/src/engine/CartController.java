@@ -1,5 +1,6 @@
 package engine;
 
+import java.text.ChoiceFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,19 +21,21 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class CartController extends BaseController{
-
+    
     @FXML
     public void handleLogout(){
+        orderSuccessLabel.setVisible(false);
         engine.logout();
         engine.switchScene(Screen.LOGIN);
     }
     @FXML
     public void handleBack(){
+        orderSuccessLabel.setVisible(false);
         engine.switchScene(Screen.HOME);
     } 
     int cartItemCount;
     @FXML
-    private void navigateCartRight(){
+    public void navigateCartRight(){
         ArrayList<CartItem> cartItems=engine.getCurrentCustomer().getCart().getCartItems();
         if(cartItems.size()>cartItemCount+3){
             cartItemCount+=3;
@@ -40,18 +43,82 @@ public class CartController extends BaseController{
         }
     }
     @FXML
-    private void navigateCartLeft(){    
+    public void navigateCartLeft(){    
         if(cartItemCount>=3){
             cartItemCount-=3;
             populateCart(cartItemCount);
         }
     }
+    @FXML
+    public void placeOrder(){
+            if(engine.isEmptyCart()){
+                displayErrorMessage("Your cart is empty");
+                return;
+            }
+            String paymentMethod=paymentMethodCB.getValue();
+            String address=addressField.getText();
+            if (address == null || address.isEmpty()) {
+                displayErrorMessage("Please enter an address");
+                return;
+            }
+            if (paymentMethod == null || paymentMethod.isEmpty()) {
+                displayErrorMessage("Please select a payment method");
+                return;
+            }
+            if(paymentMethod.equals("Wallet")){
+                if(!engine.validWalletPayment())
+                    displayErrorMessage("Insufficient balance in wallet");
+                
+                else{ engine.orderByWallet(address);
+                        displaySuccessMessage();
+                    }
+            }
+            else { 
+                engine.orderByCOD(address);
+                displaySuccessMessage();
+                engine.getOrders().get(0).toString();
+            }
+            //same for card for now
+        
+    }
+    @FXML
+    public void removeCartItem1(){
+        engine.removeFromCart(cartItemCount);
+        populateCart(cartItemCount);
+        updateOrderTotal(); 
+    }
+    @FXML
+    public void removeCartItem2(){
+        engine.removeFromCart(cartItemCount+1);
+        populateCart(cartItemCount);
+        updateOrderTotal();
+    }
+    @FXML
+    public void removeCartItem3(){
+        engine.removeFromCart(cartItemCount+2);
+        populateCart(cartItemCount);
+        updateOrderTotal();
+    }
+    public void displayErrorMessage(String s){
+        orderSuccessLabel.setVisible(true);
+        orderSuccessLabel.getStyleClass().clear();
+        orderSuccessLabel.getStyleClass().add("errorLabel");
+        orderSuccessLabel.setText(s);
+    }
+    public void displaySuccessMessage(){
+        orderSuccessLabel.setVisible(true);
+        orderSuccessLabel.getStyleClass().clear();
+        orderSuccessLabel.getStyleClass().add("successful-add");
+        orderSuccessLabel.setText("Order placed successfully!");
+    }
     public void populateCart(int startingIndex){
         ArrayList<CartItem> cartItems= engine.getCurrentCustomer().getCart().getCartItems();
-        if(cartItems.isEmpty()) {
-            displayEmptyCartMessage();
-            return;
-        }
+        // if(cartItems.isEmpty()) {
+        //     displayErrorMessage("Your cart is empty.");
+        //     displayClearCart();
+        //     return;
+        // }
+        //TODO empty cart display message
         emptyCartText.setVisible(false);
         
 
@@ -65,7 +132,6 @@ public class CartController extends BaseController{
         quantitySpinners.add(quantitySpinner1);
         quantitySpinners.add(quantitySpinner2);
         quantitySpinners.add(quantitySpinner3);
-        Button[] removeButtons={removeButton1,removeButton2,removeButton3};
         int cartSize = cartItems.size();
         int i;
 
@@ -112,8 +178,7 @@ public class CartController extends BaseController{
             subTotalLabels[i].setText("$"+cartItem.getSubTotal());
             cartItemHBoxes[i].setVisible(true);
 
-            removeButtons[i].setOnAction(event -> removeCartItem(itemIndex));
-        }
+       }
 
         for (int j=i; j<3; j++)
             cartItemHBoxes[j].setVisible(false); //i.e unused
@@ -125,23 +190,16 @@ public class CartController extends BaseController{
         double total=engine.getCartTotal();
         orderTotal.setText("$"+String.format("%.2f", total));
     }
-    public void displayEmptyCartMessage(){
-        displayClearCart();
-        emptyCartText.setText("");
-        emptyCartText.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");  
-    }   
     public void displayClearCart(){
         cartItemHBox1.setVisible(false);
         cartItemHBox2.setVisible(false);
         cartItemHBox3.setVisible(false);
     }
-    public void removeCartItem(int i){
-        engine.removeFromCart(cartItemCount + i);
-        populateCart(cartItemCount);
-        updateOrderTotal(); 
-    }
     public Label getOrderSuccessLabel(){
         return orderSuccessLabel;
+    }
+    public ChoiceBox<String> getPaymentChoiceBox(){
+        return paymentMethodCB;
     }
     @FXML
     private Label nameLabel1;
@@ -184,7 +242,7 @@ public class CartController extends BaseController{
     @FXML
     private TextField addressField;
     @FXML
-    private ChoiceBox<String> paymemtChoiceBox;
+    private ChoiceBox<String> paymentMethodCB; 
     @FXML 
     private Label orderTotal;
     @FXML

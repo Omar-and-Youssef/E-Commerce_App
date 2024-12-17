@@ -44,18 +44,24 @@ public void deleteCustomer(Customer customer) throws ServiceException{
 }
 
 public void addToCart(Customer customer, Product product, int quantity){
-            customer.getCart().addItem(new CartItem(product, quantity));
+    customer.getCart().addItem(new CartItem(product, quantity));
 }
-public void removeFromCart(Customer customer, CartItem cartItem){
-            customer.getCart().deleteItem(cartItem);
+public void removeFromCart(Customer customer, int index){
+    CartItem cartItem=customer.getCart().getCartItems().get(index);
+    customer.getCart().deleteItem(cartItem);
 }
 public void clearCart(Customer customer){
-            customer.getCart().clearCart();
+    customer.getCart().clearCart();
 }
-public void incrementCartItem(Customer customer,CartItem cartItem){
+public boolean isEmptyCart(Customer customer){
+    return customer.getCart().getCartItems().isEmpty();
+}
+public void incrementCartItem(Customer customer,int index){
+    CartItem cartItem=customer.getCart().getCartItems().get(index);
     customer.getCart().incrementCartItem(cartItem);
 } 
-public void decrementCartItem(Customer customer, CartItem cartItem){
+public void decrementCartItem(Customer customer, int index){
+    CartItem cartItem=customer.getCart().getCartItems().get(index);
     customer.getCart().decrementCartItem(cartItem);
 }
 public void setQuantityInCart(Customer customer, int index, int quantity){
@@ -117,18 +123,14 @@ throws ServiceException{ //only updates expiry date
         customer.getMembership().upgradeMemberShip(expiryDate);
 }
 public void placeOrder(Customer customer, String address, String paymentMethod)
-throws ServiceException{
-        if(!customerDAO.customerInDB(customer))
-            throw new IllegalArgumentException("Customer not found");
-
+{
         Order newOrder=new Order(customer,customer.getCart().getCartItems(),address,paymentMethod);
         orderDAO.addOrder(newOrder);
         customer.getCart().clearCart();
         customer.getOrders().add(newOrder);
+        //we create an order, add to database, add to customers orders, clear their cart
 }
-public void cancelOrder(Customer customer, Order order) throws ServiceException{
-        if(!customerDAO.customerInDB(customer))
-            throw new IllegalArgumentException("Customer not found");
+public void cancelOrder(Customer customer, Order order){
         if(!orderDAO.orderInDB(order))
         order.cancelOrder();
         orderDAO.deleteOrder(order);
@@ -156,5 +158,11 @@ public void submitHelpTicket(Customer customer, String issue) throws ServiceExce
 
         HelpTicket ticket=new HelpTicket(customer, issue);
         customer.getHelpTicketsSubmitted().add(ticket);
+}
+public boolean validWalletPayment(Customer customer,double amount){
+    return customer.getWallet()>=amount;
+}
+public void deductFromWallet(Customer customer, double amount){
+    customer.setWallet(customer.getWallet()-amount);
 }
 }

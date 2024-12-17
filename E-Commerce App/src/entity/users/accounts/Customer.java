@@ -7,7 +7,7 @@ import java.util.*;
 public class Customer extends User{
     private static int customerCounter; 
 
-    private int balance;
+    private double wallet;
     private final Cart CART;
     private final Wishlist WISH_LIST;
     private final ArrayList<Order>ORDERS; //MY ORDERS, WHICH SHOULD BE ADDED TO ORDERS DATABASE
@@ -48,9 +48,8 @@ public class Customer extends User{
         this(name, email, password, gender, phoneNumber, address, null);
     }
 //=======================================Get&Set=======================================
-
-    public int getBalance() {
-        return balance;
+    public double getWallet(){
+        return wallet;
     }
     public Cart getCart() {
         return CART;
@@ -78,6 +77,12 @@ public class Customer extends User{
     }
     public void setPreferredCategory(Category preferredCategory) {
         this.preferredCategory = preferredCategory;
+    }
+    public void setWallet(double wallet) {
+        this.wallet = wallet;
+    }
+    public void addOrder(Order order){
+        ORDERS.add(order);
     }
     @Override
     public String toString() {

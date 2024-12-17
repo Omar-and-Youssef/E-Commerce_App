@@ -69,7 +69,7 @@
                         <Insets left="65.0" top="40.0" />
                      </HBox.margin>
                   </Spinner>
-                  <Button fx:id="removeButton1" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="66.0" prefWidth="63.0" style="-fx-background-color: transparent;" text="🗑" textFill="RED">
+                  <Button fx:id="removeButton1" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#removeCartItem1" prefHeight="66.0" prefWidth="63.0" style="-fx-background-color: transparent;" text="🗑" textFill="RED">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -110,7 +110,7 @@
                         <Insets left="65.0" top="40.0" />
                      </HBox.margin>
                   </Spinner>
-                  <Button fx:id="removeButton2" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="66.0" prefWidth="77.0" style="-fx-background-color: transparent;" text="🗑" textFill="RED">
+                  <Button fx:id="removeButton2" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#removeCartItem2" prefHeight="66.0" prefWidth="77.0" style="-fx-background-color: transparent;" text="🗑" textFill="RED">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -151,7 +151,7 @@
                         <Insets left="65.0" top="40.0" />
                      </HBox.margin>
                   </Spinner>
-                  <Button fx:id="removeButton3" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="67.0" prefWidth="76.0" style="-fx-background-color: transparent;" text="🗑" textFill="RED">
+                  <Button fx:id="removeButton3" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#removeCartItem3" prefHeight="67.0" prefWidth="76.0" style="-fx-background-color: transparent;" text="🗑" textFill="RED">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -255,7 +255,7 @@
                   <Insets left="20.0" />
                </VBox.margin>
             </Label>
-            <ChoiceBox fx:id="paymemtChoiceBox" prefHeight="27.0" prefWidth="285.0" style="-fx-background-color: white; -fx-border-color: gray;" stylesheets="@style.css">
+            <ChoiceBox fx:id="paymentMethodCB" prefHeight="27.0" prefWidth="285.0" style="-fx-background-color: white; -fx-border-color: gray;" stylesheets="@style.css">
                <VBox.margin>
                   <Insets left="30.0" />
                </VBox.margin>
@@ -277,14 +277,14 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <Button fx:id="placeOrderButton" mnemonicParsing="false" prefWidth="204.0" style="-fx-font-size: 18;" styleClass="black-button" stylesheets="@style.css" text="Place Order">
+            <Button fx:id="placeOrderButton" mnemonicParsing="false" onAction="#placeOrder" prefWidth="204.0" style="-fx-font-size: 18;" styleClass="black-button" stylesheets="@style.css" text="Place Order">
                <VBox.margin>
                   <Insets left="40.0" top="20.0" />
                </VBox.margin>
             </Button>
          </children>
       </VBox>
-      <Label fx:id="orderSuccessLabel" layoutX="602.0" layoutY="97.0" prefHeight="32.0" prefWidth="216.0" styleClass="successful-add" stylesheets="@style.css" text="Order placed successfully!" />
+      <Label fx:id="orderSuccessLabel" layoutX="602.0" layoutY="97.0" prefHeight="32.0" prefWidth="216.0" styleClass="successful-add" stylesheets="@style.css" text="Order placed successfully!" visible="false" />
       <VBox fx:id="deleteButtons" layoutX="798.0" layoutY="232.0" prefHeight="375.0" prefWidth="74.0" />
    </children>
 </AnchorPane>

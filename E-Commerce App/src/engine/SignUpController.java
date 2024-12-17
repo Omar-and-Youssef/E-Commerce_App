@@ -51,9 +51,6 @@ public class SignUpController extends BaseController{
         RadioButton selectedGender = (RadioButton) genderToggleGroup.getSelectedToggle();
         Gender gender = Gender.valueOf(selectedGender.getText().toUpperCase());
 
-        categoryChoiceBox.valueProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Selected category: " + newValue);
-        });
         Category category = Category.valueOf(categoryChoiceBox.getValue().toUpperCase());
 
         String tempName=name.trim();
