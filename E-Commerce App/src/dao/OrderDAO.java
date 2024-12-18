@@ -13,11 +13,13 @@ public void addOrder(Order order){
     orders.add(order);
 }
 public boolean deleteOrder(Order order){
-    return orders.remove(order);
+    if(order==null||getOrderById(order.getOrderId())==null) return false;
+    getOrderById(order.getOrderId()).setOrderStatus(OrderStatus.CANCELLED);
+    return false;
+    //TODO how will we update other status?
 }
-public void updateOrder(Order newOrder){
-    Order o=getOrderById(newOrder.getOrderId());
-    o.setOrderStatus(newOrder.getOrderStatus());
+public void updateOrder(Order order, OrderStatus orderStatus){
+    order.setOrderStatus(orderStatus);
 }
 
 public ArrayList<Order> getAllOrders(){
@@ -32,6 +34,9 @@ public Order getOrderById(String id){
     return null;
 } 
 public boolean orderInDB(Order order){
-    return getOrderById(order.getOrderId())!=null;
+    if(order==null || order.getOrderId()==null || order.getOrderId().isEmpty()) {
+        return false;
+    }
+    return true;
 }
 }

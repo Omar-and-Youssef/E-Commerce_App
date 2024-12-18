@@ -53,7 +53,8 @@ public class ModifyProductController extends BaseController {
     @FXML
     public void handleChange(){
         if(currentProduct==null){
-            //TODO how to add product to the database?
+            //Product newProduct=new Product(NameF.getText(),BrandF.getText(),Double.parseDouble(PriceF.getText()),DescF.getText());
+            //add to db
             //id based on static counter
         }else{
             currentProduct.setProductName(NameF.getText());

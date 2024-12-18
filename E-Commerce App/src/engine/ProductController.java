@@ -116,7 +116,7 @@ public class ProductController extends BaseController {
         }
     @FXML
     public void delProductB(ActionEvent e){
-        engine.deleteViewedProdcut();
+        engine.deleteViewedProduct();
         engine.getHomeController().handleCategoryAll();
         handleBack();
     }

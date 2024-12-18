@@ -13,7 +13,6 @@ import javafx.scene.*;
 import javafx.scene.image.Image;
 import javafx.stage.*;
 import service.*;
-//TODO Handle alerts in controller
 public class Engine {
     private Scene loginScene;
     private LoginController loginController;
@@ -34,7 +33,10 @@ public class Engine {
     // private WishlistController wishlistController;
     
     private Scene ordersScene;
-    // private OrdersController ordersController;
+    private OrdersController ordersController;
+
+    private Scene orderSummaryScene;
+    private OrderSummaryController orderSummaryController;
 
 
     private Scene modifyScene;
@@ -46,6 +48,7 @@ public class Engine {
     private Product viewedProduct;
     private User currentUser;
     private Customer currentCustomer;
+    private Order viewedOrder;
     private Admin currentAdmin;
     private AdminService adminService;
     private CustomerService customerService;
@@ -104,9 +107,15 @@ public class Engine {
             cartController =(CartController) cartLoader.getController();
             cartController.setEngine(this);
 
-            // FXMLLoader ordersLoader = new FXMLLoader(getClass().getResource("Orders.fxml"));
-            // ordersScene = new Scene(ordersLoader.load());
-            // setControllerEngine(ordersLoader);
+            FXMLLoader ordersLoader = new FXMLLoader(getClass().getResource("Orders.fxml"));
+            ordersScene = new Scene(ordersLoader.load());
+            ordersController =(OrdersController) ordersLoader.getController();
+            ordersController.setEngine(this);
+
+            FXMLLoader orderSummaryLoader = new FXMLLoader(getClass().getResource("OrderSummary.fxml"));
+            orderSummaryScene = new Scene(orderSummaryLoader.load());
+            orderSummaryController =(OrderSummaryController) orderSummaryLoader.getController();
+            orderSummaryController.setEngine(this);
 
             // FXMLLoader wishlistLoader = new FXMLLoader(getClass().getResource("Wishlist.fxml"));
             // wishlistScene = new Scene(wishlistLoader.load());
@@ -149,8 +158,11 @@ public class Engine {
                 stage.setScene(cartScene);
                 break;
             case ORDERS:
+                ordersController.populateOrders(0);
                 stage.setScene(ordersScene);
                 break;
+            case ORDER_SUMMARY:
+                stage.setScene(orderSummaryScene);
             case WISH_LIST:
                 stage.setScene(wishlistScene);
                 break;
@@ -187,6 +199,11 @@ public class Engine {
         currentUser = null;
         return false;
     }
+    public void logout(){
+        currentUser=null;
+        currentAdmin=null;
+        currentCustomer=null;
+    }
     public void signUp(Customer customer){
         customerService.registerCustomer(customer);
         logIn(customer.getEmail(),customer.getPassword());
@@ -205,6 +222,9 @@ public class Engine {
     }
     public void removeFromCart(int i){
         customerService.removeFromCart(currentCustomer,i);
+    }
+    public void setQuantityInCart(int index,int value){
+        customerService.setQuantityInCart(currentCustomer,index,value);
     }
     public void incrementCartItem(int index){
         customerService.incrementCartItem(currentCustomer, index);
@@ -229,10 +249,13 @@ public class Engine {
         customerService.placeOrder(currentCustomer,address, "Cash On Delivery");
         cartController.populateCart(0);
         cartController.updateOrderTotal();
-
+    }
+    public void cancelOrder(){
+        customerService.cancelOrder(currentCustomer, viewedOrder);
+        ordersController.populateOrders(-1);//from where we left off, but updated
     }
 //==================================ADMIN====================================
-    public void deleteViewedProdcut(){
+    public void deleteViewedProduct(){
         try{
         adminService.deleteProduct(viewedProduct);
         }catch(Exception ex){
@@ -241,19 +264,12 @@ public class Engine {
              //TODO FIX THIS AS U LIKE
         }
     }
-    public void setQuantityInCart(int index,int value){
-        customerService.setQuantityInCart(currentCustomer,index,value);
-    }
+//=================================Get&Set====================================
     public Stage getStage(){
         return stage;
     }
     public User getCurrentUser(){
         return currentUser;
-    }
-    public void logout(){
-        currentUser=null;
-        currentAdmin=null;
-        currentCustomer=null;
     }
     public void setViewedProduct(Product product){
         viewedProduct=product;
@@ -276,6 +292,9 @@ public class Engine {
     public Customer getCurrentCustomer(){
         return currentCustomer;
     }
+    public ArrayList<CartItem> getCartItems(){
+        return currentCustomer.getCart().getCartItems();
+    }
     public int getIntegerRating(Product product){
         try{
             return(int) Math.floor(product.getRating());
@@ -287,5 +306,12 @@ public class Engine {
     public ArrayList<Order> getOrders(){
         return currentCustomer.getOrders();
     }
-
+    public void setViewedOrder(Order order){
+        this.viewedOrder=order;
+        orderSummaryController.setOrder(viewedOrder);
+        orderSummaryController.fillOrderSummary();
+    }
+    public ModifyProductController getModifyController(){
+        return modifyController;
+    }
 } 

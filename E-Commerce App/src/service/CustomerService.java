@@ -116,15 +116,17 @@ double rating, Product product) throws ServiceException{
     addReview(customer, comment, rating, product);
 }
 public void upgradeMemberShip(Customer customer,Date expiryDate) 
-throws ServiceException{ //only updates expiry date
+throws ServiceException{ 
+    //TODO
+    //only updates expiry date
         if(!customerDAO.customerInDB(customer))
         throw new IllegalArgumentException("Customer not found");
 
         customer.getMembership().upgradeMemberShip(expiryDate);
 }
 public void placeOrder(Customer customer, String address, String paymentMethod)
-{
-        Order newOrder=new Order(customer,customer.getCart().getCartItems(),address,paymentMethod);
+{       
+        Order newOrder=new Order(customer,customer.getCart(),address,paymentMethod);
         orderDAO.addOrder(newOrder);
         customer.getCart().clearCart();
         customer.getOrders().add(newOrder);
@@ -133,8 +135,7 @@ public void placeOrder(Customer customer, String address, String paymentMethod)
 public void cancelOrder(Customer customer, Order order){
         if(!orderDAO.orderInDB(order))
         order.cancelOrder();
-        orderDAO.deleteOrder(order);
-        customer.getOrders().remove(order);
+        // orderDAO.deleteOrder(order); 
 }
 public void addToWishlist(Customer customer, Product product) throws ServiceException{
 

@@ -211,7 +211,7 @@
          </font>
       </Button>
       <Line endX="-124.85711669921875" endY="283.5714111328125" layoutX="674.0" layoutY="298.0" startX="-124.85711669921875" startY="-160.85714721679688" stroke="#c8c8c8" style="-fx-fill: #C8C8C8;" />
-      <VBox layoutX="557.0" layoutY="141.0" prefHeight="421.0" prefWidth="315.0">
+      <VBox layoutX="557.0" layoutY="68.0" prefHeight="421.0" prefWidth="315.0">
          <children>
             <Label />
             <Label stylesheets="@style.css" text="Checkout">

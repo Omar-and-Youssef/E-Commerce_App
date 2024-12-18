@@ -347,4 +347,7 @@
     -fx-effect: dropshadow(gaussian, #888888, 10, 0, 0, 5);
     -fx-background-color:#FF7F00;
 }
-
+.order-row:hover {
+    -fx-background-color: #D3D3D3; 
+    -fx-cursor: hand; 
+}

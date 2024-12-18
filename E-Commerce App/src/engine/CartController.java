@@ -1,6 +1,5 @@
 package engine;
 
-import java.text.ChoiceFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -21,7 +19,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class CartController extends BaseController{
-    
     @FXML
     public void handleLogout(){
         orderSuccessLabel.setVisible(false);
@@ -36,7 +33,7 @@ public class CartController extends BaseController{
     int cartItemCount;
     @FXML
     public void navigateCartRight(){
-        ArrayList<CartItem> cartItems=engine.getCurrentCustomer().getCart().getCartItems();
+        ArrayList<CartItem> cartItems= engine.getCartItems();
         if(cartItems.size()>cartItemCount+3){
             cartItemCount+=3;
             populateCart(cartItemCount);
@@ -79,7 +76,6 @@ public class CartController extends BaseController{
                 engine.getOrders().get(0).toString();
             }
             //same for card for now
-        
     }
     @FXML
     public void removeCartItem1(){
@@ -112,7 +108,7 @@ public class CartController extends BaseController{
         orderSuccessLabel.setText("Order placed successfully!");
     }
     public void populateCart(int startingIndex){
-        ArrayList<CartItem> cartItems= engine.getCurrentCustomer().getCart().getCartItems();
+        ArrayList<CartItem> cartItems= engine.getCartItems();
         // if(cartItems.isEmpty()) {
         //     displayErrorMessage("Your cart is empty.");
         //     displayClearCart();
@@ -177,7 +173,6 @@ public class CartController extends BaseController{
             });
             subTotalLabels[i].setText("$"+cartItem.getSubTotal());
             cartItemHBoxes[i].setVisible(true);
-
        }
 
         for (int j=i; j<3; j++)
@@ -189,13 +184,7 @@ public class CartController extends BaseController{
     public void updateOrderTotal(){
         double total=engine.getCartTotal();
         orderTotal.setText("$"+String.format("%.2f", total));
-    }
-    public void displayClearCart(){
-        cartItemHBox1.setVisible(false);
-        cartItemHBox2.setVisible(false);
-        cartItemHBox3.setVisible(false);
-    }
-    public Label getOrderSuccessLabel(){
+    }    public Label getOrderSuccessLabel(){
         return orderSuccessLabel;
     }
     public ChoiceBox<String> getPaymentChoiceBox(){

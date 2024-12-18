@@ -26,17 +26,24 @@ public class HomeController extends BaseController {
         //TODO ensure saving cart, wishlist, orders,... 
     }
     @FXML
-    public void handleCart(){
+    public void handleWishListOrAddIcon(){
+        if(engine.isCustomer)
         engine.switchScene(Screen.CART);
+        else {
+        engine.getModifyController().setScreen(null);
+        engine.switchScene(Screen.MODIFYPRODUCT);
+        }
     }
-    // @FXML
-    // public void handleWishlist(){
-    //     engine.switchScene(Screen.WISHLIST);
-    // }
-    // @FXML
-    // public void handleProfile(){
-    //     engine.switchScene(Screen.PROFILE);
-    // }
+    @FXML
+    public void handleOrdersOrOrdersIcon(){
+        if(engine.isCustomer){
+            engine.switchScene(Screen.ORDERS);
+        }
+        else {
+            //TODO Analysis Icon
+        }
+    }
+
     public void displayName(String name){
         String tempName;
         if(name.contains(" ")) tempName= name.substring(0,name.indexOf(" "));
