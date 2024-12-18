@@ -162,8 +162,8 @@ public class Engine {
                 stage.setScene(ordersScene);
                 break;
             case ORDER_SUMMARY:
-            
                 stage.setScene(orderSummaryScene);
+                break;
             case WISH_LIST:
                 stage.setScene(wishlistScene);
                 break;
