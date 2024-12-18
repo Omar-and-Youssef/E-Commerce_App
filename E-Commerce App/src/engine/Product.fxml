@@ -57,7 +57,7 @@
             <Blend />
          </effect>
       </Button>
-      <Label fx:id="cartSuccessLabel" layoutX="707.0" layoutY="455.0" styleClass="successful-add" stylesheets="@style.css" text="Added to cart!" />
+      <Label fx:id="cartSuccessLabel" layoutX="707.0" layoutY="455.0" styleClass="successful-add" stylesheets="@style.css" text="Added to cart!" visible="false" />
       <Label fx:id="wishlistErrorLabel" layoutX="700.0" layoutY="512.0" styleClass="successful-add" stylesheets="@style.css" text="Added to wishlist!" visible="false" />
       <HBox fx:id="hBox" alignment="CENTER" layoutX="18.0" layoutY="141.0" prefHeight="65.0" prefWidth="842.0" styleClass="menu-label" stylesheets="@style.css">
          <children>
@@ -133,7 +133,7 @@
                </font>
             </TextField>
             <Label id="nav-item" fx:id="cartLabel" alignment="CENTER_RIGHT" graphicTextGap="3.0" onMouseClicked="#handleCart" prefHeight="23.0" prefWidth="74.0" stylesheets="@style.css" text="Cart" />
-            <ImageView fx:id="cartIcon" fitHeight="34.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" styleClass="icon">
+            <ImageView fx:id="cartIcon" fitHeight="34.0" fitWidth="48.0" onMouseClicked="#handleCart" pickOnBounds="true" preserveRatio="true" styleClass="icon">
                <image>
                   <Image url="@resources/cart-logo.png" />
                </image>
@@ -141,8 +141,8 @@
                   <Insets right="15.0" />
                </HBox.margin>
             </ImageView>
-            <Label id="nav-item" fx:id="wishlistLabel" alignment="CENTER_RIGHT" graphicTextGap="3.0" prefHeight="23.0" prefWidth="103.0" stylesheets="@style.css" text="Wishlist" />
-            <ImageView fx:id="wishlistIcon" fitHeight="34.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+            <Label id="nav-item" fx:id="wishlistLabel" alignment="CENTER_RIGHT" graphicTextGap="3.0" onMouseClicked="#handleWishListOrAdd" prefHeight="23.0" prefWidth="103.0" stylesheets="@style.css" text="Wishlist" />
+            <ImageView fx:id="wishlistIcon" fitHeight="34.0" fitWidth="65.0" onMouseClicked="#handleWishListOrAdd" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@resources/wishlist.png" />
                </image>
@@ -150,8 +150,8 @@
                   <Insets />
                </HBox.margin>
             </ImageView>
-            <Label id="nav-item" fx:id="ordersLabel" alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="103.0" stylesheets="@style.css" text="Orders" />
-            <ImageView fx:id="ordersIcon" fitHeight="30.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" styleClass="icon">
+            <Label id="nav-item" fx:id="ordersLabel" alignment="CENTER_RIGHT" onMouseClicked="#handleOrdersOrAnaysis" prefHeight="23.0" prefWidth="103.0" stylesheets="@style.css" text="Orders" />
+            <ImageView fx:id="ordersIcon" fitHeight="30.0" fitWidth="36.0" onMouseClicked="#handleOrdersOrAnaysis" pickOnBounds="true" preserveRatio="true" styleClass="icon">
                <image>
                   <Image url="@resources/orders.png" />
                </image>

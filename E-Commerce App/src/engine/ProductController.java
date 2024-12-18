@@ -250,6 +250,23 @@ public class ProductController extends BaseController {
         engine.switchScene(Screen.CART);
         cartSuccessLabel.setVisible(false);
     }
+    @FXML
+    public void handleWishListOrAdd(){
+        if(!engine.isCustomer){
+        engine.getModifyController().setScreen(null);
+        engine.switchScene(Screen.MODIFYPRODUCT);
+        }
+        // else {
+        // // engine.switchScene(Screen.WISH_LIST);
+        // }
+    }
+    @FXML
+    public void handleOrdersOrAnaysis(){
+        if(engine.isCustomer)
+            engine.switchScene(Screen.ORDERS);
+        // else
+        //     //TODO Analysis Icon
+    }
 }
 
 

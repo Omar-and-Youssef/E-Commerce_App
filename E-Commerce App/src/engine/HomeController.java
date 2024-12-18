@@ -32,21 +32,20 @@ public class HomeController extends BaseController {
     
     @FXML
     public void handleWishListOrAdd(){
-        if(engine.isCustomer)
-        engine.switchScene(Screen.CART);
-        else {
+        if(!engine.isCustomer){
         engine.getModifyController().setScreen(null);
         engine.switchScene(Screen.MODIFYPRODUCT);
         }
+        // else {
+        // // engine.switchScene(Screen.WISH_LIST);
+        // }
     }
     @FXML
     public void handleOrdersOrAnaysis(){
-        if(engine.isCustomer){
+        if(engine.isCustomer)
             engine.switchScene(Screen.ORDERS);
-        }
-        else {
-            //TODO Analysis Icon
-        }
+        // else
+        //     //TODO Analysis Icon
     }
     
     

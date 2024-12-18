@@ -284,7 +284,7 @@
             </Button>
          </children>
       </VBox>
-      <Label fx:id="orderSuccessLabel" layoutX="602.0" layoutY="97.0" prefHeight="32.0" prefWidth="216.0" styleClass="successful-add" stylesheets="@style.css" text="Order placed successfully!" visible="false" />
+      <Label fx:id="orderSuccessLabel" layoutX="594.0" layoutY="516.0" prefHeight="32.0" prefWidth="216.0" styleClass="successful-add" stylesheets="@style.css" text="Order placed successfully!" visible="false" />
       <VBox fx:id="deleteButtons" layoutX="798.0" layoutY="232.0" prefHeight="375.0" prefWidth="74.0" />
    </children>
 </AnchorPane>

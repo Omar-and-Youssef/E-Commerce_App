@@ -3,6 +3,7 @@ package engine;
 import entity.users.details.Order;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class OrderSummaryController extends BaseController {
@@ -26,7 +27,11 @@ public class OrderSummaryController extends BaseController {
     public void setOrder(Order order){
         this.order=order;
     }
-    
+    @FXML
+    private Button backButton;
+    @FXML
+    private Button cancelOrderButton;
+
     @FXML
     public void handleCancelOrder(ActionEvent e){
         engine.cancelOrder();
@@ -38,7 +43,7 @@ public class OrderSummaryController extends BaseController {
         engine.switchScene(Screen.ORDERS);
     }
     public void fillOrderSummary(){
-        orderIDLabel.setText(String.valueOf(order.getOrderID()));
+        orderIDLabel.setText("#"+order.getOrderID());
         dateLabel.setText(order.getOrderDate().toString());
         statusLabel.setText(order.getOrderStatus().toString());
         totalLabel.setText(String.valueOf(order.getOrderTotal()));
