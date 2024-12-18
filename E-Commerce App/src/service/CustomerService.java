@@ -132,8 +132,8 @@ public void placeOrder(Customer customer, String address, String paymentMethod)
         customer.getOrders().add(newOrder);
         //we create an order, add to database, add to customers orders, clear their cart
 }
-public void cancelOrder(Customer customer, Order order){
-        if(!orderDAO.orderInDB(order))
+public void cancelOrder(Order order){
+        if(orderDAO.orderInDB(order))
         order.cancelOrder();
         // orderDAO.deleteOrder(order); 
 }

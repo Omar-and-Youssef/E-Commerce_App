@@ -252,7 +252,7 @@ public class Engine {
         cartController.updateOrderTotal();
     }
     public void cancelOrder(){
-        customerService.cancelOrder(currentCustomer, viewedOrder);
+        customerService.cancelOrder(viewedOrder);
         ordersController.populateOrders(-1);//from where we left off, but updated
     }
 //==================================ADMIN====================================

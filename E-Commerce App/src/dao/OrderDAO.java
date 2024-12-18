@@ -12,12 +12,11 @@ private  ArrayList<Order> orders= database.getOrderDB();
 public void addOrder(Order order){
     orders.add(order);
 }
-public boolean deleteOrder(Order order){
-    if(order==null||getOrderById(order.getOrderId())==null) return false;
-    getOrderById(order.getOrderId()).setOrderStatus(OrderStatus.CANCELLED);
-    return false;
-    //TODO how will we update other status?
-}
+// public boolean deleteOrder(Order order){
+//     if(order==null||getOrderById(order.getOrderId())==null) return false;
+//     getOrderById(order.getOrderId()).setOrderStatus(OrderStatus.CANCELLED);
+//     return false;
+// }
 public void updateOrder(Order order, OrderStatus orderStatus){
     order.setOrderStatus(orderStatus);
 }
@@ -34,7 +33,7 @@ public Order getOrderById(String id){
     return null;
 } 
 public boolean orderInDB(Order order){
-    if(order==null || order.getOrderId()==null || order.getOrderId().isEmpty()) {
+    if(order==null || getOrderById(order.getOrderID())==null) {
         return false;
     }
     return true;
