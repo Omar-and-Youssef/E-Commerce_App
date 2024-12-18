@@ -1,6 +1,7 @@
 package entity.users.details;
 import java.util.Date;
 
+
 public class Membership {
     private MembershipType membershipType;
     private Date startDate;

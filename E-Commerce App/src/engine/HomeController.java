@@ -23,10 +23,15 @@ public class HomeController extends BaseController {
    @FXML
     public void handleLogout(){
         engine.switchScene(Screen.LOGIN);
-        //TODO ensure saving cart, wishlist, orders,... 
+        //TODO ensure saving cart, wishlist, orders,... \\
     }
     @FXML
-    public void handleWishListOrAddIcon(){
+    public void handleCart(){
+        engine.switchScene(Screen.CART);
+    }
+    
+    @FXML
+    public void handleWishListOrAdd(){
         if(engine.isCustomer)
         engine.switchScene(Screen.CART);
         else {
@@ -35,7 +40,7 @@ public class HomeController extends BaseController {
         }
     }
     @FXML
-    public void handleOrdersOrOrdersIcon(){
+    public void handleOrdersOrAnaysis(){
         if(engine.isCustomer){
             engine.switchScene(Screen.ORDERS);
         }
@@ -43,7 +48,16 @@ public class HomeController extends BaseController {
             //TODO Analysis Icon
         }
     }
-
+    
+    
+    // @FXML
+    // public void handleWishlist(){
+    //     engine.switchScene(Screen.WISHLIST);
+    // }
+    // @FXML
+    // public void handleProfile(){
+    //     engine.switchScene(Screen.PROFILE);
+    // }
     public void displayName(String name){
         String tempName;
         if(name.contains(" ")) tempName= name.substring(0,name.indexOf(" "));
@@ -156,8 +170,7 @@ public class HomeController extends BaseController {
             productCount+=PRODUCTS_PER_PAGE;
             populateProducts(products, productCount);
         }
-    }
-    
+    } 
     @FXML
     public void navigateProductsLeft() {
         if (productCount - PRODUCTS_PER_PAGE >= 0) {

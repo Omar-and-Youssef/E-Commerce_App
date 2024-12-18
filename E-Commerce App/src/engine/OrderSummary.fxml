@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Blend?>
@@ -10,32 +11,39 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.OrderSummaryController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.OrderSummaryController">
    <children>
       <Label id="title" fx:id="title" alignment="BASELINE_CENTER" layoutX="-18.0" layoutY="3.0" prefHeight="69.0" prefWidth="933.0" styleClass="title" stylesheets="@style.css" text="★Cadabra" textAlignment="CENTER" textFill="#9f5d5d">
          <font>
             <Font size="36.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
       </Label>
-      <Button fx:id="backButton" layoutX="33.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="42.0" prefWidth="105.0" styleClass="backButton" stylesheets="@style.css" text="← Back">
+      <Button layoutX="34.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="42.0" prefWidth="105.0" styleClass="backButton" stylesheets="@style.css" text="← Back">
          <font>
             <Font size="15.0" />
          </font>
          <effect>
             <Blend />
          </effect>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
       </Button>
-      <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="84.0" layoutY="101.0" prefHeight="48.0" prefWidth="267.0" styleClass="subTitle" stylesheets="@style.css" text="Order Summary">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Label>
+      <Button layoutX="359.0" layoutY="544.0" mnemonicParsing="false" onAction="#handleCancelOrder" prefHeight="43.0" prefWidth="188.0" styleClass="signUpButton" text="Cancel Order">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Button>
       <VBox layoutX="123.0" layoutY="170.0" prefHeight="358.0" prefWidth="707.0">
          <children>
             <HBox prefHeight="61.0" prefWidth="489.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" styleClass="subTitle" text="Order:" />
-                  <Label style="-fx-font-size: 18;" styleClass="subTitle" text="Label">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" styleClass="subTitle" text="Order:" />
+                  <Label fx:id="orderIDLabel" style="-fx-font-size: 14;" styleClass="subTitle" text="Label">
                      <HBox.margin>
                         <Insets right="320.0" />
                      </HBox.margin>
@@ -43,8 +51,8 @@
                         <Insets left="10.0" top="2.0" />
                      </padding>
                   </Label>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" styleClass="subTitle" text="Order Date:" />
-                  <Label prefHeight="23.0" prefWidth="118.0" style="-fx-font-size: 18;" styleClass="subTitle" text="Label">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" styleClass="subTitle" text="Order Date:" />
+                  <Label fx:id="dateLabel" prefHeight="23.0" prefWidth="118.0" style="-fx-font-size: 14;" styleClass="subTitle" text="Label">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -53,59 +61,91 @@
                      </padding>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
             </HBox>
             <HBox prefHeight="106.0" prefWidth="637.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" styleClass="subTitle" text="Ordered Items:" />
-                  <Label alignment="TOP_LEFT" prefHeight="110.0" prefWidth="489.0" style="-fx-font-size: 16;" text="Label">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" styleClass="subTitle" text="Ordered Items:" />
+                  <Label fx:id="orderedItems" alignment="TOP_LEFT" prefHeight="110.0" prefWidth="489.0" style="-fx-font-size: 14;" text="Label">
                      <padding>
                         <Insets left="10.0" top="2.0" />
                      </padding>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
             </HBox>
             <HBox prefHeight="51.0" prefWidth="489.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" styleClass="subTitle" text="Shipping Address:" />
-                  <Label alignment="TOP_LEFT" prefHeight="60.0" prefWidth="505.0" style="-fx-font-size: 20;" text="Label">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox prefHeight="51.0" prefWidth="489.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" styleClass="subTitle" text="Order Status:" />
-                  <Label prefHeight="15.0" prefWidth="124.0" style="-fx-font-size: 20;" styleClass="subTitle" text="Label">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" styleClass="subTitle" text="Shipping Address:" />
+                  <Label fx:id="addressLabel" alignment="TOP_LEFT" prefHeight="60.0" prefWidth="505.0" style="-fx-font-size: 14;" text="Label">
                      <padding>
                         <Insets left="10.0" top="2.0" />
                      </padding>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
             </HBox>
-            <HBox prefHeight="43.0" prefWidth="489.0">
+            <HBox prefHeight="51.0" prefWidth="489.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" styleClass="subTitle" text="Payment Method:" />
-                  <Label prefHeight="30.0" prefWidth="135.0" style="-fx-font-size: 20;" text="Label">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" styleClass="subTitle" text="Order Status:" />
+                  <Label fx:id="statusLabel" prefHeight="26.0" prefWidth="356.0" style="-fx-font-size: 14;" styleClass="subTitle" text="Label">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </HBox>
+            <HBox prefHeight="16.0" prefWidth="707.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" styleClass="subTitle" text="Payment Method:" wrappingWidth="128.7567138671875">
+                     <HBox.margin>
+                        <Insets bottom="30.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Label fx:id="paymentLabel" prefHeight="30.0" prefWidth="135.0" style="-fx-font-size: 14;" text="Label">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
             </HBox>
             <HBox prefHeight="43.0" prefWidth="489.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" styleClass="title" text="Order Total:" />
-                  <Label prefHeight="30.0" prefWidth="113.0" style="-fx-font-size: 20;" text="Label">
+                  <Label fx:id="totalLabel" prefHeight="30.0" prefWidth="113.0" style="-fx-font-size: 20;" text="Label">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
             </HBox>
          </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
       </VBox>
-      <Button layoutX="359.0" layoutY="544.0" mnemonicParsing="false" onAction="#handleCancelOrder" prefHeight="43.0" prefWidth="188.0" style="-fx-background-color: red;" styleClass="menu-button" text="Cancel Order" />
+      <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="84.0" layoutY="101.0" prefHeight="48.0" prefWidth="267.0" styleClass="subTitle" stylesheets="@style.css" text="Order Summary">
+         <font>
+            <Font size="26.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Label>
    </children>
 </AnchorPane>

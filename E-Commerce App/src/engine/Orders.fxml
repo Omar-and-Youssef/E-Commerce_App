@@ -30,7 +30,7 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <VBox layoutX="67.0" layoutY="180.0" prefHeight="319.0" prefWidth="761.0" spacing="10.0" stylesheets="@style.css">
+      <VBox layoutX="67.0" layoutY="180.0" prefHeight="300.0" prefWidth="761.0" stylesheets="@style.css">
          <children>
             <HBox prefHeight="36.0" prefWidth="493.0" stylesheets="@style.css">
                <children>
@@ -70,24 +70,24 @@
             </HBox>
             <HBox fx:id="orderBox1" alignment="CENTER_LEFT" prefHeight="81.0" prefWidth="805.0" styleClass="order-row" stylesheets="@style.css">
                <children>
-                  <Label fx:id="dateLabel1" style="-fx-font-size: 16;" text="Label">
+                  <Label fx:id="dateLabel1" prefHeight="25.0" prefWidth="119.0" style="-fx-font-size: 16;" text="Label">
                      <HBox.margin>
-                        <Insets left="50.0" right="70.0" />
+                        <Insets left="40.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="statusLabel1" style="-fx-font-size: 16; -font-weight: bold;" text="Label">
+                  <Label fx:id="statusLabel1" prefHeight="25.0" prefWidth="122.0" style="-fx-font-size: 16; -font-weight: bold;" text="Label">
                      <HBox.margin>
-                        <Insets right="100.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="addressLabel1" prefHeight="25.0" prefWidth="99.0" style="-fx-font-size: 16;" text="Label">
+                  <Label fx:id="addressLabel1" prefHeight="25.0" prefWidth="203.0" style="-fx-font-size: 16;" text="Label">
                      <HBox.margin>
-                        <Insets right="100.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="paymentLabel1" prefHeight="25.0" prefWidth="85.0" style="-fx-font-size: 16;" text="Label">
+                  <Label fx:id="paymentLabel1" prefHeight="25.0" prefWidth="193.0" style="-fx-font-size: 16;" text="Label">
                      <HBox.margin>
-                        <Insets right="100.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
                   <Label fx:id="totalLabel1" style="-fx-font-size: 16;" text="Label">
@@ -99,24 +99,24 @@
             </HBox>
             <HBox fx:id="orderBox2" alignment="CENTER_LEFT" prefHeight="81.0" prefWidth="805.0" styleClass="order-row" stylesheets="@style.css">
                <children>
-                  <Label fx:id="dateLabel2" style="-fx-font-size: 16;" text="Label">
+                  <Label fx:id="dateLabel2" prefHeight="25.0" prefWidth="119.0" style="-fx-font-size: 16;" text="Label">
                      <HBox.margin>
-                        <Insets left="50.0" right="70.0" />
+                        <Insets left="40.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="statusLabel2" style="-fx-font-size: 16; -font-weight: bold;" text="Label">
+                  <Label fx:id="statusLabel2" prefHeight="25.0" prefWidth="122.0" style="-fx-font-size: 16; -font-weight: bold;" text="Label">
                      <HBox.margin>
-                        <Insets right="100.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="addressLabel2" prefHeight="25.0" prefWidth="99.0" style="-fx-font-size: 16;" text="Label">
+                  <Label fx:id="addressLabel2" prefHeight="25.0" prefWidth="203.0" style="-fx-font-size: 16;" text="Label">
                      <HBox.margin>
-                        <Insets right="100.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="paymentLabel2" prefHeight="25.0" prefWidth="85.0" style="-fx-font-size: 16;" text="Label">
+                  <Label fx:id="paymentLabel2" prefHeight="25.0" prefWidth="193.0" style="-fx-font-size: 16;" text="Label">
                      <HBox.margin>
-                        <Insets right="100.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
                   <Label fx:id="totalLabel2" style="-fx-font-size: 16;" text="Label">
@@ -128,24 +128,24 @@
             </HBox>
             <HBox fx:id="orderBox3" alignment="CENTER_LEFT" prefHeight="81.0" prefWidth="805.0" styleClass="order-row" stylesheets="@style.css">
                <children>
-                  <Label fx:id="dateLabel3" style="-fx-font-size: 16;" text="Label">
+                  <Label fx:id="dateLabel3" prefHeight="25.0" prefWidth="119.0" style="-fx-font-size: 16;" text="Label">
                      <HBox.margin>
-                        <Insets left="50.0" right="70.0" />
+                        <Insets left="40.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="statusLabel3" style="-fx-font-size: 16; -font-weight: bold;" text="Label">
+                  <Label fx:id="statusLabel3" prefHeight="25.0" prefWidth="122.0" style="-fx-font-size: 16; -font-weight: bold;" text="Label">
                      <HBox.margin>
-                        <Insets right="100.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="addressLabel3" prefHeight="25.0" prefWidth="99.0" style="-fx-font-size: 16;" text="Label">
+                  <Label fx:id="addressLabel3" prefHeight="25.0" prefWidth="203.0" style="-fx-font-size: 16;" text="Label">
                      <HBox.margin>
-                        <Insets right="100.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="paymentLabel3" prefHeight="25.0" prefWidth="85.0" style="-fx-font-size: 16;" text="Label">
+                  <Label fx:id="paymentLabel3" prefHeight="25.0" prefWidth="193.0" style="-fx-font-size: 16;" text="Label">
                      <HBox.margin>
-                        <Insets right="100.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
                   <Label fx:id="totalLabel3" style="-fx-font-size: 16;" text="Label">
@@ -157,12 +157,12 @@
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="navOrdersLeftButton" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="416.0" layoutY="529.0" mnemonicParsing="false" onAction="#navigateOrdersLeft" prefHeight="24.0" prefWidth="29.0" style="-fx-font-size: 14;" styleClass="black-button" stylesheets="@style.css" text="&lt;">
+      <Button fx:id="navOrdersLeftButton" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="373.0" layoutY="490.0" mnemonicParsing="false" onAction="#navigateOrdersLeft" prefHeight="24.0" prefWidth="29.0" style="-fx-font-size: 14;" styleClass="black-button" stylesheets="@style.css" text="&lt;">
          <font>
             <Font size="10.0" />
          </font>
       </Button>
-      <Button fx:id="navOrdersRightButton" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="464.0" layoutY="530.0" mnemonicParsing="false" onAction="#navigateOrdesrRight" prefHeight="0.0" prefWidth="0.0" style="-fx-font-size: 14;" styleClass="black-button" stylesheets="@style.css" text="&gt;">
+      <Button fx:id="navOrdersRightButton" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="455.0" layoutY="491.0" mnemonicParsing="false" onAction="#navigateOrdersRight" prefHeight="0.0" prefWidth="0.0" style="-fx-font-size: 14;" styleClass="black-button" stylesheets="@style.css" text="&gt;">
          <font>
             <Font size="36.0" />
          </font>

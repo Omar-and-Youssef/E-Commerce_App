@@ -25,7 +25,7 @@ public void populateOrders(int startingIndex){
     int i;
     for(i=0;i<3&&startingIndex+i<orderSize;i++){
         Order order=orders.get(startingIndex+i);
-        dateLabels[i].setText(order.getOrderDate().toString());
+        dateLabels[i].setText(order.getOrderDate());
         statusLabels[i].setText(order.getOrderStatus().toString());
         totalLabels[i].setText("$"+String.valueOf(order.getOrderTotal()));
         addressLabels[i].setText(order.getShippingAddress());
@@ -51,7 +51,7 @@ public void navigateOrdersLeft(){
     }
 }
 @FXML
-public void navigateOrdesrRight(){
+public void navigateOrdersRight(){
     ArrayList<Order> orders=engine.getOrders();
     if(orders.size()>orderCount+3){
         orderCount+=3;

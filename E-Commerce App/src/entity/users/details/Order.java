@@ -1,6 +1,7 @@
 package entity.users.details;
 import java.util.*;
 import entity.users.accounts.*;
+import java.text.SimpleDateFormat;
 public class Order { 
     private static int orderCounter;
     private OrderStatus orderStatus;
@@ -49,8 +50,9 @@ public class Order {
         return ORDER_ID;
     }
 
-    public Date getOrderDate() {
-        return ORDER_DATE;
+    public String getOrderDate() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        return formatter.format(ORDER_DATE);
     }
 
     public String getShippingAddress() {
@@ -71,9 +73,10 @@ public class Order {
         String orderItems="";
         for(int i=0;i<ORDERED_ITEMS.getCartItems().size();i++){
             CartItem c=ORDERED_ITEMS.getCartItems().get(i);
-            if(i==ORDERED_ITEMS.getCartItems().size()) orderItems+=c.getProduct().getProductName();
+            if(i==ORDERED_ITEMS.getCartItems().size()-1) orderItems+=c.getProduct().getProductName();
             orderItems+=c.getProduct().getProductName()+"🔸";
         }
         return orderItems;
     }
+
 }

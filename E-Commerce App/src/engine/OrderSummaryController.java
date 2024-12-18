@@ -1,6 +1,7 @@
 package engine;
 
 import entity.users.details.Order;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -25,13 +26,15 @@ public class OrderSummaryController extends BaseController {
     public void setOrder(Order order){
         this.order=order;
     }
+    
     @FXML
-    public void handleCancelOrder(){
+    public void handleCancelOrder(ActionEvent e){
         engine.cancelOrder();
         engine.switchScene(Screen.ORDERS);
     }
+
     @FXML
-    public void handleBack(){
+    public void handleBack(ActionEvent e){
         engine.switchScene(Screen.ORDERS);
     }
     public void fillOrderSummary(){
@@ -41,6 +44,6 @@ public class OrderSummaryController extends BaseController {
         totalLabel.setText(String.valueOf(order.getOrderTotal()));
         addressLabel.setText(order.getShippingAddress());
         paymentLabel.setText(order.getPaymentMethod());
-        orderedItems.setText(order.getOrderedItems().toString());
+        orderedItems.setText(order.toString());
     }
 }
