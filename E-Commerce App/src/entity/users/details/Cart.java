@@ -1,6 +1,8 @@
 package entity.users.details;
 import java.util.*;
 
+import entity.products.Product;
+
 
 public class Cart {
     private double totalPrice;
@@ -21,6 +23,7 @@ public class Cart {
         calcTotalPrice();
     }
     public void clearCart() {
+        for(CartItem c:CART_ITEMS)c.getProduct().maxedOutInCart=false;
         CART_ITEMS.clear();
         this.totalPrice=0;
     }
@@ -48,6 +51,12 @@ public class Cart {
     }
     public ArrayList<CartItem> getCartItems() {
         return CART_ITEMS;
+    }
+    public int getCartQuanity(Product p){
+        for(CartItem c:CART_ITEMS){
+            if(c.getProduct().equals(p))return c.getQuantity();
+        }
+        return 0;
     }
 
 }

@@ -265,6 +265,9 @@ public class Engine {
              //TODO FIX THIS AS U LIKE
         }
     }
+    public boolean addProduct(Product product){
+        return adminService.addProduct(product);
+    }
 //=================================Get&Set====================================
     public Stage getStage(){
         return stage;

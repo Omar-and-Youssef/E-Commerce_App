@@ -128,11 +128,21 @@ public void placeOrder(Customer customer, String address, String paymentMethod)
 {       
         Order newOrder=new Order(customer,customer.getCart(),address,paymentMethod);
         orderDAO.addOrder(newOrder);
+        Cart cart=customer.getCart();
+        for(CartItem cartItem:cart.getCartItems()){
+            Product p=cartItem.getProduct();
+            p.setStockQuantity(p.getStockQuantity()-cartItem.getQuantity());
+        }
         customer.getCart().clearCart();
         customer.getOrders().add(newOrder);
         //we create an order, add to database, add to customers orders, clear their cart
 }
 public void cancelOrder(Order order){
+    Cart cart=order.getOrderedItems();
+    for(CartItem cartItem:cart.getCartItems()){
+        Product p=cartItem.getProduct();
+        p.setStockQuantity(p.getStockQuantity()+cartItem.getQuantity());
+    }
         if(orderDAO.orderInDB(order))
         order.cancelOrder();
         // orderDAO.deleteOrder(order); 

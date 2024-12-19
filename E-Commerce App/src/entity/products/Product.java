@@ -13,6 +13,7 @@ public class Product {
     private String imagePath;
     private final ArrayList<Review>REVIEW_LIST;
     private double rating;
+    public boolean maxedOutInCart;
 //=======================================Constructor===================================
     public Product(){
         this(0,0,"NA","NA","NA",Category.ALL,null);

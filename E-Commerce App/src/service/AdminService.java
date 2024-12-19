@@ -33,13 +33,10 @@ public class AdminService {
 
             adminDAO.addAdmin(admin);
     }
-    public void addProduct(Product product)throws ServiceException{
-            if(product==null) 
-                throw new IllegalArgumentException("Product cannot be null");
-    
-            if(productDAO.productInDB(product))
-                throw new ServiceException("Product already exists");
+    public boolean addProduct(Product product){
+            if(productDAO.productInDB(product)) return false;
             productDAO.addProduct(product);
+            return true;
     }
     public void deleteProduct(Product product) throws ServiceException{
             if(product==null) 

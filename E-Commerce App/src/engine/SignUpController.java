@@ -1,6 +1,9 @@
 package engine;
 
 
+import java.time.LocalDate;
+import java.time.Period;
+
 import entity.products.Category;
 import entity.users.accounts.Customer;
 import entity.users.accounts.Gender;
@@ -26,8 +29,8 @@ public class SignUpController extends BaseController{
     private RadioButton female;
     @FXML
     private RadioButton male;
-    // @FXML
-    // private DatePicker birthDayPicker;
+    @FXML
+    private DatePicker birthDayPicker;
     @FXML
     private ToggleGroup genderToggleGroup;
     @FXML
@@ -38,77 +41,33 @@ public class SignUpController extends BaseController{
     private Button signUpButton;
     
     @FXML
-    private void handleSignUp(ActionEvent event){
-        // we create the customer object here
-        try{
-        String name = nameField.getText();
-        String email = emailField.getText(); 
-        String password = passwordField.getText(); 
-        String address = addressField.getText();
-        // LocalDate dob = birthDayPicker.getValue();
-        String phoneNumber = phoneNumberField.getText();
-
-        RadioButton selectedGender = (RadioButton) genderToggleGroup.getSelectedToggle();
-        Gender gender = Gender.valueOf(selectedGender.getText().toUpperCase());
-
-        Category category = Category.valueOf(categoryChoiceBox.getValue().toUpperCase());
-
-        String tempName=name.trim();
-        String tempEmail=email.trim();
-
-            if(tempEmail.isEmpty()||tempName.isEmpty()
-            || password.isEmpty()|| address.isEmpty()
-            ||phoneNumber.isEmpty()||selectedGender==null
-            )
-                throw new NullPointerException();
-            
-                if(!tempName.matches("^[a-zA-Z\\s]+$"))
-                throw new IllegalArgumentException("Name must contain only alphabets and spaces");
-                        
-            if(!tempEmail.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$"))
-                throw new IllegalArgumentException("Invalid email syntax");
-            if(!engine.isValidEmail(tempEmail))
-                throw new IllegalArgumentException("Account already exists");
-            
-            if(!isValidPassword(password)) 
-                throw new IllegalArgumentException("Invalid Password");
-            
-
-            // String addressRegex = "^[a-zA-Z\\s]+,\\s*[a-zA-Z\\s/]+,\\s*[a-zA-Z0-9\\s]+,?\\s*(\\d+[A-Za-z]*)?$";                
-            // if (!address.matches(addressRegex)) {
-            //     throw new IllegalArgumentException("Invalid address format.");
-            // }
-            
-            
-            //TODO check for age
-            // LocalDate today = LocalDate.ofEpochDay(System.currentTimeMillis() / (24 * 60 * 60 * 1000)); // Static instantiation
-            // int age = Period.between(dob, today).getYears();
-            // if (age < 16) {
-            //     throw new IllegalArgumentException("You must be at least 16 years old");
-            // } 
-                
-            if (!phoneNumber.matches("^\\+\\d{1,4}(?:\\s?\\d{1,4}){3,}$")) //format is +...
-                throw new IllegalArgumentException("Invalid phone number format.");
-            
-            Customer customer = new Customer(name, email, password,gender,phoneNumber, address, category);
-            System.out.println(customer.toString()); 
+    private void handleSignUp(ActionEvent event) {
+        try {
+            String name=validateName(nameField.getText());
+            String email=validateEmail(emailField.getText());
+            String password=validatePassword(passwordField.getText());
+            String address=validateAddress(addressField.getText());
+            String phoneNumber=validatePhoneNumber(phoneNumberField.getText());
+            LocalDate dob = validateDateOfBirth(birthDayPicker.getValue());
+    
+            RadioButton selectedGender=(RadioButton) genderToggleGroup.getSelectedToggle();
+            if (selectedGender==null) throw new IllegalArgumentException("Gender is required.");
+            Gender gender=Gender.valueOf(selectedGender.getText().toUpperCase());
+    
+            String selectedCategory=categoryChoiceBox.getValue();
+            if (selectedCategory==null) throw new IllegalArgumentException("Category is required.");
+            Category category=Category.valueOf(selectedCategory.toUpperCase());
+    
+            Customer customer=new Customer(name,email,password,gender,phoneNumber,address,category);
+    
             engine.signUp(customer);
             engine.switchScene(Screen.HOME);
             engine.getHomeController().displayName(customer.getName());
-
-            // resetSignUpScreen();
-        } 
-        catch(Exception e){
-            if(e.getMessage()==null) e=new IllegalArgumentException("All fields are required");
-            errorLabel.setText(e.getMessage());
+    
+        } catch (Exception e) {
+            errorLabel.setText(e.getMessage()!=null?e.getMessage() : "All fields are required.");
             errorLabel.setVisible(true);
-            return;
-        }    
-        errorLabel.setVisible(false);
-    }
-    private boolean isValidPassword(String password) {
-        String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
-        return password.matches(passwordRegex);
+        }
     }
     
     @FXML 
@@ -126,17 +85,61 @@ public class SignUpController extends BaseController{
         "Toys",
         "Sports");
     }
-
-    //TODO
-    // public void resetSignUpScreen(){
-    //     nameField.setText("");
-    //     emailField.setText("");
-    //     passwordField.setText("");
-    //     addressField.setText("");
-    //     phoneNumberField.setText("");
-    //     genderToggleGroup.selectToggle(null);
-    //     categoryChoiceBox.setValue(null);
-    //     errorLabel.setVisible(false);
-    // }
-
+    private String validateName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Name is required.");
+        }
+        if (!name.matches("^[a-zA-Z\\s]+$")) {
+            throw new IllegalArgumentException("Name must contain only alphabets and spaces.");
+        }
+        return name.trim();
+    }
+    
+    private String validateEmail(String email) {
+        if (email==null||email.trim().isEmpty()) 
+            throw new IllegalArgumentException("Email is required.");
+    
+        String emailRegex="^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        if (!email.matches(emailRegex)) 
+            throw new IllegalArgumentException("Invalid email syntax.");
+        
+        if (!engine.isValidEmail(email.trim())) 
+            throw new IllegalArgumentException("Account already exists.");
+        return email.trim();
+    }
+    
+    private String validatePassword(String password) {
+        if (password == null||password.isEmpty()) 
+            throw new IllegalArgumentException("Password is required.");
+        
+        String passwordRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+        if (!password.matches(passwordRegex))
+            throw new IllegalArgumentException("Invalid Password.");
+        
+        return password;
+    }
+    
+    private String validateAddress(String address) {
+        if (address == null||address.trim().isEmpty()) 
+            throw new IllegalArgumentException("Address is required.");
+        return address.trim();
+    }
+    private String validatePhoneNumber(String phoneNumber) {
+        if (phoneNumber==null||phoneNumber.isEmpty())
+            throw new IllegalArgumentException("Phone number is required.");
+        
+        String phoneRegex = "^\\+\\d{1,4}(?:\\s?\\d{1,4}){3,}$";
+        if (!phoneNumber.matches(phoneRegex))
+            throw new IllegalArgumentException("Invalid number. Use format +<CountryCode> <Number>.");
+        return phoneNumber.trim();
+    }
+    public LocalDate  validateDateOfBirth(LocalDate dob) {
+        if (dob == null)
+            throw new IllegalArgumentException("Date of birth is required.");
+        LocalDate today = LocalDate.now();
+        int age=Period.between(dob, today).getYears();
+        if (age<16) 
+            throw new IllegalArgumentException("You must be at least 16 years old.");
+        return dob;
+    }
 }

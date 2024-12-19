@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.ModifyProductController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.ModifyProductController">
    <children>
       <Label id="title" fx:id="title" alignment="BASELINE_CENTER" layoutX="-14.0" layoutY="-3.0" prefHeight="85.0" prefWidth="932.0" styleClass="title" stylesheets="@style.css" text="★Cadabra" textFill="#9f5d5d">
          <font>
@@ -18,7 +18,7 @@
          </font>
       </Label>
       <Label fx:id="productNameLabel1" layoutX="364.0" layoutY="110.0" prefHeight="27.0" prefWidth="56.0" styleClass="product-view-name" stylesheets="@style.css" text="Name" />
-      <ImageView fitHeight="292.0" fitWidth="346.0" layoutX="6.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="productImage" fitHeight="292.0" fitWidth="346.0" layoutX="6.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@resources/default.png" />
          </image>
@@ -41,5 +41,7 @@
             <Font size="14.0" />
          </font>
       </Text>
+      <TextField fx:id="imageF" layoutX="9.0" layoutY="405.0" prefHeight="26.0" prefWidth="294.0" promptText="Enter Image Path" />
+      <Label fx:id="errorLabel" layoutX="470.0" layoutY="63.0" prefHeight="33.0" prefWidth="316.0" styleClass="errorLabel" stylesheets="@style.css" text="test" visible="false" />
    </children>
 </AnchorPane>

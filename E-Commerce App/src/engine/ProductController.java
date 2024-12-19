@@ -30,8 +30,6 @@ public class ProductController extends BaseController {
     private Button backButton;
     @FXML
     private Button addToCartButton;
-    // @FXML
-    // private Button addToWishlistButton;
     @FXML
     private Spinner<Integer>  quantitySpinner;
     @FXML
@@ -66,7 +64,7 @@ public class ProductController extends BaseController {
     @FXML
     private ImageView LikedPicture;
 
-
+    private int stockQuantity;
 
     @FXML
     public void toggleLiked(){
@@ -79,28 +77,11 @@ public class ProductController extends BaseController {
 
         liked=!liked;
     }
-
-    public void resetQuantity(){
-        SpinnerValueFactory<Integer> valueFactory = 
-            new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 1);
-        quantitySpinner.setValueFactory(valueFactory);
-        quantitySpinner.setEditable(false);
-        quantitySpinner.setPrefWidth(80);
-    }
-    // public Label getCartErrorLabel(){
-    //     return cartErrorLabel;
-    // }
-    // public Label getWishlistErrorLabel(){
-    //     return wishlistErrorLabel;
-    // }
     public void initialize(){
         cartSuccessLabel.setVisible(false);
-        // wishlistSuccessLabel.setVisible(false);
-        resetQuantity();
     }
 
     public void configureScreenByRole(){//all admin stuff do !
-        //    // boolean isCustomer=engine.getCurrentUser().getUserID().charAt(0)!='A';
             boolean isCustomer=engine.isCustomer;
 
             if(isCustomer){
@@ -127,7 +108,6 @@ public class ProductController extends BaseController {
                 UnLikedPicture.setVisible(false);
             }
             
-            // addToWishlistButton.setVisible(isCustomer);
             addToCartButton.setVisible(isCustomer);
             quantitySpinner.setVisible(isCustomer);
             QuantityLabel.setVisible(isCustomer);
@@ -156,12 +136,10 @@ public class ProductController extends BaseController {
         if(engine ==null) return;
 
         Product viewedProduct=engine.getViewedProduct();
-
         if(viewedProduct==null) return;
 
 
         productNameLabel.setText(viewedProduct.getProductName());
-        // categoryLabel.setText(viewedProduct.getCategory().toString());
         brandLabel.setText(viewedProduct.getBrand());
         priceLabel.setText("$"+viewedProduct.getPrice());
         descriptionLabel.setText(viewedProduct.getDescription());
@@ -176,8 +154,19 @@ public class ProductController extends BaseController {
 
         cartSuccessLabel.setVisible(false);
 
+        int maxQuantity=viewedProduct.getStockQuantity();
+        SpinnerValueFactory<Integer> valueFactory = 
+            new SpinnerValueFactory.IntegerSpinnerValueFactory(1,maxQuantity, 1);
+        quantitySpinner.setValueFactory(valueFactory);
+        quantitySpinner.setEditable(false);
+        quantitySpinner.setPrefWidth(80);
 
-        // ratingImage.setImage(new Image(getClass().getResourceAsStream("resources/"+engine.getIntegerRating(viewedProduct)+"star.png")));
+        
+
+        //TODO ratingImage.setImage(new Image(getClass().getResourceAsStream("resources/"+engine.getIntegerRating(viewedProduct)+"star.png")));
+
+        displayStockAvailiability();
+    
     }
     public void handleBack(){
         cartSuccessLabel.setVisible(false);
@@ -185,22 +174,43 @@ public class ProductController extends BaseController {
     }
 
     @FXML
-    public void handleAddToCart(){
+    public void handleAddToCart() {
         int quantity = quantitySpinner.getValue();
-        engine.addToCart(quantity);//the viewed product
+        Product product = engine.getViewedProduct();
+    
+        int currentCartQuantity = engine.getCurrentCustomer().getCartQuantity(product);
+    
+        if (currentCartQuantity+quantity>product.getStockQuantity()) {
+            cartSuccessLabel.setText("Cannot add more than available stock!");
+            cartSuccessLabel.setStyle("-fx-background-color: red;");
+        } else {
+            engine.addToCart(quantity);
+            cartSuccessLabel.setText("Added to cart");
+            cartSuccessLabel.setStyle("-fx-background-color: green;");
+        }
+    
         cartSuccessLabel.setVisible(true);
     }
+    
     @FXML 
-    private Label stockAvailability;//TODO handle after order is placed
+    private Label stockAvailability;
+    public void displayStockAvailiability(){
+    int stock = engine.getViewedProduct().getStockQuantity();
+    if (stock == 0) {
+        stockAvailability.setText("Out of Stock");
+        stockAvailability.setStyle("-fx-text-fill: red;");
+    } else if (stock == 1) {
+        stockAvailability.setText("Only one left in stock");
+        stockAvailability.setStyle("-fx-text-fill: red;");
+    } else if (stock < 10) {
+        stockAvailability.setText("Limited Stock");
+        stockAvailability.setStyle("-fx-text-fill: orange;");
+    } else {
+        stockAvailability.setText("Available In Stock");
+        stockAvailability.setStyle("-fx-text-fill: green;");
+    }
+}
 
-    // public void handleAddToWishlist(){
-    //     if(engine.addToWishlist(viewedProduct)){
-    //         wishlistErrorLabel.setVisible(false);
-    //     }
-    //     else{
-    //         wishlistErrorLabel.setVisible(true);
-    //     }
-    // }
 
 //==================================Home methods===================================
     @FXML

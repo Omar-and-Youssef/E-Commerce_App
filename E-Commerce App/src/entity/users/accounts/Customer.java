@@ -97,6 +97,9 @@ public class Customer extends User{
     public void addOrder(Order order){
         ORDERS.add(order);
     }
+    public int getCartQuantity(Product p){
+        return CART.getCartQuanity(p);
+    }
     @Override
     public String toString() {
         return "Customer [name=" + name + ", address=" + address + ", phoneNumber=" + phoneNumber + ", gender=" + gender

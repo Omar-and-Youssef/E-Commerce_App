@@ -3,6 +3,7 @@ package engine;
 import java.util.ArrayList;
 import java.util.List;
 
+import entity.products.Product;
 import entity.users.details.CartItem;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -52,8 +53,16 @@ public class CartController extends BaseController{
                 displayErrorMessage("Your cart is empty");
                 return;
             }
+
+
             String paymentMethod=paymentMethodCB.getValue();
             String address=addressField.getText();
+            for(CartItem c: engine.getCurrentCustomer().getCart().getCartItems())
+            if (c.getQuantity() > c.getProduct().getStockQuantity()) {
+                displayErrorMessage("Insufficient stock to fulfill the order");
+                return;
+            }//just in case
+            //TODO needs more testing
             if (address == null || address.isEmpty()) {
                 displayErrorMessage("Please enter an address");
                 return;
@@ -130,20 +139,6 @@ public class CartController extends BaseController{
         quantitySpinners.add(quantitySpinner3);
         int cartSize = cartItems.size();
         int i;
-
-        // TextFormatter<Integer> textFormatter = new TextFormatter<>(change -> {
-        //     String newText = change.getControlNewText();
-        //     if (newText.matches("\\d*")) {
-        //         try {
-        //             int value=Integer.parseInt(newText);
-        //             if (value>=1 && value <= 99) return change;
-        //             if (value<1) change.setText("1");
-        //             if (value>99) change.setText("99");
-        //         } catch (NumberFormatException e) {}
-        //     }
-        //     return null; 
-        // });
-        
         for(i=0;i<3 && startingIndex+i < cartSize ;i++){
             CartItem cartItem=cartItems.get(startingIndex+i);
             
@@ -160,11 +155,12 @@ public class CartController extends BaseController{
             priceLabels[i].setText("$"+cartItem.getProduct().getPrice());
 
             Spinner<Integer> quantitySpinner=quantitySpinners.get(i);
-            quantitySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, cartItem.getQuantity()));
+            int stockQuantity= cartItem.getProduct().getStockQuantity();
+            quantitySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, stockQuantity, cartItem.getQuantity()));
             quantitySpinner.setEditable(false);
             final int itemIndex = startingIndex+i; 
             quantitySpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
-                if (newValue != null&&oldValue!=newValue) {
+                if (newValue!=null && oldValue!=newValue) {
                     engine.setQuantityInCart(itemIndex, newValue);
                     double newSubTotal = cartItem.getSubTotal();
                     subTotalLabels[itemIndex].setText("$" + String.format("%.2f", newSubTotal));

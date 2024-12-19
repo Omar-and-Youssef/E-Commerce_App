@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.ProductController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.ProductController">
    <children>
       <Label id="title" fx:id="title" alignment="BASELINE_CENTER" layoutX="-14.0" layoutY="-3.0" prefHeight="85.0" prefWidth="932.0" styleClass="title" stylesheets="@style.css" text="★Cadabra" textFill="#9f5d5d">
          <font>
@@ -32,9 +32,9 @@
          </effect>
       </Button>
       <Label fx:id="nameLabel" layoutX="28.0" layoutY="17.0" prefHeight="49.0" prefWidth="253.0" styleClass="welcome-message" stylesheets="@style.css" />
-      <HBox layoutX="179.0" layoutY="227.0" prefHeight="340.0" prefWidth="306.0">
+      <HBox layoutX="179.0" layoutY="227.0" prefHeight="340.0" prefWidth="170.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="340.0" prefWidth="287.0">
+            <VBox alignment="CENTER" prefHeight="372.0" prefWidth="236.0">
                <children>
                   <ImageView fx:id="productImage" fitHeight="217.0" fitWidth="236.0" pickOnBounds="true" preserveRatio="true" style="-fx-alignment: center;">
                      <VBox.margin>
@@ -44,7 +44,8 @@
                   <Label fx:id="productNameLabel" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-name" stylesheets="@style.css" text="Name" />
                   <Label fx:id="brandLabel" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-brand" stylesheets="@style.css" text="Brand" />
                   <Label fx:id="priceLabel" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-price" stylesheets="@style.css" text="Price" />
-                  <Label fx:id="descriptionLabel" alignment="CENTER" prefHeight="108.0" prefWidth="292.0" styleClass="product-view-description" stylesheets="@style.css" text="Description" />
+                  <Label fx:id="stockAvailability" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-brand" stylesheets="@style.css" text="Stock Avialability" />
+                  <Label fx:id="descriptionLabel" alignment="TOP_LEFT" prefHeight="108.0" prefWidth="292.0" styleClass="product-view-description" stylesheets="@style.css" text="Description" />
                </children>
             </VBox>
          </children>
@@ -57,8 +58,8 @@
             <Blend />
          </effect>
       </Button>
-      <Label fx:id="cartSuccessLabel" layoutX="707.0" layoutY="455.0" styleClass="successful-add" stylesheets="@style.css" text="Added to cart!" visible="false" />
-      <Label fx:id="wishlistErrorLabel" layoutX="700.0" layoutY="512.0" styleClass="successful-add" stylesheets="@style.css" text="Added to wishlist!" visible="false" />
+      <Label fx:id="cartSuccessLabel" layoutX="707.0" layoutY="454.0" prefHeight="32.0" prefWidth="127.0" styleClass="successful-add" stylesheets="@style.css" text="Added to cart!" visible="false" />
+      <Label fx:id="wishlistErrorLabel" layoutX="714.0" layoutY="450.0" style="-fx-background-color: #FF7F7F;" styleClass="successful-add" stylesheets="@style.css" text="Added to wishlist!" visible="false" />
       <HBox fx:id="hBox" alignment="CENTER" layoutX="10.0" layoutY="141.0" prefHeight="66.0" prefWidth="879.0" style="-fx-background-color: FBC16D; -fx-background-radius: 5px;" styleClass="menu-label">
          <children>
             <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCategoryAll" prefHeight="40.0" prefWidth="79.0" styleClass="menu-button" stylesheets="@style.css" text="All">
@@ -167,12 +168,12 @@
             <Insets />
          </opaqueInsets>
       </HBox>
-      <ImageView fx:id="LikedPicture" fitHeight="42.0" fitWidth="49.0" layoutX="823.0" layoutY="227.0" onMouseClicked="#toggleLiked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="LikedPicture" fitHeight="42.0" fitWidth="49.0" layoutX="432.0" layoutY="445.0" onMouseClicked="#toggleLiked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@resources/LikedProduct.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="UnLikedPicture" fitHeight="42.0" fitWidth="49.0" layoutX="823.0" layoutY="227.0" onMouseClicked="#toggleLiked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="UnLikedPicture" fitHeight="42.0" fitWidth="49.0" layoutX="432.0" layoutY="445.0" onMouseClicked="#toggleLiked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@resources/UnlikedProduct.png" />
          </image>
