@@ -121,6 +121,8 @@ public class ProductController extends BaseController {
                 wishlistIcon.setImage((new Image(getClass().getResourceAsStream("resources/addIcon.png"))));
                 ordersLabel.setText("Analytics");
                 ordersIcon.setImage((new Image(getClass().getResourceAsStream("resources/analyticsIcon.png"))));
+                LikedPicture.setVisible(false);
+                UnLikedPicture.setVisible(false);
             }
             
             // addToWishlistButton.setVisible(isCustomer);
