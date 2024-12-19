@@ -41,11 +41,10 @@ public class HomeController extends BaseController {
         }
     }
     @FXML
-    public void handleOrdersOrAnaysis(){
+    public void handleOrdersOrAnalytics(){
         if(engine.isCustomer)
             engine.switchScene(Screen.ORDERS);
-        // else
-        //     //TODO Analysis Icon
+        else engine.switchScene(Screen.ANALYTICS);
     }
     
     

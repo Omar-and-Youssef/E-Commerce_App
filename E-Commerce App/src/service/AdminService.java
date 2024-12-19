@@ -8,10 +8,11 @@ import database.Database;
 
 import java.util.*;
 public class AdminService {
-    AdminDAO adminDAO;
-    ProductDAO productDAO;
-    CustomerDAO customerDAO;
-    OrderDAO orderDAO;
+    private AdminDAO adminDAO;
+    private ProductDAO productDAO;
+    private CustomerDAO customerDAO;
+    private OrderDAO orderDAO;
+    private double totalRevenue;
     public AdminService(){
         adminDAO=new AdminDAO();
         productDAO=new ProductDAO();
@@ -56,25 +57,60 @@ public class AdminService {
             productDAO.updateProduct(product);
     }
     public ArrayList<Product> getProductsByCategory(Category category){
-            getAllProducts();
             return productDAO.getProductsByCategory(category);
     }
     public ArrayList<Product> getProductsByName(String name){
         return productDAO.getProductsByName(name);
     }
-    public ArrayList<Customer> getAllCustomers(){
-            return customerDAO.getAllCustomers();
+    public int getAllCustomers(){
+        int c;
+        try{
+            c=customerDAO.getAllCustomers().size();
+        }catch(Exception e){
+            return 0;
+        }
+        return c;
     }
-    public ArrayList<Admin> getAllAdmins(){
-            return adminDAO.getAllAdmins();
+    public int getAllAdmins(){
+        int p;
+        try{
+            p=adminDAO.getAllAdmins().size();
+        }catch(Exception e){
+            return 0;
+        }
+        return p;
+    }
+    public int getTotalProducts(){
+        int p;
+        try{
+            p=productDAO.getAllProducts().size();
+        }catch(Exception e){
+            return 0;
+        }
+        return p;
     }
     public ArrayList<Product> getAllProducts(){
         return productDAO.getAllProducts();
     }
-    public ArrayList<Order> getAllOrders() throws ServiceException{
-            if(orderDAO.getAllOrders().isEmpty())
-                throw new ServiceException("No orders found");
-            return orderDAO.getAllOrders();
+    public int getTotalOrders(){
+        int t;
+        try{
+            t=orderDAO.getAllOrders().size();
+        }catch(Exception e){
+            return 0;
+        }
+        return t;
+    }
+
+    public double getTotalRevenue(){
+        return totalRevenue;
+    }
+    public void updateTotalRevenue(){
+        totalRevenue=0;
+        ArrayList<Order> orders=orderDAO.getAllOrders();
+        for(Order order:orders){
+            totalRevenue+=order.getOrderTotal();
+        }
     }
     
     public void assignHelpTicket(HelpTicket helpTicket)
@@ -108,5 +144,36 @@ public class AdminService {
             
         else throw new ServiceException("Ticket already resolved");
     }
+    public int getAvgOrders(){ //average no. of orders per customer
+        return getTotalOrders()/getAllCustomers();
+    }
+    public Product getBestSellingProduct(){
+        ArrayList<Product> products=productDAO.getAllProducts();
+        if(products.isEmpty()) return null;
 
+        Product bestSellingProduct=null;
+        int maxSales=0;
+        for(Product product:products){
+            if(product.getSalesCount()>maxSales){
+                maxSales=product.getSalesCount();
+                bestSellingProduct=product;
+            }
+        }
+        return bestSellingProduct;
+    }
+    public Product getWorstSellingProduct(){
+        ArrayList<Product> products=productDAO.getAllProducts();
+        Product worstSellingProduct=null;
+        int minSales=Integer.MAX_VALUE;
+        for(Product product:products){
+            if(product.getSalesCount()<minSales){
+                minSales=product.getSalesCount();
+                worstSellingProduct=product;
+            }
+        }
+        return worstSellingProduct;
+    }
+    public void setTotalRevenue(double newTotal){
+        totalRevenue=newTotal;
+    }
 }

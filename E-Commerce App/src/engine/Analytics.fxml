@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.AnalyticsController">
+   <children>
+      <Label id="title" fx:id="title" alignment="BASELINE_CENTER" layoutX="-18.0" layoutY="3.0" prefHeight="69.0" prefWidth="933.0" styleClass="title" stylesheets="@style.css" text="★Cadabra" textAlignment="CENTER" textFill="#9f5d5d">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="backButton" layoutX="33.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="42.0" prefWidth="105.0" styleClass="backButton" stylesheets="@style.css" text="← Back">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="47.0" layoutY="111.0" prefHeight="48.0" prefWidth="267.0" style="-fx-text-fill: orange;" styleClass="subTitle" stylesheets="@style.css" text="Analytics 📈" textFill="ORANGE">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <VBox layoutX="211.0" layoutY="193.0" prefHeight="369.0" prefWidth="489.0" spacing="10.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total number of customers:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="totalCustomers" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="458.0" text="Label">
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total number of products:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="totalProducts" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="458.0" text="Label">
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total number of orders:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="totalOrders" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="493.0" text="Label">
+                     <padding>
+                        <Insets left="100.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Average orders per customer:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="avgOrders" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="521.0" text="Label">
+                     <padding>
+                        <Insets left="100.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Best selling product:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="bestProduct" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="525.0" text="Label">
+                     <padding>
+                        <Insets left="100.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total revenue:" wrappingWidth="173.30329132080078">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="totalRevenue" alignment="CENTER_RIGHT" contentDisplay="TOP" prefHeight="22.0" prefWidth="561.0" text="Label">
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

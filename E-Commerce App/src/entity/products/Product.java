@@ -14,7 +14,9 @@ public class Product {
     private final ArrayList<Review>REVIEW_LIST;
     private double rating;
     public boolean maxedOutInCart;
-//=======================================Constructor===================================
+    private int salesCount;
+
+    //=======================================Constructor===================================
     public Product(){
         this(0,0,"NA","NA","NA",Category.ALL,null);
     }
@@ -109,6 +111,12 @@ public class Product {
     public String toString() {
         return "Product [price=" + price + ", productName=" + productName + ", description=" + description + ", brand="
                 + brand + ", category=" + category + ", rating=" + rating + "]";
+    }
+    public int getSalesCount() {
+        return salesCount;
+    }
+    public void setSalesCount(int noOfSales) {
+        salesCount = noOfSales;
     }
     
 }

@@ -42,8 +42,12 @@ public class Engine {
     private Scene modifyScene;
     private ModifyProductController modifyController;
 
+    private Scene analyticsScene;
+    private AnalyticsController analyticsController;
+
     private Stage stage;
     private Screen currentScreen;
+
     
     private Product viewedProduct;
     private User currentUser;
@@ -91,7 +95,7 @@ public class Engine {
             homeScene = new Scene(homeLoader.load());
             homeController =(HomeController) homeLoader.getController();
             homeController.setEngine(this);
-            if(adminService.getAllProducts().size()<6) 
+            if(adminService.getTotalProducts()<6) 
                 homeController.getnavRightButton().setVisible(false);
             homeController.getnavLeftButton().setVisible(false);
             homeController.populateProducts(adminService.getAllProducts(),0);
@@ -127,6 +131,11 @@ public class Engine {
             modifyScene = new Scene(modifyLoader.load());
             modifyController =(ModifyProductController) modifyLoader.getController();
             modifyController.setEngine(this);
+
+            FXMLLoader analyticsLoader = new FXMLLoader(getClass().getResource("Analytics.fxml"));
+            analyticsScene = new Scene(analyticsLoader.load());
+            analyticsController =(AnalyticsController) analyticsLoader.getController();
+            analyticsController.setEngine(this);
             
     }
     public void switchScene(Screen nextScreen){
@@ -175,6 +184,11 @@ public class Engine {
                 modifyController.setScreen(viewedProduct);
                 else modifyController.setScreen(null);
                 stage.setScene(modifyScene);
+                break;
+            case ANALYTICS:
+                analyticsController.updateAnalytics();
+                stage.setScene(analyticsScene);
+                break;
             default: break;
         }
     }
@@ -242,17 +256,21 @@ public class Engine {
     public void orderByWallet(String address){
         customerService.deductFromWallet(currentCustomer,currentCustomer.getCart().getTotalPrice());
         customerService.placeOrder(currentCustomer, address, "Wallet");
-        //we cleared the cart, and placed an order
+        adminService.updateTotalRevenue();
         cartController.populateCart(0);
         cartController.updateOrderTotal();
     }
     public void orderByCOD(String address){
         customerService.placeOrder(currentCustomer,address, "Cash On Delivery");
+        adminService.updateTotalRevenue();
+
         cartController.populateCart(0);
         cartController.updateOrderTotal();
     }
     public void cancelOrder(){
         customerService.cancelOrder(viewedOrder);
+        adminService.updateTotalRevenue();
+        adminService.setTotalRevenue(adminService.getTotalRevenue()-viewedOrder.getOrderTotal());
         ordersController.populateOrders(-1);//from where we left off, but updated
     }
 //==================================ADMIN====================================
@@ -317,5 +335,25 @@ public class Engine {
     }
     public ModifyProductController getModifyController(){
         return modifyController;
+    }
+    public double getTotalRevenue(){
+        return adminService.getTotalRevenue();
+    }   
+
+    public int getTotalOrders(){
+        return adminService.getTotalOrders();
+    }
+
+    public int getTotalProducts(){
+        return adminService.getTotalProducts();
+    }
+    public int getTotalCustomers(){
+        return adminService.getAllCustomers();
+    }
+    public int getAvgOrders(){
+        return adminService.getAvgOrders();
+    }
+    public Product getBestProduct(){
+        return adminService.getBestSellingProduct();
     }
 } 

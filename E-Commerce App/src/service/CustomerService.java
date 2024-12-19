@@ -132,6 +132,7 @@ public void placeOrder(Customer customer, String address, String paymentMethod)
         for(CartItem cartItem:cart.getCartItems()){
             Product p=cartItem.getProduct();
             p.setStockQuantity(p.getStockQuantity()-cartItem.getQuantity());
+            p.setSalesCount(p.getSalesCount()+1);
         }
         customer.getCart().clearCart();
         customer.getOrders().add(newOrder);

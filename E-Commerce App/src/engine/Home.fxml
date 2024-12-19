@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.HomeController">
    <children>
       <Label id="title" fx:id="title" alignment="BASELINE_CENTER" layoutX="-14.0" layoutY="-3.0" prefHeight="85.0" prefWidth="932.0" styleClass="title" stylesheets="@style.css" text="★Cadabra" textFill="#9f5d5d">
          <font>
@@ -140,8 +140,8 @@
                   <Insets />
                </HBox.margin>
             </ImageView>
-            <Label id="nav-item" fx:id="ordersLabel" alignment="CENTER_RIGHT" onMouseClicked="#handleOrdersOrAnaysis" prefHeight="23.0" prefWidth="103.0" stylesheets="@style.css" text="Orders" />
-            <ImageView fx:id="ordersIcon" fitHeight="30.0" fitWidth="36.0" onMouseClicked="#handleOrdersOrAnaysis" pickOnBounds="true" preserveRatio="true" styleClass="icon">
+            <Label id="nav-item" fx:id="ordersLabel" alignment="CENTER_RIGHT" onMouseClicked="#handleOrdersOrAnalytics" prefHeight="23.0" prefWidth="103.0" stylesheets="@style.css" text="Orders" />
+            <ImageView fx:id="ordersIcon" fitHeight="30.0" fitWidth="36.0" onMouseClicked="#handleOrdersOrAnalytics" pickOnBounds="true" preserveRatio="true" styleClass="icon">
                <image>
                   <Image url="@resources/orders.png" />
                </image>

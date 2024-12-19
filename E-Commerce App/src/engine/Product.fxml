@@ -58,7 +58,7 @@
             <Blend />
          </effect>
       </Button>
-      <Label fx:id="cartSuccessLabel" layoutX="707.0" layoutY="454.0" prefHeight="32.0" prefWidth="127.0" styleClass="successful-add" stylesheets="@style.css" text="Added to cart!" visible="false" />
+      <Label fx:id="cartSuccessLabel" layoutX="673.0" layoutY="454.0" prefHeight="32.0" prefWidth="211.0" styleClass="successful-add" stylesheets="@style.css" text="Added to cart!" visible="false" />
       <Label fx:id="wishlistErrorLabel" layoutX="714.0" layoutY="450.0" style="-fx-background-color: #FF7F7F;" styleClass="successful-add" stylesheets="@style.css" text="Added to wishlist!" visible="false" />
       <HBox fx:id="hBox" alignment="CENTER" layoutX="10.0" layoutY="141.0" prefHeight="66.0" prefWidth="879.0" style="-fx-background-color: FBC16D; -fx-background-radius: 5px;" styleClass="menu-label">
          <children>
@@ -151,8 +151,8 @@
                   <Insets />
                </HBox.margin>
             </ImageView>
-            <Label id="nav-item" fx:id="ordersLabel" alignment="CENTER_RIGHT" onMouseClicked="#handleOrdersOrAnaysis" prefHeight="23.0" prefWidth="103.0" stylesheets="@style.css" text="Orders" />
-            <ImageView fx:id="ordersIcon" fitHeight="30.0" fitWidth="36.0" onMouseClicked="#handleOrdersOrAnaysis" pickOnBounds="true" preserveRatio="true" styleClass="icon">
+            <Label id="nav-item" fx:id="ordersLabel" alignment="CENTER_RIGHT" onMouseClicked="#handleOrdersOrAnalytics" prefHeight="23.0" prefWidth="103.0" stylesheets="@style.css" text="Orders" />
+            <ImageView fx:id="ordersIcon" fitHeight="30.0" fitWidth="36.0" onMouseClicked="#handleOrdersOrAnalytics" pickOnBounds="true" preserveRatio="true" styleClass="icon">
                <image>
                   <Image url="@resources/orders.png" />
                </image>
