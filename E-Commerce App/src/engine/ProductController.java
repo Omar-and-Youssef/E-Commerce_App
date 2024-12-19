@@ -113,6 +113,8 @@ public class ProductController extends BaseController {
                 boolean liked=engine.getCurrentCustomer().isInWishList(engine.getViewedProduct());
                 LikedPicture.setVisible(liked);
                 UnLikedPicture.setVisible(!liked);
+                LikedPicture.setImage((new Image(getClass().getResourceAsStream("resources/LikedProduct.png"))));
+                UnLikedPicture.setImage((new Image(getClass().getResourceAsStream("resources/UnlikedProduct.png"))));
             }
             else{
                 cartLabel.setVisible(false);
