@@ -67,7 +67,7 @@ public class Engine {
             stage.setScene(loginScene);
             stage.setResizable(false);
             stage.setTitle("Cadabra");
-            Image star = new Image(getClass().getResourceAsStream("resources/logo.png"));
+            Image star = new Image(getClass().getResourceAsStream("resources/wishlist.png"));
             stage.getIcons().add(star);
             stage.show();
             viewedProduct = new Product(); //TODO
