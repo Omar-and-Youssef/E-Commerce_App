@@ -47,6 +47,19 @@ public class Customer extends User{
     public Customer(String name, String email, String password, String phoneNumber, String address, Gender gender){
         this(name, email, password, gender, phoneNumber, address, null);
     }
+//=======================================Methods=======================================
+    public void addToWishlist(Product product){
+        WISH_LIST.addProduct(product);
+    }
+    public void removeFromWishList(Product product){
+        WISH_LIST.removeProduct(product);
+    }
+    public void removeFromWishList(int product){
+        WISH_LIST.removeProduct(product);
+    }
+    public boolean isInWishList(Product product){
+        return WISH_LIST.isInWishList(product);
+    }
 //=======================================Get&Set=======================================
     public double getWallet(){
         return wallet;

@@ -30,7 +30,7 @@ public class Engine {
     private CartController cartController;
 
     private Scene wishlistScene;
-    // private WishlistController wishlistController;
+    private WishListController wishlistController;
     
     private Scene ordersScene;
     private OrdersController ordersController;
@@ -117,9 +117,11 @@ public class Engine {
             orderSummaryController =(OrderSummaryController) orderSummaryLoader.getController();
             orderSummaryController.setEngine(this);
 
-            // FXMLLoader wishlistLoader = new FXMLLoader(getClass().getResource("Wishlist.fxml"));
-            // wishlistScene = new Scene(wishlistLoader.load());
-            // setControllerEngine(wishlistLoader);
+            FXMLLoader wishlistLoader = new FXMLLoader(getClass().getResource("Wishlist.fxml"));
+            wishlistScene = new Scene(wishlistLoader.load());
+            wishlistController =(WishListController) wishlistLoader.getController();
+            wishlistController.setEngine(this);
+
 
             FXMLLoader modifyLoader = new FXMLLoader(getClass().getResource("ModifyProduct.fxml"));
             modifyScene = new Scene(modifyLoader.load());
@@ -132,12 +134,7 @@ public class Engine {
         switch(currentScreen){
             case SIGNUP:
                 signUpController.geterrorLabel().setVisible(false);
-                signUpController.getCategoryChoiceBox().getItems().clear();
-                signUpController.getCategoryChoiceBox().getItems().addAll("Electronics","Books","Clothing",
-                "Home",
-                "Beauty",
-                "Toys",
-                "Sports");
+                signUpController.populateChoiceBox();
                 stage.setScene(signUpScene);
                 break;
             case HOME: 
@@ -150,6 +147,7 @@ public class Engine {
                 stage.setScene(productScene);
                 break;
             case CART:
+                cartController.cartItemCount=0;
                 cartController.populateCart(0);
                 cartController.updateOrderTotal();
                 cartController.getPaymentChoiceBox().getItems().clear();
@@ -165,13 +163,15 @@ public class Engine {
                 stage.setScene(orderSummaryScene);
                 break;
             case WISH_LIST:
+                wishlistController.wishListCount=0;
+                wishlistController.populateWishlist(0);
                 stage.setScene(wishlistScene);
                 break;
             case LOGIN:
                 stage.setScene(loginScene); 
                 break;
             case MODIFYPRODUCT:
-                if(productController.isUpdating)
+                if(productController.getIsUpdating())
                 modifyController.setScreen(viewedProduct);
                 else modifyController.setScreen(null);
                 stage.setScene(modifyScene);

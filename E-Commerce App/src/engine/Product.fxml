@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.ProductController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.ProductController">
    <children>
       <Label id="title" fx:id="title" alignment="BASELINE_CENTER" layoutX="-14.0" layoutY="-3.0" prefHeight="85.0" prefWidth="932.0" styleClass="title" stylesheets="@style.css" text="★Cadabra" textFill="#9f5d5d">
          <font>
@@ -59,7 +59,7 @@
       </Button>
       <Label fx:id="cartSuccessLabel" layoutX="707.0" layoutY="455.0" styleClass="successful-add" stylesheets="@style.css" text="Added to cart!" visible="false" />
       <Label fx:id="wishlistErrorLabel" layoutX="700.0" layoutY="512.0" styleClass="successful-add" stylesheets="@style.css" text="Added to wishlist!" visible="false" />
-      <HBox fx:id="hBox" alignment="CENTER" layoutX="18.0" layoutY="141.0" prefHeight="65.0" prefWidth="842.0" styleClass="menu-label" stylesheets="@style.css">
+      <HBox fx:id="hBox" alignment="CENTER" layoutX="10.0" layoutY="141.0" prefHeight="66.0" prefWidth="879.0" style="-fx-background-color: FBC16D; -fx-background-radius: 5px;" styleClass="menu-label">
          <children>
             <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCategoryAll" prefHeight="40.0" prefWidth="79.0" styleClass="menu-button" stylesheets="@style.css" text="All">
                <HBox.margin>
@@ -167,5 +167,15 @@
             <Insets />
          </opaqueInsets>
       </HBox>
+      <ImageView fx:id="LikedPicture" fitHeight="42.0" fitWidth="49.0" layoutX="823.0" layoutY="227.0" onMouseClicked="#toggleLiked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/LikedProduct.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="UnLikedPicture" fitHeight="42.0" fitWidth="49.0" layoutX="823.0" layoutY="227.0" onMouseClicked="#toggleLiked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/UnlikedProduct.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

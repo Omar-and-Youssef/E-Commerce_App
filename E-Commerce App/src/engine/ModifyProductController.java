@@ -1,9 +1,11 @@
 package engine;
 
+import entity.products.Category;
 import entity.products.Product;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,6 +29,12 @@ public class ModifyProductController extends BaseController {
     @FXML
     private Button UpdateB;
 
+    @FXML
+    private TextField quantityF;
+
+    @FXML
+    private ChoiceBox<String> categoryChoiceBox;
+
     public void initialize(){
         
     }
@@ -36,7 +44,15 @@ public class ModifyProductController extends BaseController {
         String brand="";
         String price="";
         String desc="";
+        String quantity="";
+        String category="";
         UpdateB.setText("Add Product");
+        categoryChoiceBox.getItems().clear();
+        categoryChoiceBox.getItems().addAll("Electronics","Books","Clothing",
+        "Home",
+        "Beauty",
+        "Toys",
+        "Sports");
         //Image ...
         if(product!=null){
             name=currentProduct.getProductName();
@@ -44,11 +60,17 @@ public class ModifyProductController extends BaseController {
             price=""+currentProduct.getPrice();
             desc=currentProduct.getDescription();
             UpdateB.setText("Update Product");
+            quantity=""+currentProduct.getStockQuantity();
+            category=""+currentProduct.getCategory();
+            category=category.toLowerCase();
+            category=(""+category.charAt(0)).toUpperCase()+category.substring(1);
         }
         NameF.setText(name);
         BrandF.setText(brand);
         PriceF.setText(price);
         DescF.setText(desc);
+        quantityF.setText(quantity);
+        categoryChoiceBox.setValue(category);
     }
     @FXML
     public void handleChange(){
@@ -61,6 +83,9 @@ public class ModifyProductController extends BaseController {
             currentProduct.setBrand(BrandF.getText());
             currentProduct.setPrice(Double.parseDouble(PriceF.getText()));
             currentProduct.setDescription(DescF.getText());
+            currentProduct.setStockQuantity(Integer.parseInt(quantityF.getText()));
+            Category category = Category.valueOf(categoryChoiceBox.getValue().toUpperCase());
+            currentProduct.setCategory(category);
         }
         handleBack();
     }

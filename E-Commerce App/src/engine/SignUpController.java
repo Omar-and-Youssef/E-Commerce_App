@@ -118,8 +118,13 @@ public class SignUpController extends BaseController{
     public Label geterrorLabel(){
         return errorLabel;
     }
-    public ChoiceBox<String> getCategoryChoiceBox(){
-        return categoryChoiceBox;
+    public void populateChoiceBox(){
+        categoryChoiceBox.getItems().clear();
+        categoryChoiceBox.getItems().addAll("Electronics","Books","Clothing",
+        "Home",
+        "Beauty",
+        "Toys",
+        "Sports");
     }
 
     //TODO

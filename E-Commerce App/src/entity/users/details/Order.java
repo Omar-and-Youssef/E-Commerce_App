@@ -13,13 +13,15 @@ public class Order {
     private final Cart ORDERED_ITEMS;
     private double orderTotal;
 //=======================================Constructor===================================
-    public Order(Customer CUSTOMER, Cart ORDERED_ITEMS, 
+    public Order(Customer CUSTOMER, Cart ORDERED_ITEM, 
         String SHIPPING_ADDRESS, String PAYMENT_METHOD){
         orderStatus=OrderStatus.PLACED;
         ORDER_ID="O"+(++orderCounter);
         this.CUSTOMER=CUSTOMER;
-        this.ORDERED_ITEMS=ORDERED_ITEMS;
-        this.orderTotal=ORDERED_ITEMS.getTotalPrice();
+        ORDERED_ITEMS=new Cart();   
+        for(int i=0;i<ORDERED_ITEM.getCartItems().size();i++)
+            ORDERED_ITEMS.addItem(ORDERED_ITEM.getCartItems().get(i));
+        this.orderTotal=ORDERED_ITEM.getTotalPrice();
         this.SHIPPING_ADDRESS=SHIPPING_ADDRESS;
         this.PAYMENT_METHOD=PAYMENT_METHOD;
         ORDER_DATE=new Date();
@@ -70,13 +72,14 @@ public class Order {
     }
     @Override
     public String toString() {
-        String orderItems="";
+        String orderItemsString=""; 
+
         for(int i=0;i<ORDERED_ITEMS.getCartItems().size();i++){
             CartItem c=ORDERED_ITEMS.getCartItems().get(i);
-            if(i==ORDERED_ITEMS.getCartItems().size()-1) orderItems+=c.getProduct().getProductName();
-            orderItems+=c.getProduct().getProductName()+"🔸";
+            if(i==ORDERED_ITEMS.getCartItems().size()-1) orderItemsString+=c.getProduct().getProductName();
+            else orderItemsString+=c.getProduct().getProductName()+"🔸";
         }
-        return orderItems;
+        return orderItemsString;
     }
 
 }

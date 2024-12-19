@@ -12,8 +12,14 @@ public class Wishlist {
         if(!WISH_LIST.contains(product))//Already there
             WISH_LIST.add(product);
     }
-    public void removeProduct(int index){
-        WISH_LIST.remove(index);
+    public void removeProduct(Product product){
+        WISH_LIST.remove(product);
+    }
+    public void removeProduct(int product){
+        WISH_LIST.remove(product);
+    }
+    public boolean isInWishList(Product product){
+        return WISH_LIST.contains(product);
     }
 //=======================================Get&Set=======================================
     public ArrayList<Product> getWishList(){

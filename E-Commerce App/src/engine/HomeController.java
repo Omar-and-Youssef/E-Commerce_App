@@ -36,9 +36,9 @@ public class HomeController extends BaseController {
         engine.getModifyController().setScreen(null);
         engine.switchScene(Screen.MODIFYPRODUCT);
         }
-        // else {
-        // // engine.switchScene(Screen.WISH_LIST);
-        // }
+        else {
+            engine.switchScene(Screen.WISH_LIST);
+        }
     }
     @FXML
     public void handleOrdersOrAnaysis(){

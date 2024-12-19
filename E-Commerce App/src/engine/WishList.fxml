@@ -1,11 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.WishListController">
    <children>
-      <Label layoutX="233.0" layoutY="152.0" text="WishList" />
+      <Label id="title" fx:id="title" alignment="BASELINE_CENTER" layoutX="-14.0" layoutY="-3.0" prefHeight="85.0" prefWidth="932.0" styleClass="title" stylesheets="@style.css" text="★Cadabra" textFill="#9f5d5d">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <HBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="120.0" prefHeight="17.0" prefWidth="907.0" />
+      <Label fx:id="nameLabel" layoutX="28.0" layoutY="17.0" prefHeight="49.0" prefWidth="253.0" styleClass="welcome-message" stylesheets="@style.css" />
+      <Button fx:id="backButton" layoutX="19.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="42.0" prefWidth="105.0" styleClass="backButton" stylesheets="@style.css" text="← Back">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <VBox fx:id="wishListVBox" layoutX="18.0" layoutY="80.0" prefHeight="478.0" prefWidth="656.0" spacing="20.0">
+         <children>
+            <Text fx:id="emptyCartText" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <HBox fx:id="wishListItemHbox1" prefHeight="134.0" prefWidth="621.0" style="-fx-background-color: transparent; -fx-padding: 0;" styleClass="curved-hbox" stylesheets="@style.css">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <ImageView fx:id="wishListImage1" fitHeight="110.0" fitWidth="110.0" preserveRatio="true" HBox.hgrow="NEVER">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <VBox alignment="CENTER" prefHeight="98.0" prefWidth="71.0">
+                     <children>
+                        <Label fx:id="nameLabel1" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-name" stylesheets="@style.css" text="Name" />
+                        <Label fx:id="brandLabel1" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-brand" stylesheets="@style.css" text="Brand" />
+                        <Label fx:id="priceLabel1" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-price" stylesheets="@style.css" text="Price" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <Button fx:id="removeButton1" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#removeWishItem1" prefHeight="66.0" prefWidth="63.0" style="-fx-background-color: transparent;" text="🗑" textFill="RED">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="30.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox fx:id="wishListItemHbox2" prefHeight="122.0" prefWidth="493.0" style="-fx-background-color: transparent; -fx-padding: 0;" styleClass="curved-hbox" stylesheets="@style.css">
+               <children>
+                  <ImageView fx:id="wishListImage2" fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="SOMETIMES">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <VBox alignment="CENTER" prefHeight="107.0" prefWidth="71.0">
+                     <children>
+                        <Label fx:id="nameLabel2" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-name" stylesheets="@style.css" text="Name" />
+                        <Label fx:id="brandLabel2" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-brand" stylesheets="@style.css" text="Brand" />
+                        <Label fx:id="priceLabel2" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-price" stylesheets="@style.css" text="Price" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <Button fx:id="removeButton2" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#removeWishItem2" prefHeight="66.0" prefWidth="77.0" style="-fx-background-color: transparent;" text="🗑" textFill="RED">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="30.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox fx:id="wishListItemHbox3" prefHeight="130.0" prefWidth="443.0" style="-fx-background-color: transparent; -fx-padding: 0;" styleClass="curved-hbox" stylesheets="@style.css">
+               <children>
+                  <ImageView fx:id="wishListImage3" fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="SOMETIMES">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <VBox alignment="CENTER" prefHeight="86.0" prefWidth="71.0">
+                     <children>
+                        <Label fx:id="nameLabel3" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-name" stylesheets="@style.css" text="Name" />
+                        <Label fx:id="brandLabel3" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-brand" stylesheets="@style.css" text="Brand" />
+                        <Label fx:id="priceLabel3" alignment="CENTER" prefHeight="27.0" prefWidth="296.0" styleClass="product-view-price" stylesheets="@style.css" text="Price" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <Button fx:id="removeButton3" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#removeWishItem3" prefHeight="67.0" prefWidth="76.0" style="-fx-background-color: transparent;" text="🗑" textFill="RED">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="30.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button fx:id="navigateWishLeft" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="294.0" layoutY="560.0" mnemonicParsing="false" onAction="#navigateWishlistLeft" prefHeight="33.0" prefWidth="23.0" style="-fx-font-size: 14;" styleClass="black-button" stylesheets="@style.css" text="&lt;">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+      <Button fx:id="navigateWishRight" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="470.0" layoutY="561.0" mnemonicParsing="false" onAction="#navigateWishlistRight" prefHeight="0.0" prefWidth="0.0" style="-fx-font-size: 14;" styleClass="black-button" stylesheets="@style.css" text="&gt;">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+      <Label fx:id="orderSuccessLabel" layoutX="594.0" layoutY="516.0" prefHeight="32.0" prefWidth="216.0" styleClass="successful-add" stylesheets="@style.css" text="Order placed successfully!" visible="false" />
    </children>
 </AnchorPane>

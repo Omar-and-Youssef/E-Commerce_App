@@ -60,10 +60,25 @@ public class ProductController extends BaseController {
     @FXML
     private ImageView ordersIcon;
 
-    
+    private boolean liked;
+    @FXML
+    private ImageView UnLikedPicture;
+    @FXML
+    private ImageView LikedPicture;
 
 
 
+    @FXML
+    public void toggleLiked(){
+        LikedPicture.setVisible(!liked);
+        UnLikedPicture.setVisible(liked);
+        if(liked)
+            engine.getCurrentCustomer().removeFromWishList(engine.getViewedProduct());
+        else
+            engine.getCurrentCustomer().addToWishlist(engine.getViewedProduct());
+
+        liked=!liked;
+    }
 
     public void resetQuantity(){
         SpinnerValueFactory<Integer> valueFactory = 
@@ -95,6 +110,9 @@ public class ProductController extends BaseController {
                 wishlistIcon.setImage((new Image(getClass().getResourceAsStream("resources/wishlist.png"))));
                 ordersLabel.setText("Orders");
                 ordersIcon.setImage((new Image(getClass().getResourceAsStream("resources/orders.png"))));
+                boolean liked=engine.getCurrentCustomer().isInWishList(engine.getViewedProduct());
+                LikedPicture.setVisible(liked);
+                UnLikedPicture.setVisible(!liked);
             }
             else{
                 cartLabel.setVisible(false);
@@ -179,6 +197,7 @@ public class ProductController extends BaseController {
     //         wishlistErrorLabel.setVisible(true);
     //     }
     // }
+
 //==================================Home methods===================================
     @FXML
     public void handleSearch(){
@@ -256,9 +275,9 @@ public class ProductController extends BaseController {
         engine.getModifyController().setScreen(null);
         engine.switchScene(Screen.MODIFYPRODUCT);
         }
-        // else {
-        // // engine.switchScene(Screen.WISH_LIST);
-        // }
+        else {
+            engine.switchScene(Screen.WISH_LIST);
+        }
     }
     @FXML
     public void handleOrdersOrAnaysis(){

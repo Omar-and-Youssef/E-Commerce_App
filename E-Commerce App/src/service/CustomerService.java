@@ -150,8 +150,6 @@ public void addToWishlist(Customer customer, Product product) throws ServiceExce
 public void removeFromWishlist(Customer customer, int index) throws ServiceException{
         if(!customerDAO.customerInDB(customer))
             throw new IllegalArgumentException("Customer not found");
-
-        customer.getWishList().removeProduct(index);
 }
 public void submitHelpTicket(Customer customer, String issue) throws ServiceException{
         if(!customerDAO.customerInDB(customer))

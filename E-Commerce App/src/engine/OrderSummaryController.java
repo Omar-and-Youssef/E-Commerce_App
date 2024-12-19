@@ -1,6 +1,7 @@
 package engine;
 
 import entity.users.details.Order;
+import entity.users.details.OrderStatus;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -50,5 +51,7 @@ public class OrderSummaryController extends BaseController {
         addressLabel.setText(order.getShippingAddress());
         paymentLabel.setText(order.getPaymentMethod());
         orderedItems.setText(order.toString());
+        cancelOrderButton.setVisible(true);
+        if(order.getOrderStatus()==OrderStatus.CANCELLED)cancelOrderButton.setVisible(false);
     }
 }
