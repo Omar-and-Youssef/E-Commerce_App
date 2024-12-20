@@ -130,7 +130,7 @@ public class SignUpController extends BaseController{
         
         String phoneRegex = "^\\+\\d{1,4}(?:\\s?\\d{1,4}){3,}$";
         if (!phoneNumber.matches(phoneRegex))
-            throw new IllegalArgumentException("Invalid number. Use format +<CountryCode> <Number>.");
+            throw new IllegalArgumentException("Invalid number.");
         return phoneNumber.trim();
     }
     public LocalDate  validateDateOfBirth(LocalDate dob) {

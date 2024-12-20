@@ -81,13 +81,14 @@ public class AdminService {
         return p;
     }
     public int getTotalProducts(){
-        int p;
+        int total=0;
         try{
-            p=productDAO.getAllProducts().size();
+            for(Product p: productDAO.getAllProducts())
+                total+=p.getStockQuantity();
         }catch(Exception e){
             return 0;
         }
-        return p;
+        return total;
     }
     public ArrayList<Product> getAllProducts(){
         return productDAO.getAllProducts();

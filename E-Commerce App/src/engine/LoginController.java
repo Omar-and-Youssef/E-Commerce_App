@@ -28,6 +28,7 @@ public class LoginController extends BaseController {
             
             if (!engine.logIn(email,pass))
                 throw new Exception("Invalid email or password. Please try again.");
+            engine.getHomeController().handleCategoryAll();
             engine.switchScene(Screen.HOME);
         }
         catch(Exception e){
