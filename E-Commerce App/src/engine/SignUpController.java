@@ -128,7 +128,7 @@ public class SignUpController extends BaseController{
         if (phoneNumber==null||phoneNumber.isEmpty())
             throw new IllegalArgumentException("Phone number is required.");
         
-        String phoneRegex = "^\\+\\d{1,4}(?:\\s?\\d{1,4}){3,}$";
+    String phoneRegex = "^\\+\\d{1,4}(?:\\s?\\d{1,4}){3,}$";
         if (!phoneNumber.matches(phoneRegex))
             throw new IllegalArgumentException("Invalid number.");
         return phoneNumber.trim();

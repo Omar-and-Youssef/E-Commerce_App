@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.WishListController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.WishListController">
    <children>
       <Label id="title" fx:id="title" alignment="BASELINE_CENTER" layoutX="-14.0" layoutY="-3.0" prefHeight="85.0" prefWidth="932.0" styleClass="title" stylesheets="@style.css" text="★Cadabra" textFill="#9f5d5d">
          <font>
@@ -28,10 +28,10 @@
             <Blend />
          </effect>
       </Button>
-      <VBox fx:id="wishListVBox" layoutX="18.0" layoutY="80.0" prefHeight="478.0" prefWidth="656.0" spacing="20.0">
+      <VBox fx:id="wishListVBox" layoutX="294.0" layoutY="73.0" prefHeight="478.0" prefWidth="316.0" spacing="20.0">
          <children>
             <Text fx:id="emptyCartText" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <HBox fx:id="wishListItemHbox1" prefHeight="134.0" prefWidth="621.0" style="-fx-background-color: transparent; -fx-padding: 0;" styleClass="curved-hbox" stylesheets="@style.css">
+            <HBox fx:id="wishListItemHbox1" prefHeight="134.0" prefWidth="621.0" style="-fx-background-color: transparent; -fx-border-color: pink; -fx-padding: 0;" styleClass="curved-hbox" stylesheets="@style.css">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -61,7 +61,7 @@
                   </Button>
                </children>
             </HBox>
-            <HBox fx:id="wishListItemHbox2" prefHeight="122.0" prefWidth="493.0" style="-fx-background-color: transparent; -fx-padding: 0;" styleClass="curved-hbox" stylesheets="@style.css">
+            <HBox fx:id="wishListItemHbox2" prefHeight="122.0" prefWidth="493.0" style="-fx-background-color: transparent; -fx-border-color: pink; -fx-padding: 0;" styleClass="curved-hbox" stylesheets="@style.css">
                <children>
                   <ImageView fx:id="wishListImage2" fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
@@ -88,7 +88,7 @@
                   </Button>
                </children>
             </HBox>
-            <HBox fx:id="wishListItemHbox3" prefHeight="130.0" prefWidth="443.0" style="-fx-background-color: transparent; -fx-padding: 0;" styleClass="curved-hbox" stylesheets="@style.css">
+            <HBox fx:id="wishListItemHbox3" prefHeight="130.0" prefWidth="443.0" style="-fx-background-color: transparent; -fx-border-color: pink; -fx-padding: 0;" styleClass="curved-hbox" stylesheets="@style.css">
                <children>
                   <ImageView fx:id="wishListImage3" fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
@@ -117,7 +117,7 @@
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="navigateWishLeft" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="294.0" layoutY="560.0" mnemonicParsing="false" onAction="#navigateWishlistLeft" prefHeight="33.0" prefWidth="23.0" style="-fx-font-size: 14;" styleClass="black-button" stylesheets="@style.css" text="&lt;">
+      <Button fx:id="navigateWishLeft" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="404.0" layoutY="559.0" mnemonicParsing="false" onAction="#navigateWishlistLeft" prefHeight="33.0" prefWidth="23.0" style="-fx-font-size: 14;" styleClass="black-button" stylesheets="@style.css" text="&lt;">
          <font>
             <Font size="10.0" />
          </font>
@@ -128,5 +128,10 @@
          </font>
       </Button>
       <Label fx:id="orderSuccessLabel" layoutX="594.0" layoutY="516.0" prefHeight="32.0" prefWidth="216.0" styleClass="successful-add" stylesheets="@style.css" text="Order placed successfully!" visible="false" />
+      <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="130.0" prefHeight="48.0" prefWidth="267.0" style="-fx-text-fill: red;" styleClass="subTitle" stylesheets="@style.css" text="Wishlist 💖" textFill="#d90057">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -350,7 +350,7 @@ public class Engine {
     public int getTotalCustomers(){
         return adminService.getAllCustomers();
     }
-    public int getAvgOrders(){
+    public double getAvgOrders(){
         return adminService.getAvgOrders();
     }
     public Product getBestProduct(){

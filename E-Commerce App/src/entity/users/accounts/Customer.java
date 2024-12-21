@@ -29,6 +29,7 @@ public class Customer extends User{
         COLLECTED_COUPON=new ArrayList<Coupon>();
         REVIEWS_SUBMITTED=new ArrayList<Review>();
         HELP_TICKETS_SUBMITTED=new ArrayList<HelpTicket>();
+        this.wallet=5000;
     }
     public Customer(String name,String email,String password,Gender gender,
     Category preferredCategory){

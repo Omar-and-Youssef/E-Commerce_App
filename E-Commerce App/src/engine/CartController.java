@@ -84,6 +84,7 @@ public class CartController extends BaseController{
                 displaySuccessMessage();
                 engine.getOrders().get(0).toString();
             }
+        walletLabel.setText("$" + String.format("%.2f",engine.getCurrentCustomer().getWallet()));
             //same for card for now
     }
     @FXML
@@ -117,13 +118,9 @@ public class CartController extends BaseController{
         orderSuccessLabel.setText("Order placed successfully!");
     }
     public void populateCart(int startingIndex){
+        walletLabel.setText("$" + String.format("%.2f",engine.getCurrentCustomer().getWallet()));
+
         ArrayList<CartItem> cartItems= engine.getCartItems();
-        // if(cartItems.isEmpty()) {
-        //     displayErrorMessage("Your cart is empty.");
-        //     displayClearCart();
-        //     return;
-        // }
-        //TODO empty cart display message
         emptyCartText.setVisible(false);
         
 

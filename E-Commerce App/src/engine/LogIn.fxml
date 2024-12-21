@@ -40,8 +40,8 @@
             </PasswordField>
          </children>
       </VBox>
-      <Button fx:id="loginButton" layoutX="300.0" layoutY="387.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="33.0" prefWidth="140.0" styleClass="signUpButton" stylesheets="@style.css" text="Log in" />
-      <Button fx:id="signUpButton" layoutX="481.0" layoutY="387.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="44.0" prefWidth="140.0" styleClass="signUpButton" stylesheets="@style.css" text="Sign Up" />
+      <Button fx:id="loginButton" layoutX="300.0" layoutY="388.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="33.0" prefWidth="140.0" styleClass="signUpButton" stylesheets="@style.css" text="Log in" />
+      <Button fx:id="signUpButton" layoutX="481.0" layoutY="387.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="1.0" prefWidth="140.0" styleClass="signUpButton" stylesheets="@style.css" text="Sign Up" />
       <Label layoutX="482.0" layoutY="362.0" text="Don't have an account?">
          <font>
             <Font size="14.0" />

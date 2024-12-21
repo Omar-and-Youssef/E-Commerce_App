@@ -15,6 +15,7 @@ public class Database {
         try {
 
         Customer c1 = new Customer("John Doe", "q", "q", Gender.MALE,Category.ELECTRONICS);
+        c1.setWallet(5000);
         Customer c2 = new Customer("Jane Doe", "jane@gmail.com", "password", Gender.FEMALE,Category.CLOTHING);
         CUSTOMER_DB.add(c1);
         CUSTOMER_DB.add(c2);   
@@ -28,9 +29,9 @@ public class Database {
             // Create product objects
             // Electronics
             PRODUCT_DB.add(new Product(1000.00, 50, "ASUS Laptop", "High-end gaming laptop", "ASUS", Category.ELECTRONICS, "resources/laptop.png"));
-            PRODUCT_DB.add(new Product(1200.00, 30, "Apple iPhone 13", "Latest Apple smartphone", "Apple", Category.ELECTRONICS, "resources/iphone13.jpeg"));
+            PRODUCT_DB.add(new Product(1200.00, 30, "Apple iPhone 13", "Latest Apple smartphone", "Apple", Category.ELECTRONICS, "resources/iphone13.png"));
             PRODUCT_DB.add(new Product(800.00, 40, "Samsung Galaxy Tab", "10-inch tablet", "Samsung", Category.ELECTRONICS, "resources/galaxytab.png"));
-            PRODUCT_DB.add(new Product(450.00, 60, "Sony Headphones", "Noise-canceling over-ear headphones", "Sony", Category.ELECTRONICS, "resources/default.png"));
+            PRODUCT_DB.add(new Product(450.00, 60, "Sony Headphones", "Noise-canceling over-ear headphones", "Sony", Category.ELECTRONICS, "resources/sonyHeadphones.png"));
             PRODUCT_DB.add(new Product(199.99, 100, "Fitbit Charge 5", "Fitness tracker with heart rate monitor", "Fitbit", Category.ELECTRONICS, "resources/default.png"));
             // // Clothing
             PRODUCT_DB.add(new Product(15.05, 500, "Black T-shirt", "Basic cotton t-shirt", "Nike", Category.CLOTHING, "resources/blackShirt.png"));

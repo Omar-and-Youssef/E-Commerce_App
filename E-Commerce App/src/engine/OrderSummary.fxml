@@ -25,7 +25,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="cancelOrderButton" layoutX="359.0" layoutY="544.0" mnemonicParsing="false" onAction="#handleCancelOrder" prefHeight="43.0" prefWidth="188.0" styleClass="signUpButton" text="Cancel Order">
+      <Button fx:id="cancelOrderButton" layoutX="322.0" layoutY="538.0" mnemonicParsing="false" onAction="#handleCancelOrder" prefHeight="35.0" prefWidth="287.0" style="-fx-background-color: red; -fx-text-fill: white;" styleClass="signUpButton" stylesheets="@style.css" text="Cancel Order">
       </Button>
       <VBox layoutX="123.0" layoutY="170.0" prefHeight="358.0" prefWidth="707.0">
          <children>

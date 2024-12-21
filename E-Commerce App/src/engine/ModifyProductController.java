@@ -134,9 +134,16 @@ public class ModifyProductController extends BaseController {
         errorLabel.setVisible(false);
         if(currentProduct==null)engine.switchScene(Screen.HOME);
         else engine.switchScene(Screen.PRODUCT);
+        engine.getHomeController().handleCategoryAll();
     }
     public void updateImage(String path){
+        try{
         productImage.setImage((new Image(getClass().getResourceAsStream(path))));
+        }
+        catch(Exception e){
+            productImage.setImage((new Image(getClass().getResourceAsStream("resources/default.png"))));
+            showError("Could not find image");
+        }
     }
     public void showError(String s){
         errorLabel.setText(s);

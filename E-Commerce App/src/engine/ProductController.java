@@ -74,7 +74,7 @@ public class ProductController extends BaseController {
             engine.getCurrentCustomer().removeFromWishList(engine.getViewedProduct());
         else
             engine.getCurrentCustomer().addToWishlist(engine.getViewedProduct());
-
+            
         liked=!liked;
     }
     public void initialize(){
@@ -154,7 +154,9 @@ public class ProductController extends BaseController {
 
         cartSuccessLabel.setVisible(false);
 
-        int maxQuantity=viewedProduct.getStockQuantity();
+
+        int maxQuantity=(viewedProduct.getStockQuantity()==0)?1:viewedProduct.getStockQuantity();
+        
         SpinnerValueFactory<Integer> valueFactory = 
             new SpinnerValueFactory.IntegerSpinnerValueFactory(1,maxQuantity, 1);
         quantitySpinner.setValueFactory(valueFactory);
@@ -181,7 +183,8 @@ public class ProductController extends BaseController {
         int currentCartQuantity = engine.getCurrentCustomer().getCartQuantity(product);
     
         if (currentCartQuantity+quantity>product.getStockQuantity()) {
-            cartSuccessLabel.setText("Cannot add more than available stock!");
+            if(product.getStockQuantity()==0) cartSuccessLabel.setText("Out of stock");
+            else cartSuccessLabel.setText("Cannot add more");
             cartSuccessLabel.setStyle("-fx-background-color: red;");
         } else {
             engine.addToCart(quantity);
