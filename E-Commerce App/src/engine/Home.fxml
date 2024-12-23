@@ -102,7 +102,11 @@
             <Font size="10.0" />
          </font>
       </Button>
-      <Label fx:id="nameLabel" layoutX="28.0" layoutY="17.0" prefHeight="49.0" prefWidth="253.0" styleClass="welcome-message" stylesheets="@style.css" />
+      <Label fx:id="nameLabel" layoutX="32.0" layoutY="17.0" prefHeight="49.0" prefWidth="253.0" style="-fx-font-family: Arial;" stylesheets="@style.css" text="Welcome" textFill="ORANGE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
       <HBox id="nav-item" alignment="CENTER" layoutX="9.0" layoutY="74.0" prefHeight="55.0" prefWidth="879.0" stylesheets="@style.css">
          <children>
             <Button graphicTextGap="0.0" maxHeight="94.0" maxWidth="67.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="55.0" prefWidth="67.0" styleClass="search-button" stylesheets="@style.css" text="🔍">

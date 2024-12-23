@@ -22,8 +22,9 @@ public void populateOrders(int startingIndex){
     Label[] addressLabels={addressLabel1,addressLabel2,addressLabel3};
     Label[] paymentLabels={paymentLabel1,paymentLabel2,paymentLabel3};
     HBox[] orderBoxes={orderBox1,orderBox2,orderBox3};
-    int i;
+    int i;  
     for(i=0;i<3&&startingIndex+i<orderSize;i++){
+        //we will look from down up
         Order order=orders.get(startingIndex+i);
         dateLabels[i].setText(order.getOrderDate());
         statusLabels[i].setText(order.getOrderStatus().toString());

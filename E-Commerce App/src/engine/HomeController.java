@@ -23,6 +23,7 @@ public class HomeController extends BaseController {
    @FXML
     public void handleLogout(){
         engine.switchScene(Screen.LOGIN);
+        clearSearch();
         //TODO ensure saving cart, wishlist, orders,... \\
     }
     @FXML
@@ -70,7 +71,7 @@ public class HomeController extends BaseController {
         hBox.getStyleClass().add("curved-hbox");
         final int COLUMNS = 4;
         final int MAX_ROWS = 2;
-    
+        
         int row = 0, col = 0;
         productGrid.getChildren().clear();
         productGrid.getColumnConstraints().clear();
@@ -178,42 +179,50 @@ public class HomeController extends BaseController {
     }
     @FXML
     public void handleCategoryAll() {
+        clearSearch();
         productCount = 0;
         populateProducts(engine.getProductDatabase(), productCount);
     }
     @FXML
     public void handleCategoryElectronics() {
+        clearSearch();
         productCount = 0;
         populateProducts(engine.getProductsByCategory(Category.ELECTRONICS), productCount);
     }
     @FXML
     public void handleCategoryClothing() {
+        clearSearch();
         productCount = 0;
         populateProducts(engine.getProductsByCategory(Category.CLOTHING), productCount);
     }
     @FXML
     public void handleCategoryFurniture() {
+        clearSearch();
         productCount = 0;
         populateProducts(engine.getProductsByCategory(Category.FURNITURE), productCount);
     }
     @FXML
     public void handleCategoryBooks() {
+        clearSearch();
         productCount = 0;
         ArrayList<Product> books = engine.getProductsByCategory(Category.BOOKS);
         populateProducts(books, productCount);
     }
     @FXML
     public void handleCategoryBeauty() {
+        clearSearch();
         productCount = 0;
         populateProducts(engine.getProductsByCategory(Category.BEAUTY), productCount);
     }
     @FXML
     public void handleCategoryToys() {
+        clearSearch();
         productCount = 0;
         populateProducts(engine.getProductsByCategory(Category.TOYS), productCount);
     }
     @FXML
     public void handleCategorySports() {
+        clearSearch();
         productCount = 0;
         populateProducts(engine.getProductsByCategory(Category.SPORTS), productCount);
     }
@@ -241,7 +250,9 @@ public class HomeController extends BaseController {
     public Button getnavRightButton(){
         return navRightButton;
     }
-
+    public void clearSearch(){
+        searchField.clear();
+    }
     public void setNavigationMenu(boolean isCustomer){
         if(isCustomer){
             cartLabel.setVisible(true);

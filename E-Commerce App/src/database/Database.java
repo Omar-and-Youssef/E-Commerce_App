@@ -21,7 +21,7 @@ public class Database {
         CUSTOMER_DB.add(c2);   
         
         Admin a1 = new Admin("Montaser", "w", "w", Gender.MALE, "Development","8-4");
-        Admin a2 = new Admin("Yousuf", "youssef@gmail.com", "password", Gender.MALE, "Development","9-5");        
+        Admin a2 = new Admin("Yousuf", "montaser@gmail.com", "password", Gender.MALE, "Development","9-5");        
 
         ADMIN_DB.add(a1);
         ADMIN_DB.add(a2);
@@ -32,13 +32,13 @@ public class Database {
             PRODUCT_DB.add(new Product(1200.00, 30, "Apple iPhone 13", "Latest Apple smartphone", "Apple", Category.ELECTRONICS, "resources/iphone13.png"));
             PRODUCT_DB.add(new Product(800.00, 40, "Samsung Galaxy Tab", "10-inch tablet", "Samsung", Category.ELECTRONICS, "resources/galaxytab.png"));
             PRODUCT_DB.add(new Product(450.00, 60, "Sony Headphones", "Noise-canceling over-ear headphones", "Sony", Category.ELECTRONICS, "resources/sonyHeadphones.png"));
-            PRODUCT_DB.add(new Product(199.99, 100, "Fitbit Charge 5", "Fitness tracker with heart rate monitor", "Fitbit", Category.ELECTRONICS, "resources/default.png"));
+            PRODUCT_DB.add(new Product(199.99, 100, "Fitbit Charge 5", "Fitness tracker with heart rate monitor", "Fitbit", Category.ELECTRONICS, "resources/fitbit.png"));
             // // Clothing
             PRODUCT_DB.add(new Product(15.05, 500, "Black T-shirt", "Basic cotton t-shirt", "Nike", Category.CLOTHING, "resources/blackShirt.png"));
             PRODUCT_DB.add(new Product(60.07, 300, "Blue Jeans", "Slim fit jeans", "Levi's", Category.CLOTHING, "resources/blueJeans.png"));
             PRODUCT_DB.add(new Product(120.09, 100, "Leather Jacket", "Stylish leather jacket", "Zara", Category.CLOTHING, "resources/leatherJacket.png"));
-            PRODUCT_DB.add(new Product(25.50, 200, "Graphic T-shirt", "Printed cotton t-shirt", "H&M", Category.CLOTHING, "resources/default.png"));
-            PRODUCT_DB.add(new Product(99.99, 150, "Casual Sneakers", "Comfortable and trendy sneakers", "Adidas", Category.CLOTHING, "resources/default.png"));
+            PRODUCT_DB.add(new Product(25.50, 200, "Graphic T-shirt", "Printed cotton t-shirt", "H&M", Category.CLOTHING, "resources/graphicsTshirt.png"));
+            PRODUCT_DB.add(new Product(99.99, 150, "Casual Sneakers", "Comfortable and trendy sneakers", "Adidas", Category.CLOTHING, "resources/sneakers.png"));
 
             // Furniture
             PRODUCT_DB.add(new Product(300.00, 20, "Office Chair", "Ergonomic office chair", "IKEA", Category.FURNITURE, "resources/officeChair.png"));

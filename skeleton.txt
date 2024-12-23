@@ -9,11 +9,6 @@ E-Commerce_App/
 │   │   │   ├── Category.java
 │   │   │   ├── Products.java
 │   │   │   └── Reviews.java
-│   │   ├── promotions/
-│   │   │   ├── Coupon.java
-│   │   │   ├── Discount.java
-│   │   │   ├── Points.java
-│   │   │   └── Promotions.java
 │   │   ├── users/
 │   │   │   ├── accounts/
 │   │   │   │   ├── Admin.java
@@ -29,19 +24,14 @@ E-Commerce_App/
 │   │   │   │   └── WishList.java
 │   ├── dao/                    
 │   │   ├── ProductDAO.java
-│   │   ├── UserDAO.java
+│   │   ├── AdminDAO.java
+│   │   ├── CustomerDAO.java
 │   │   └── OrderDAO.java
 │   ├── service/                
 │   │   ├── ProductService.java
 │   │   ├── UserService.java
 │   │   └── OrderService.java
-│   ├── controller/             
-│   │   ├── AdminDashboardController.java
-│   │   └── UserController.java
-│   └── exceptions/             
-│       └── CustomException.java
-└── resources/                 
-    ├── draft.txt
-    ├── README.md
-    └── skeleton.txt
+│   ├── engine/             
+│   │   ├── // all controllers and UI fxml's
+
 
