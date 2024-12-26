@@ -25,12 +25,12 @@
             <Blend />
          </effect>
       </Button>
-      <Label fx:id="profileTitle" alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="47.0" layoutY="111.0" prefHeight="48.0" prefWidth="267.0" style="-fx-text-fill: orange;" styleClass="subTitle" stylesheets="@style.css" text="Profile " textFill="ORANGE">
+      <Label fx:id="profileTitle" alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="47.0" layoutY="142.0" prefHeight="48.0" prefWidth="267.0" style="-fx-text-fill: orange;" styleClass="subTitle" stylesheets="@style.css" text="Profile " textFill="ORANGE">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <VBox layoutX="211.0" layoutY="229.0" prefHeight="221.0" prefWidth="414.0" spacing="10.0">
+      <VBox layoutX="211.0" layoutY="258.0" prefHeight="221.0" prefWidth="414.0" spacing="10.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>

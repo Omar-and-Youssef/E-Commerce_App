@@ -205,9 +205,11 @@ public class Engine {
             case PROFILE:
                 profileController.setUser(currentUser);
                 stage.setScene(profileScene);
+                break;
             case CUSTOMER_DB:
-                customerDBController.populateCustomerDB(0);
+                customerDBController.populateCustomers(0);
                 stage.setScene(customerDBScene);
+                break;
             default: break;
         }
     }
@@ -373,6 +375,9 @@ public class Engine {
     }
     public ArrayList<Order> getAllOrders(){
         return adminService.getAllOrders();
+    }
+    public ArrayList<Customer> getCustomerDB(){
+        return adminService.getCustomerDB();
     }
     public void setViewedOrder(Order order){
         this.viewedOrder=order;

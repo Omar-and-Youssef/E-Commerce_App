@@ -74,7 +74,10 @@ public class AdminService {
         }
         return c;
     }
-    public int getAllAdmins(){
+    public ArrayList<Customer> getCustomerDB(){
+        return customerDAO.getAllCustomers();
+    }
+    public int getAllAdmins(){//number
         int p;
         try{
             p=adminDAO.getAllAdmins().size();

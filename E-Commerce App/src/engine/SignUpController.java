@@ -48,8 +48,7 @@ public class SignUpController extends BaseController{
             String password=validatePassword(passwordField.getText());
             String address=validateAddress(addressField.getText());
             String phoneNumber=validatePhoneNumber(phoneNumberField.getText());
-            LocalDate dob = validateDateOfBirth(birthDayPicker.getValue());
-    
+
             RadioButton selectedGender=(RadioButton) genderToggleGroup.getSelectedToggle();
             if (selectedGender==null) throw new IllegalArgumentException("Gender is required.");
             Gender gender=Gender.valueOf(selectedGender.getText().toUpperCase());
@@ -57,9 +56,11 @@ public class SignUpController extends BaseController{
             String selectedCategory=categoryChoiceBox.getValue();
             if (selectedCategory==null) throw new IllegalArgumentException("Category is required.");
             Category category=Category.valueOf(selectedCategory.toUpperCase());
-    
+
+            LocalDate dob = validateDateOfBirth(birthDayPicker.getValue());
+            
             Customer customer=new Customer(name,email,password,gender,phoneNumber,address,category);
-    
+
             engine.signUp(customer);
             engine.switchScene(Screen.HOME);
             engine.getHomeController().displayName(customer.getName());
@@ -86,12 +87,12 @@ public class SignUpController extends BaseController{
         "Sports");
     }
     private String validateName(String name) {
-        if (name == null || name.trim().isEmpty()) {
+        if (name == null || name.trim().isEmpty())
             throw new IllegalArgumentException("Name is required.");
-        }
-        if (!name.matches("^[a-zA-Z\\s]+$")) {
+        if (!name.matches("^[a-zA-Z\\s]+$"))
             throw new IllegalArgumentException("Name must contain only alphabets and spaces.");
-        }
+        if(name.trim().length()<3) 
+            throw new IllegalArgumentException("Name is too short.");
         return name.trim();
     }
     
@@ -122,13 +123,16 @@ public class SignUpController extends BaseController{
     private String validateAddress(String address) {
         if (address == null||address.trim().isEmpty()) 
             throw new IllegalArgumentException("Address is required.");
+            String addressRegex = "^[a-zA-Z\\s]+, \\s*[a-zA-Z\\s]+, \\s*[a-zA-Z0-9\\s]+, \\s*(Apt\\.?\\s?[0-9]+|No\\.?\\s?[0-9]+|\\d+)$";
+        if(!address.matches(addressRegex))
+            throw new IllegalArgumentException("Invalid address syntax.");
         return address.trim();
     }
     private String validatePhoneNumber(String phoneNumber) {
         if (phoneNumber==null||phoneNumber.isEmpty())
             throw new IllegalArgumentException("Phone number is required.");
-        
-    String phoneRegex = "^\\+\\d{1,4}(?:\\s?\\d{1,4}){3,}$";
+
+    String phoneRegex = "^\\+?\\d{1,3}[-\\s]?\\(?\\d{1,4}\\)?[-\\s]?\\d{1,4}[-\\s]?\\d{1,4}[-\\s]?\\d{1,4}$";
         if (!phoneNumber.matches(phoneRegex))
             throw new IllegalArgumentException("Invalid number.");
         return phoneNumber.trim();

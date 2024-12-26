@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -14,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import entity.products.Category;
@@ -97,6 +99,14 @@ public class HomeController extends BaseController {
         // Update button visibility, will see how we update category grouping
         navLeftButton.setVisible(startingIndex > 0);
         navRightButton.setVisible(startingIndex + PRODUCTS_PER_PAGE < products.size());
+
+
+
+    searchField.setOnKeyPressed(event->{
+    if (event.getCode()==KeyCode.ENTER) {
+        handleSearch();
+    }
+});
     }
     public VBox createProductBox(Product product){
         VBox productBox = new VBox();
@@ -236,13 +246,17 @@ public class HomeController extends BaseController {
             populateProducts(engine.getProductDatabase(), 0);
             return;
         }
-        ArrayList<Product> searchedProducts = engine.getProductDatabase()
+    ArrayList<Product> searchedProducts = engine.getProductDatabase()
         .stream()
-        .filter(product -> 
-            product.getProductName().toLowerCase().contains(searchedProduct.toLowerCase()) ||
-            product.getCategory().name().toLowerCase().contains(searchedProduct.toLowerCase()) || // Enum value search
-            (product.getBrand() != null && product.getBrand().toLowerCase().contains(searchedProduct.toLowerCase())) // Brand search
-        )
+        .filter(product->{
+            String lowerCaseSearch = searchedProduct.toLowerCase();
+            return product.getProductName().toLowerCase().contains(lowerCaseSearch) ||
+                product.getCategory().name().toLowerCase().contains(lowerCaseSearch) || // Enum value search
+                Optional.ofNullable(product.getBrand())
+                        .map(String::toLowerCase)
+                        .map(brand->brand.contains(lowerCaseSearch))
+                        .orElse(false); //jsut to ensure
+        })
         .collect(Collectors.toCollection(ArrayList::new));
         productCount = 0;
         populateProducts(searchedProducts, productCount);

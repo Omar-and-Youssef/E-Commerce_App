@@ -28,6 +28,10 @@ public class AnalyticsController extends BaseController{
     public void viewAllOrders(){
         engine.switchScene(Screen.ORDERS);
     }
+    @FXML
+    public void viewAllCustomers(){
+        engine.switchScene(Screen.CUSTOMER_DB);
+    }
     public void updateAnalytics(){
         if(engine==null) return;
         totalCustomers.setText(String.valueOf(engine.getTotalCustomers()));
