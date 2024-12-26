@@ -3,7 +3,6 @@ package engine;
 import java.util.ArrayList;
 import entity.products.Category;
 import entity.products.Product;
-import entity.users.details.Cart;
 import entity.users.details.CartItem;
 import entity.users.details.Order;
 import exceptions.ServiceException;
@@ -247,6 +246,19 @@ public class Engine {
     public void decrementCartItem(int index){
         customerService.decrementCartItem(currentCustomer,index);
     }
+    public void addToWishlist(){
+        customerService.addToWishlist(currentCustomer, viewedProduct);
+    }
+    public void removeFromWishList(){
+        customerService.removeFromWishlist(currentCustomer, viewedProduct);
+    }
+    public void removeFromWishList(int index){
+        customerService.removeFromWishlist(currentCustomer, index);
+    }
+    public boolean isInWishList(){
+        return customerService.isInWishList(currentCustomer, viewedProduct);
+    }
+
     public double getCartTotal(){
         return customerService.getCartTotal(currentCustomer);
     }
@@ -278,13 +290,24 @@ public class Engine {
         try{
         adminService.deleteProduct(viewedProduct);
         }catch(Exception ex){
-            System.out.println("Couldnot find product");
-            ex.printStackTrace();           
-             //TODO FIX THIS AS U LIKE
+        
         }
     }
     public boolean addProduct(Product product){
         return adminService.addProduct(product);
+    }
+    public void updateProduct(Product product,String name,
+    String brand, Double price, String desc, int stockQuantity, 
+    Category category, String imagePath){
+        try{
+        adminService.updateProduct(product,name,
+        brand, price, desc, stockQuantity, 
+        category, imagePath);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();   
+        }
     }
 //=================================Get&Set====================================
     public Stage getStage(){

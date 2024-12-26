@@ -6,24 +6,22 @@ import java.util.*;
 public class ProductDAO {
     Database database=new Database();
     private ArrayList<Product> products= database.getProductDB();
-//=======================================Methods=======================================
-
+//=======================================CRUD=======================================
 public  void  addProduct(Product product){
         products.add(product);
     }
-    public boolean deleteProduct(Product product){
+public boolean deleteProduct(Product product){
         return products.remove(product);
     }
-    public  boolean updateProduct(Product product) { 
-        for (int i=0;i<products.size();i++) {
-            if (products.get(i).getProductID().equals(product.getProductID())) {
-                products.set(i, product);
-                return true;
-            }
+public  boolean updateProduct(Product product) { 
+    for (int i=0;i<products.size();i++) {
+        if (products.get(i).getProductID().equals(product.getProductID())) {
+            products.set(i, product);
+            return true;
         }
-        return false;    
     }
-//=======================================Get&Set=======================================
+    return false;    
+}
 public  ArrayList<Product> getAllProducts(){
     return products;
 }
@@ -53,9 +51,6 @@ public ArrayList<Product> getProductsByName(String name){
     }
     return productsByName;
 }
-//for search, 
-//get products by brand, by descending price, by descending rating
-//get by name get by category 
 public  boolean productInDB(Product product){
     return getProductById(product.getProductID())!=null;
 }

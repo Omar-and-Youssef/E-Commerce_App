@@ -1,23 +1,14 @@
 package engine;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import entity.products.Product;
-import entity.users.details.CartItem;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 public class WishListController extends BaseController{
     @FXML
     public void handleBack(){
@@ -26,7 +17,7 @@ public class WishListController extends BaseController{
     public int wishListCount;
     @FXML
     public void navigateWishlistRight(){
-        ArrayList<Product> cartItems=engine.getCurrentCustomer().getWishList().getWishList();
+        ArrayList<Product> cartItems=engine.getCurrentCustomer().getWishList().getWishListItems();
         if(cartItems.size()>wishListCount+3){
             wishListCount+=3;
             populateWishlist(wishListCount);
@@ -41,21 +32,21 @@ public class WishListController extends BaseController{
     }
     @FXML
     public void removeWishItem1(){
-        engine.getCurrentCustomer().removeFromWishList(wishListCount);
+        engine.removeFromWishList(wishListCount);
         populateWishlist(wishListCount);
     }
     @FXML
     public void removeWishItem2(){
-        engine.getCurrentCustomer().removeFromWishList(wishListCount+1);
+        engine.removeFromWishList(wishListCount+1);
         populateWishlist(wishListCount);
     }
     @FXML
     public void removeWishItem3(){
-        engine.getCurrentCustomer().removeFromWishList(wishListCount+2);
+        engine.removeFromWishList(wishListCount+2);
         populateWishlist(wishListCount);
     }
     public void populateWishlist(int startingIndex){
-        ArrayList<Product> wishItems=engine.getCurrentCustomer().getWishList().getWishList();
+        ArrayList<Product> wishItems=engine.getCurrentCustomer().getWishList().getWishListItems();
      
         Label[] nameLabels={nameLabel1,nameLabel2,nameLabel3};
         Label[] brandLabels={brandLabel1,brandLabel2,brandLabel3};

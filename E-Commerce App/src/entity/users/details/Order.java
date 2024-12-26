@@ -26,14 +26,6 @@ public class Order {
         this.PAYMENT_METHOD=PAYMENT_METHOD;
         ORDER_DATE=new Date();
     }
-//=======================================Methods=======================================
-    public void cancelOrder(){//Incase Remote Cancellation
-        this.orderStatus=OrderStatus.CANCELLED;
-    }
-    public void updateOrderStatus(OrderStatus newStatus){
-        //Probable exception here
-        orderStatus=newStatus;
-    }
 //=======================================Get&Set=======================================
     public String getOrderID(){
         return ORDER_ID;

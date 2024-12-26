@@ -14,7 +14,7 @@ public class CartItem {
         this.totalPrice = product.getPrice() * quantity;
     }
 //=======================================Methods=======================================
-    public boolean decrementProduct(){//Boolean Indicates 0 remove from cart
+    public boolean decrementProduct(){
         if(--quantity==0)return true;
         totalPrice=product.getPrice()*quantity;
         return false;

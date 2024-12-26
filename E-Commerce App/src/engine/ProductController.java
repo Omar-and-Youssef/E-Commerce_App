@@ -71,9 +71,9 @@ public class ProductController extends BaseController {
         LikedPicture.setVisible(!liked);
         UnLikedPicture.setVisible(liked);
         if(liked)
-            engine.getCurrentCustomer().removeFromWishList(engine.getViewedProduct());
+            engine.removeFromWishList();
         else
-            engine.getCurrentCustomer().addToWishlist(engine.getViewedProduct());
+            engine.addToWishlist();
             
         liked=!liked;
     }
@@ -91,7 +91,7 @@ public class ProductController extends BaseController {
                 wishlistIcon.setImage((new Image(getClass().getResourceAsStream("resources/wishlist.png"))));
                 ordersLabel.setText("Orders");
                 ordersIcon.setImage((new Image(getClass().getResourceAsStream("resources/orders.png"))));
-                boolean liked=engine.getCurrentCustomer().isInWishList(engine.getViewedProduct());
+                boolean liked=engine.isInWishList();
                 LikedPicture.setVisible(liked);
                 UnLikedPicture.setVisible(!liked);
                 LikedPicture.setImage((new Image(getClass().getResourceAsStream("resources/LikedProduct2.png"))));

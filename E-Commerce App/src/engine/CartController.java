@@ -3,7 +3,6 @@ package engine;
 import java.util.ArrayList;
 import java.util.List;
 
-import entity.products.Product;
 import entity.users.details.CartItem;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

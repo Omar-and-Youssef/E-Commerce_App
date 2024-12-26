@@ -12,37 +12,25 @@ public class CustomerService {
 private ProductDAO productDAO;
 private CustomerDAO customerDAO;
 private OrderDAO orderDAO;
-//==================================Methods=========================================
+//==================================Login&Register=========================================
 public CustomerService(){
     productDAO=new ProductDAO();
     customerDAO=new CustomerDAO();
     orderDAO=new OrderDAO();
 }
-
 public  Customer logIn(String email,String password){
     Customer customer=customerDAO.getCustomerByEmail(email);
     if(customer!=null&&customer.getPassword().equals(password)) 
         return customer;  
     return null;  
 }
-
 public void registerCustomer(Customer customer) {
         customerDAO.addCustomer(customer);
 }
 public boolean isValidEmail(String email){
     return customerDAO.getCustomerByEmail(email)==null;
 }
-public void updateCustomer(Customer customer) throws ServiceException{
-        if(!customerDAO.updateCustomer(customer)) //if customer not found
-            throw new ServiceException("Customer not found");
-        //TODO handle partial updates
-}
-public void deleteCustomer(Customer customer) throws ServiceException{
-        if(customerDAO.deleteCustomer(customer)) //if customer not found
-            throw new ServiceException("Customer not found");
-    
-}
-
+//==================================Business Logic=========================================
 public void addToCart(Customer customer, Product product, int quantity){
     customer.getCart().addItem(new CartItem(product, quantity));
 }
@@ -70,6 +58,18 @@ public void setQuantityInCart(Customer customer, int index, int quantity){
 }
 public double getCartTotal(Customer customer){
     return customer.getCart().getTotalPrice();
+}
+public void addToWishlist(Customer customer, Product product){
+    customer.getWishList().addProduct(product);
+}
+public void removeFromWishlist(Customer customer, Product product){
+    customer.getWishList().removeProduct(product);
+}
+public void removeFromWishlist(Customer customer, int index){
+    customer.getWishList().removeProduct(index);
+}
+public boolean isInWishList(Customer customer, Product product){
+    return customer.getWishList().getWishListItems().contains(product);
 }
 public void addReview(Customer customer, String comment,double rating,
 Product product) throws ServiceException{
@@ -145,22 +145,11 @@ public void cancelOrder(Order order){
         p.setStockQuantity(p.getStockQuantity()+cartItem.getQuantity());
     }
         if(orderDAO.orderInDB(order))
-        order.cancelOrder();
+        order.setOrderStatus(OrderStatus.CANCELLED);
         // orderDAO.deleteOrder(order); 
 }
-public void addToWishlist(Customer customer, Product product) throws ServiceException{
-
-        if(!customerDAO.customerInDB(customer))
-            throw new IllegalArgumentException("Customer not found");
-        if(!productDAO.productInDB(product))
-            throw new IllegalArgumentException("Product not found");
-
-        customer.getWishList().addProduct(product);
-    
-}
-public void removeFromWishlist(Customer customer, int index) throws ServiceException{
-        if(!customerDAO.customerInDB(customer))
-            throw new IllegalArgumentException("Customer not found");
+public void updateOrderStatus(Order order,OrderStatus newStatus){
+    order.setOrderStatus(newStatus);
 }
 public void submitHelpTicket(Customer customer, String issue) throws ServiceException{
         if(!customerDAO.customerInDB(customer))

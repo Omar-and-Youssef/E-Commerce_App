@@ -24,10 +24,6 @@ public boolean updateCustomer(Customer customer) {
     }
     return false;
 }
-// public void updateCustomerWallet(){}
-// public void updatePassword()
-// all handled in the control layer 
-
 public ArrayList<Customer> getAllCustomers(){
     return customers;
 }
@@ -63,5 +59,4 @@ public boolean customerInDB(Customer customer){
         return false;
     }
 }
-
 }

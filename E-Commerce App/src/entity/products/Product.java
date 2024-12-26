@@ -16,7 +16,7 @@ public class Product {
     public boolean maxedOutInCart;
     private int salesCount;
 
-    //=======================================Constructor===================================
+//=======================================Constructor===================================
     public Product(){
         this(0,0,"NA","NA","NA",Category.ALL,null);
     }
@@ -40,7 +40,6 @@ public class Product {
     Category category){
         this(price,stockQuantity,productName,description,"NA",category,null);
     }
-
 //=======================================Methods=======================================
     public void addReview(Review r){
         REVIEW_LIST.add(r);
@@ -118,5 +117,4 @@ public class Product {
     public void setSalesCount(int noOfSales) {
         salesCount = noOfSales;
     }
-    
 }

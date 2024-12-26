@@ -111,13 +111,15 @@ public class ModifyProductController extends BaseController {
         } else {
             try {
                 validateInputs();
-                currentProduct.setProductName(NameF.getText());
-                currentProduct.setBrand(BrandF.getText());
-                currentProduct.setPrice(Double.parseDouble(PriceF.getText()));
-                currentProduct.setDescription(DescF.getText());
-                currentProduct.setStockQuantity(Integer.parseInt(quantityF.getText()));
-                currentProduct.setCategory(Category.valueOf(categoryChoiceBox.getValue().toUpperCase()));
-                currentProduct.setImage(imageF.getText());
+                engine.updateProduct(currentProduct,
+                NameF.getText(),
+                BrandF.getText(),
+                Double.parseDouble(PriceF.getText()),
+                DescF.getText(),
+                Integer.parseInt(quantityF.getText()),
+                Category.valueOf(categoryChoiceBox.getValue().toUpperCase()),
+                imageF.getText()
+                );
                 updateImage(imageF.getText());
             } catch (IllegalArgumentException | NullPointerException e) {
                 showError("Invalid input: "+e.getMessage());

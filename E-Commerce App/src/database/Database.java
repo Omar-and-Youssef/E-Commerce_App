@@ -9,11 +9,8 @@ public class Database {
     private static final ArrayList<Admin> ADMIN_DB= new ArrayList<Admin>();
     private static final ArrayList<Product> PRODUCT_DB= new ArrayList<Product>();
     private static final ArrayList<Order> ORDER_DB= new ArrayList<Order>();
-
-    //TODO dummy data
   static { 
         try {
-
         Customer c1 = new Customer("John Doe", "q", "q", Gender.MALE,Category.ELECTRONICS);
         c1.setWallet(5000);
         Customer c2 = new Customer("Jane Doe", "jane@gmail.com", "password", Gender.FEMALE,Category.CLOTHING);
@@ -79,7 +76,6 @@ public class Database {
         e.printStackTrace();
     }
   }
-    
     public  ArrayList<Customer> getCustomerDB(){
         return CUSTOMER_DB;
     }

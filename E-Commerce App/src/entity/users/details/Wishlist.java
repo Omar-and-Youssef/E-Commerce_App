@@ -22,7 +22,7 @@ public class Wishlist {
         return WISH_LIST.contains(product);
     }
 //=======================================Get&Set=======================================
-    public ArrayList<Product> getWishList(){
+    public ArrayList<Product> getWishListItems(){
         return WISH_LIST;
     }
 }   

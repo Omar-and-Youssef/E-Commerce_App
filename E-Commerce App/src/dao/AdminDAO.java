@@ -8,7 +8,7 @@ import entity.users.accounts.Admin;
 public class AdminDAO{
 Database database=new Database();
 private ArrayList<Admin> admins= database.getAdminDB();
-
+//==========================================CRUD==========================================
 public void addAdmin(Admin admin){
     admins.add(admin);
 }
@@ -24,7 +24,6 @@ public boolean updateAdmin(Admin admin){
     }
 return false;
 }
-//=======================================Get&Set=======================================
 public ArrayList<Admin> getAllAdmins(){
     return admins;
 }

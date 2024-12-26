@@ -12,15 +12,9 @@ private  ArrayList<Order> orders= database.getOrderDB();
 public void addOrder(Order order){
     orders.add(order);
 }
-// public boolean deleteOrder(Order order){
-//     if(order==null||getOrderById(order.getOrderId())==null) return false;
-//     getOrderById(order.getOrderId()).setOrderStatus(OrderStatus.CANCELLED);
-//     return false;
-// }
 public void updateOrder(Order order, OrderStatus orderStatus){
     order.setOrderStatus(orderStatus);
 }
-
 public ArrayList<Order> getAllOrders(){
     return orders;
 }

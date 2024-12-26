@@ -2,8 +2,6 @@ package service;
 
 import dao.AdminDAO;
 import dao.CustomerDAO;
-import entity.users.accounts.Admin;
-import entity.users.accounts.User;
 
 public class UserService {
     AdminDAO adminDAO;

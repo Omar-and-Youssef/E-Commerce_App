@@ -4,7 +4,6 @@ import entity.users.details.*;
 import exceptions.ServiceException;
 import entity.products.*; 
 import dao.*;
-import database.Database;
 
 import java.util.*;
 public class AdminService {
@@ -19,6 +18,7 @@ public class AdminService {
         customerDAO=new CustomerDAO();
         orderDAO=new OrderDAO();
     }
+//====================================Methods=============================================
     public Admin logIn(String email,String password){
         Admin admin = adminDAO.getAdminByEmail(email);
         if(admin!=null&&admin.getPassword().equals(password)) 
@@ -46,14 +46,16 @@ public class AdminService {
             if(!productDAO.deleteProduct(product))
                 throw new ServiceException("Product does not exist");
     }
-    public void updateProduct(Product product) throws ServiceException{
-
-            if(product==null)
-                throw new IllegalArgumentException("Product cannot be null");
-
-            if(!productDAO.productInDB(product))
-                throw new ServiceException("Product does not exist");
-
+    public void updateProduct(Product product,String name,
+    String brand, Double price, String desc, int stockQuantity, 
+    Category category, String imagePath){
+            product.setProductName(name);
+            product.setBrand(brand);
+            product.setPrice(price);
+            product.setDescription(desc);
+            product.setStockQuantity(stockQuantity);
+            product.setCategory(category);
+            product.setImage(imagePath);
             productDAO.updateProduct(product);
     }
     public ArrayList<Product> getProductsByCategory(Category category){
@@ -66,7 +68,8 @@ public class AdminService {
         int c;
         try{
             c=customerDAO.getAllCustomers().size();
-        }catch(Exception e){
+        }
+        catch(Exception e){
             return 0;
         }
         return c;
@@ -85,7 +88,8 @@ public class AdminService {
         try{
             for(Product p: productDAO.getAllProducts())
                 total+=p.getStockQuantity();
-        }catch(Exception e){
+        }
+        catch(Exception e){
             return 0;
         }
         return total;
@@ -97,7 +101,8 @@ public class AdminService {
         int t;
         try{
             t=orderDAO.getAllOrders().size();
-        }catch(Exception e){
+        }
+        catch(Exception e){
             return 0;
         }
         return t;
@@ -127,7 +132,6 @@ public class AdminService {
         else throw new ServiceException("No admins available to assign ticket");
         }
     }
-//unsure of helpticket algorithm
     public void unassignHelpTicket(HelpTicket helpTicket) throws ServiceException{
         if(helpTicket.getAssignedAdmin()==null)
             throw new ServiceException("Ticket not assigned to any admin");
@@ -145,8 +149,9 @@ public class AdminService {
             
         else throw new ServiceException("Ticket already resolved");
     }
-    public double getAvgOrders(){ //average no. of orders per customer
+    public double getAvgOrders(){ 
         return getTotalOrders()/getAllCustomers();
+        //average no. of orders per customer
     }
     public Product getBestSellingProduct(){
         ArrayList<Product> products=productDAO.getAllProducts();
