@@ -10,6 +10,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 
 public class ProductController extends BaseController {
@@ -34,9 +35,8 @@ public class ProductController extends BaseController {
     private Label cartSuccessLabel;
     @FXML
     private Label wishlistSuccessLabel;
-    //TODO
-    // @FXML
-    // private ImageView ratingImage;
+    @FXML
+    private ImageView ratingImage;
     @FXML
     private Label QuantityLabel;
     @FXML
@@ -61,6 +61,8 @@ public class ProductController extends BaseController {
     private ImageView UnLikedPicture;
     @FXML
     private ImageView LikedPicture;
+    @FXML
+    private TextField search;
 
     private int stockQuantity;
 
@@ -161,9 +163,10 @@ public class ProductController extends BaseController {
         quantitySpinner.setEditable(false);
         quantitySpinner.setPrefWidth(80);
 
-        
-
-        //TODO ratingImage.setImage(new Image(getClass().getResourceAsStream("resources/"+engine.getIntegerRating(viewedProduct)+"star.png")));
+        search.setOnKeyPressed(event->{
+        if (event.getCode()==KeyCode.ENTER)
+                handleSearch();
+        });
 
         displayStockAvailiability();
     
@@ -196,27 +199,28 @@ public class ProductController extends BaseController {
     @FXML 
     private Label stockAvailability;
     public void displayStockAvailiability(){
-    int stock = engine.getViewedProduct().getStockQuantity();
-    if (stock == 0) {
-        stockAvailability.setText("Out of Stock");
-        stockAvailability.setStyle("-fx-text-fill: red;");
-    } else if (stock == 1) {
-        stockAvailability.setText("Only one left in stock");
-        stockAvailability.setStyle("-fx-text-fill: red;");
-    } else if (stock < 10) {
-        stockAvailability.setText("Limited Stock");
-        stockAvailability.setStyle("-fx-text-fill: orange;");
-    } else {
-        stockAvailability.setText("Available In Stock");
-        stockAvailability.setStyle("-fx-text-fill: green;");
+        int stock = engine.getViewedProduct().getStockQuantity();
+        if (stock == 0) {
+            stockAvailability.setText("Out of Stock");
+            stockAvailability.setStyle("-fx-text-fill: red;");
+        } else if (stock == 1) {
+            stockAvailability.setText("Only one left in stock");
+            stockAvailability.setStyle("-fx-text-fill: red;");
+        } else if (stock < 10) {
+            stockAvailability.setText("Limited Stock");
+            stockAvailability.setStyle("-fx-text-fill: orange;");
+        } else {
+            stockAvailability.setText("Available In Stock");
+            stockAvailability.setStyle("-fx-text-fill: green;");
+        }
     }
-}
 
 
 //==================================Home methods===================================
     @FXML
     public void handleSearch(){
         engine.switchScene(Screen.HOME);
+        engine.searchFromProductView=(search.getText().isEmpty())?null:search.getText();
         engine.getHomeController().handleSearch();
         cartSuccessLabel.setVisible(false);
     }
@@ -232,7 +236,6 @@ public class ProductController extends BaseController {
         engine.switchScene(Screen.HOME);
         engine.getHomeController().handleCategoryAll();
         cartSuccessLabel.setVisible(false);
-
     }
     @FXML
     public void handleCategoryElectronics() {
@@ -251,7 +254,6 @@ public class ProductController extends BaseController {
         engine.switchScene(Screen.HOME);
         engine.getHomeController().handleCategoryFurniture();
         cartSuccessLabel.setVisible(false);
-
     }
     @FXML
     public void handleCategoryBooks() {
@@ -270,14 +272,12 @@ public class ProductController extends BaseController {
         engine.switchScene(Screen.HOME);
         engine.getHomeController().handleCategoryToys();
         cartSuccessLabel.setVisible(false);
-
     }
     @FXML
     public void handleCategorySports() {
         engine.switchScene(Screen.HOME);
         engine.getHomeController().handleCategorySports();
         cartSuccessLabel.setVisible(false);
-
     }
     @FXML
     public void handleCart(){
@@ -286,13 +286,12 @@ public class ProductController extends BaseController {
     }
     @FXML
     public void handleWishListOrAdd(){
+
         if(!engine.isCustomer){
         engine.getModifyController().setScreen(null);
         engine.switchScene(Screen.MODIFYPRODUCT);
         }
-        else {
-            engine.switchScene(Screen.WISH_LIST);
-        }
+        else engine.switchScene(Screen.WISH_LIST);
     }
     @FXML
     public void handleOrdersOrAnalytics(){
@@ -306,6 +305,9 @@ public class ProductController extends BaseController {
     @FXML
     public void viewProfile(){
         engine.switchScene(Screen.PROFILE);
+    }
+    public void clearSerach(){
+        
     }
 }
 

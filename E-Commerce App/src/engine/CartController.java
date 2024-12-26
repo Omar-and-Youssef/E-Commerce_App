@@ -52,16 +52,17 @@ public class CartController extends BaseController{
                 displayErrorMessage("Your cart is empty");
                 return;
             }
-
-
             String paymentMethod=paymentMethodCB.getValue();
             String address=addressField.getText();
             for(CartItem c: engine.getCurrentCustomer().getCart().getCartItems())
             if (c.getQuantity() > c.getProduct().getStockQuantity()) {
                 displayErrorMessage("Insufficient stock to fulfill the order");
                 return;
-            }//just in case
-            //TODO needs more testing
+            }
+            if(!validateAddress(address)){
+                displayErrorMessage("Invalid address syntax");
+                return;
+            }
             if (address == null || address.isEmpty()) {
                 displayErrorMessage("Please enter an address");
                 return;
@@ -180,6 +181,13 @@ public class CartController extends BaseController{
     }
     public ChoiceBox<String> getPaymentChoiceBox(){
         return paymentMethodCB;
+    }
+    public boolean validateAddress(String address) {
+        String addressRegex = "^[a-zA-Z\\s]+, \\s*[a-zA-Z\\s]+, \\s*[a-zA-Z0-9\\s]+, \\s*(Apt\\.?\\s?[0-9]+|No\\.?\\s?[0-9]+|\\d+)$";
+        if(!address.matches(addressRegex)){
+            return false;
+        }
+        return true;
     }
     @FXML
     private Label nameLabel1;

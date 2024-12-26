@@ -64,6 +64,7 @@ public class Engine {
     private UserService userService;
 
     protected boolean isCustomer;
+    protected String searchFromProductView;
 
     public Engine(Stage stage){
         try{
@@ -130,7 +131,6 @@ public class Engine {
             wishlistController =(WishListController) wishlistLoader.getController();
             wishlistController.setEngine(this);
 
-
             FXMLLoader modifyLoader = new FXMLLoader(getClass().getResource("ModifyProduct.fxml"));
             modifyScene = new Scene(modifyLoader.load());
             modifyController =(ModifyProductController) modifyLoader.getController();
@@ -161,6 +161,7 @@ public class Engine {
                 break;
             case HOME: 
                 homeController.displayName(currentUser.getName());
+                homeController.clearSearch();
                 homeController.setNavigationMenu(isCustomer);
                 stage.setScene(homeScene);
                 break;
@@ -330,6 +331,9 @@ public class Engine {
             System.out.println(e.getMessage());
             e.printStackTrace();   
         }
+    }
+    public void updateOrderStatus(){
+        adminService.updateOrderStatus(viewedOrder);
     }
 //=================================Get&Set====================================
     public Stage getStage(){

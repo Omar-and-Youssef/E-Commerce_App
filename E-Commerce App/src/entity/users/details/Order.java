@@ -65,11 +65,10 @@ public class Order {
     @Override
     public String toString() {
         String orderItemsString=""; 
-
         for(int i=0;i<ORDERED_ITEMS.getCartItems().size();i++){
             CartItem c=ORDERED_ITEMS.getCartItems().get(i);
             if(i==ORDERED_ITEMS.getCartItems().size()-1) orderItemsString+=c.getProduct().getProductName();
-            else orderItemsString+=c.getProduct().getProductName()+"🔸";
+            else orderItemsString+=c.getProduct().getProductName()+" 🔸 ";
         }
         return orderItemsString;
     }

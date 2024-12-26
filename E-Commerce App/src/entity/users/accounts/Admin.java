@@ -19,7 +19,6 @@ public class Admin extends User {
     }
     public Admin(String name,String email,String password,String address,
     Gender gender,String role, String workingHours){
-        //no phone number
         this(name,email,password,"NA",address,gender,role,workingHours);
     }
     public Admin(String name,String email,String password,Gender gender,String phoneNumber){

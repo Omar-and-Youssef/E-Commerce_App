@@ -88,6 +88,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
+                  <Button fx:id="updateOrder" mnemonicParsing="false" onAction="#handleUpdateStatus" style="-fx-background-color: green;" styleClass="signUpButton" stylesheets="@style.css" text="Update Status" />
                </children>
 
             </HBox>

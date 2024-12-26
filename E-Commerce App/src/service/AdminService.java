@@ -113,6 +113,21 @@ public class AdminService {
     public double getTotalRevenue(){
         return totalRevenue;
     }
+    public void updateOrderStatus(Order order){
+        switch(order.getOrderStatus()){
+            case PLACED:
+                orderDAO.updateOrder(order,OrderStatus.PREPARING);
+                break;
+            case PREPARING:
+                orderDAO.updateOrder(order,OrderStatus.IN_ROUTE);
+                break;
+            case IN_ROUTE:
+                orderDAO.updateOrder(order, OrderStatus.DELIVERED);
+                break;
+            default:
+                break;
+        }
+    }
     public void updateTotalRevenue(){
         totalRevenue=0;
         ArrayList<Order> orders=orderDAO.getAllOrders();

@@ -39,7 +39,7 @@
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <Label fx:id="nameLabel" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="458.0" text="name">
+                  <Label fx:id="nameLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="22.0" prefWidth="458.0" text="name">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
@@ -56,7 +56,7 @@
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <Label fx:id="emailLabel" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="458.0" text="Label">
+                  <Label fx:id="emailLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="22.0" prefWidth="458.0" text="Label">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
@@ -73,7 +73,7 @@
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <Label fx:id="addressLabel" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="521.0" text="Label">
+                  <Label fx:id="addressLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="22.0" prefWidth="521.0" text="Label">
                      <padding>
                         <Insets left="100.0" top="5.0" />
                      </padding>
@@ -90,7 +90,7 @@
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <Label fx:id="phoneLabel" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="525.0" text="Label">
+                  <Label fx:id="phoneLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="22.0" prefWidth="525.0" text="Label">
                      <padding>
                         <Insets left="100.0" top="5.0" />
                      </padding>
@@ -107,7 +107,7 @@
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <Label fx:id="walletLabel" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="525.0" text="wallet">
+                  <Label fx:id="walletLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="22.0" prefWidth="525.0" text="wallet">
                      <padding>
                         <Insets left="100.0" top="5.0" />
                      </padding>

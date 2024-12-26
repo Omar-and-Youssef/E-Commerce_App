@@ -120,7 +120,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <TextField fx:id="searchField" minHeight="-Infinity" prefHeight="50.0" prefWidth="241.0" promptText="Search for products" stylesheets="@style.css">
+            <TextField fx:id="search" minHeight="-Infinity" prefHeight="50.0" prefWidth="241.0" promptText="Search for products" stylesheets="@style.css">
                <styleClass>
                   <String fx:value="search-bar" />
                   <String fx:value="text-field" />

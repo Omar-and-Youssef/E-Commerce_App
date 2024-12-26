@@ -3,7 +3,6 @@ package engine;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import exceptions.ServiceException;
 
 public class LoginController extends BaseController {
 

@@ -40,6 +40,14 @@ public class OrderSummaryController extends BaseController {
         engine.switchScene(Screen.ORDERS);
     }
     @FXML
+    public void handleUpdateStatus(ActionEvent e){
+        engine.updateOrderStatus();
+        engine.switchScene(Screen.ORDERS);
+    }
+    
+    
+    
+    @FXML
     public void handleBack(ActionEvent e){
         engine.switchScene(Screen.ORDERS);
     }
@@ -53,8 +61,20 @@ public class OrderSummaryController extends BaseController {
         paymentLabel.setText(order.getPaymentMethod());
         orderedItems.setText(order.toString());
 
-        if(!engine.isCustomer||order.getOrderStatus()==OrderStatus.CANCELLED) 
+        if(engine.isCustomer){
+            if(order.getOrderStatus()==OrderStatus.DELIVERED||order.getOrderStatus()==OrderStatus.CANCELLED)
+                cancelOrderButton.setVisible(false);
+            else  cancelOrderButton.setVisible(true);
+            updateOrder.setVisible(false);
+        } 
+        else{
+            if(order.getOrderStatus()==OrderStatus.DELIVERED||order.getOrderStatus()==OrderStatus.CANCELLED)
+                updateOrder.setVisible(false);
+            else 
+                updateOrder.setVisible(true);
             cancelOrderButton.setVisible(false);
-        else cancelOrderButton.setVisible(true);
+        }
     }
+    @FXML
+    private Button updateOrder;
 }

@@ -11,26 +11,31 @@ public class Database {
     private static final ArrayList<Order> ORDER_DB= new ArrayList<Order>();
   static { 
         try {
-        Customer c1 = new Customer("John Doe", "q", "q", Gender.MALE,Category.ELECTRONICS);
-        c1.setWallet(5000);
-        Customer c2 = new Customer("Jane Doe", "jane@gmail.com", "password", Gender.FEMALE,Category.CLOTHING);
-        CUSTOMER_DB.add(c1);
-        CUSTOMER_DB.add(c2);   
-        
-        Admin a1 = new Admin("Montaser", "w", "w", Gender.MALE, "Development","8-4");
-        Admin a2 = new Admin("Yousuf", "montaser@gmail.com", "password", Gender.MALE, "Development","9-5");        
+            Customer c1 = new Customer("John Doe", "q", "q", Gender.MALE,Category.ELECTRONICS);
+            c1.setWallet(5000);
+            Customer c2 = new Customer("Jane Doe", "jane@gmail.com", "password", Gender.FEMALE,Category.CLOTHING);
+            CUSTOMER_DB.add(c1);
+            CUSTOMER_DB.add(c2);   
+            
+            Admin a1 = new Admin("Montaser", "w", "w", Gender.MALE, "Development","8-4");
+            Admin a2 = new Admin("Yousuf", "montaser@gmail.com", "password", Gender.MALE, "Development","9-5");        
 
-        ADMIN_DB.add(a1);
-        ADMIN_DB.add(a2);
+            ADMIN_DB.add(a1);
+            ADMIN_DB.add(a2);
 
             // Create product objects
-            // Electronics
-            PRODUCT_DB.add(new Product(1000.00, 50, "ASUS Laptop", "High-end gaming laptop", "ASUS", Category.ELECTRONICS, "resources/laptop.png"));
-            PRODUCT_DB.add(new Product(1200.00, 30, "Apple iPhone 13", "Latest Apple smartphone", "Apple", Category.ELECTRONICS, "resources/iphone13.png"));
-            PRODUCT_DB.add(new Product(800.00, 40, "Samsung Galaxy Tab", "10-inch tablet", "Samsung", Category.ELECTRONICS, "resources/galaxytab.png"));
+            Product p1=new Product(1200.00, 30, "Apple iPhone 13", "Latest Apple smartphone", "Apple", Category.ELECTRONICS, "resources/iphone13.png")
+            ,p2=new Product(1000.00, 50, "ASUS Laptop", "High-end gaming laptop", "ASUS", Category.ELECTRONICS, "resources/laptop.png")
+            ,p3=new Product(800.00, 40, "Samsung Galaxy Tab", "10-inch tablet", "Samsung", Category.ELECTRONICS, "resources/galaxytab.png")
+            ,p4=new Product(199.99, 100, "Fitbit Charge 5", "Fitness tracker with heart rate monitor", "Fitbit", Category.ELECTRONICS, "resources/fitbit.png");
+            p1.setRating(5);
+            p2.setRating(4);
+            PRODUCT_DB.add(p2);
+            PRODUCT_DB.add(p3);
             PRODUCT_DB.add(new Product(450.00, 60, "Sony Headphones", "Noise-canceling over-ear headphones", "Sony", Category.ELECTRONICS, "resources/sonyHeadphones.png"));
-            PRODUCT_DB.add(new Product(199.99, 100, "Fitbit Charge 5", "Fitness tracker with heart rate monitor", "Fitbit", Category.ELECTRONICS, "resources/fitbit.png"));
-            // // Clothing
+            PRODUCT_DB.add(p4);
+            PRODUCT_DB.add(p1);
+            // Clothing
             PRODUCT_DB.add(new Product(15.05, 500, "Black T-shirt", "Basic cotton t-shirt", "Nike", Category.CLOTHING, "resources/blackShirt.png"));
             PRODUCT_DB.add(new Product(60.07, 300, "Blue Jeans", "Slim fit jeans", "Levi's", Category.CLOTHING, "resources/blueJeans.png"));
             PRODUCT_DB.add(new Product(120.09, 100, "Leather Jacket", "Stylish leather jacket", "Zara", Category.CLOTHING, "resources/leatherJacket.png"));

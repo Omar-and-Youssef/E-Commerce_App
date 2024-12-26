@@ -1,5 +1,4 @@
 package entity.products;
-import java.awt.image.BufferedImage;
 import java.util.*;
 public class Product {
     private static int productCounter;
@@ -103,7 +102,7 @@ public class Product {
         return imagePath;
     }
     public double getRating(){
-        calculateRating();
+        // calculateRating();
         return rating;
     }
     @Override
@@ -116,5 +115,8 @@ public class Product {
     }
     public void setSalesCount(int noOfSales) {
         salesCount = noOfSales;
+    }
+    public void setRating(double rating){
+        this.rating=rating;
     }
 }

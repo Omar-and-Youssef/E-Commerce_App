@@ -18,6 +18,9 @@ public void updateOrder(Order order, OrderStatus orderStatus){
 public ArrayList<Order> getAllOrders(){
     return orders;
 }
+public void deleteOrder(Order order){
+    if(order!=null)orders.remove(order);
+}
 public Order getOrderById(String id){
     for(Order o: orders){
         if(o.getOrderId().equals(id)){

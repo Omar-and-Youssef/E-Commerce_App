@@ -32,10 +32,12 @@ public class HomeController extends BaseController {
     @FXML
     public void viewProfile(){
         engine.switchScene(Screen.PROFILE);
+        clearSearch();
     }
     @FXML
     public void handleCart(){
         engine.switchScene(Screen.CART);
+        clearSearch();
     }
     
     @FXML
@@ -47,21 +49,15 @@ public class HomeController extends BaseController {
         else {
             engine.switchScene(Screen.WISH_LIST);
         }
+        clearSearch();
     }
     @FXML
     public void handleOrdersOrAnalytics(){
         if(engine.isCustomer)
             engine.switchScene(Screen.ORDERS);
         else engine.switchScene(Screen.ANALYTICS);
+        clearSearch();
     }
-    // @FXML
-    // public void handleWishlist(){
-    //     engine.switchScene(Screen.WISHLIST);
-    // }
-    // @FXML
-    // public void handleProfile(){
-    //     engine.switchScene(Screen.PROFILE);
-    // }
     public void displayName(String name){
         String tempName;
         if(name.contains(" ")) tempName= name.substring(0,name.indexOf(" "));
@@ -165,11 +161,6 @@ public class HomeController extends BaseController {
         
         Text productPrice = new Text("$ " + product.getPrice());
         productPrice.setStyle("-fx-font-size: 10px;");
-
-        // productBox.getStyleClass().add("product-box");
-        // productName.getStyleClass().add("product-name");
-        // productBrand.getStyleClass().add("product-brand");
-        // productPrice.getStyleClass().add("product-price");
         
         productBox.getChildren().addAll(productImage,productRating,productName,productBrand,productPrice);
         return productBox;
@@ -192,56 +183,50 @@ public class HomeController extends BaseController {
     }
     @FXML
     public void handleCategoryAll() {
-        clearSearch();
         productCount = 0;
         populateProducts(engine.getProductDatabase(), productCount);
     }
     @FXML
     public void handleCategoryElectronics() {
-        clearSearch();
         productCount = 0;
         populateProducts(engine.getProductsByCategory(Category.ELECTRONICS), productCount);
     }
     @FXML
     public void handleCategoryClothing() {
-        clearSearch();
         productCount = 0;
         populateProducts(engine.getProductsByCategory(Category.CLOTHING), productCount);
     }
     @FXML
     public void handleCategoryFurniture() {
-        clearSearch();
         productCount = 0;
         populateProducts(engine.getProductsByCategory(Category.FURNITURE), productCount);
     }
     @FXML
     public void handleCategoryBooks() {
-        clearSearch();
         productCount = 0;
         ArrayList<Product> books = engine.getProductsByCategory(Category.BOOKS);
         populateProducts(books, productCount);
     }
     @FXML
     public void handleCategoryBeauty() {
-        clearSearch();
         productCount = 0;
         populateProducts(engine.getProductsByCategory(Category.BEAUTY), productCount);
     }
     @FXML
     public void handleCategoryToys() {
-        clearSearch();
         productCount = 0;
         populateProducts(engine.getProductsByCategory(Category.TOYS), productCount);
     }
     @FXML
     public void handleCategorySports() {
-        clearSearch();
         productCount = 0;
         populateProducts(engine.getProductsByCategory(Category.SPORTS), productCount);
     }
     @FXML
     public void handleSearch(){
-        String searchedProduct=searchField.getText();
+        
+        String searchedProduct=(engine.searchFromProductView!=null)?engine.searchFromProductView
+        :searchField.getText();
         if (searchedProduct.isEmpty()) {
             populateProducts(engine.getProductDatabase(), 0);
             return;
@@ -314,5 +299,4 @@ public class HomeController extends BaseController {
     private Button navLeftButton;
     @FXML 
     private TextField searchField;
-
 }

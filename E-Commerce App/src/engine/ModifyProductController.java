@@ -2,7 +2,6 @@ package engine;
 
 import entity.products.Category;
 import entity.products.Product;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -10,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
 
 public class ModifyProductController extends BaseController {
     private Product currentProduct;
