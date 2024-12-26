@@ -107,7 +107,6 @@ public class AdminService {
         }
         return t;
     }
-
     public double getTotalRevenue(){
         return totalRevenue;
     }
@@ -149,6 +148,7 @@ public class AdminService {
             
         else throw new ServiceException("Ticket already resolved");
     }
+
     public double getAvgOrders(){ 
         return getTotalOrders()/getAllCustomers();
         //average no. of orders per customer

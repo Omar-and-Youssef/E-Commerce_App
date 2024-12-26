@@ -20,8 +20,6 @@ public class ProductController extends BaseController {
     private Label brandLabel;
     @FXML
     private Label priceLabel;
-    // @FXML
-    // private Label categoryLabel;  
     @FXML
     private Label descriptionLabel;
     @FXML
@@ -81,7 +79,7 @@ public class ProductController extends BaseController {
         cartSuccessLabel.setVisible(false);
     }
 
-    public void configureScreenByRole(){//all admin stuff do !
+    public void configureScreenByRole(){
             boolean isCustomer=engine.isCustomer;
 
             if(isCustomer){
@@ -301,6 +299,13 @@ public class ProductController extends BaseController {
         if(engine.isCustomer)
             engine.switchScene(Screen.ORDERS);
         else engine.switchScene(Screen.ANALYTICS);
+    }
+    
+    @FXML 
+    ImageView profile;
+    @FXML
+    public void viewProfile(){
+        engine.switchScene(Screen.PROFILE);
     }
 }
 

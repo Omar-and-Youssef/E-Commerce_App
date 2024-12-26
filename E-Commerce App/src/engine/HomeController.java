@@ -24,7 +24,12 @@ public class HomeController extends BaseController {
     public void handleLogout(){
         engine.switchScene(Screen.LOGIN);
         clearSearch();
-        //TODO ensure saving cart, wishlist, orders,... \\
+    }
+    @FXML 
+    ImageView profile;
+    @FXML
+    public void viewProfile(){
+        engine.switchScene(Screen.PROFILE);
     }
     @FXML
     public void handleCart(){

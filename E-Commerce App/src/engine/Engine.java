@@ -37,15 +37,18 @@ public class Engine {
     private Scene orderSummaryScene;
     private OrderSummaryController orderSummaryController;
 
-
     private Scene modifyScene;
     private ModifyProductController modifyController;
 
     private Scene analyticsScene;
     private AnalyticsController analyticsController;
 
+    private Scene profileScene;
+    private ProfileController profileController;
+
     private Stage stage;
     private Screen currentScreen;
+
 
     
     private Product viewedProduct;
@@ -104,7 +107,6 @@ public class Engine {
             productController =(ProductController) productLoader.getController();
             productController.setEngine(this);
 
-
             FXMLLoader cartLoader = new FXMLLoader(getClass().getResource("Cart.fxml"));
             cartScene = new Scene(cartLoader.load());
             cartController =(CartController) cartLoader.getController();
@@ -135,6 +137,11 @@ public class Engine {
             analyticsScene = new Scene(analyticsLoader.load());
             analyticsController =(AnalyticsController) analyticsLoader.getController();
             analyticsController.setEngine(this);
+
+            FXMLLoader profileLoader = new FXMLLoader(getClass().getResource("Profile.fxml")); 
+            profileScene = new Scene(profileLoader.load());
+            profileController =(ProfileController) profileLoader.getController();
+            profileController.setEngine(this);
             
     }
     public void switchScene(Screen nextScreen){
@@ -188,6 +195,9 @@ public class Engine {
                 analyticsController.updateAnalytics();
                 stage.setScene(analyticsScene);
                 break;
+            case PROFILE:
+                profileController.setUser(currentUser);
+                stage.setScene(profileScene);
             default: break;
         }
     }

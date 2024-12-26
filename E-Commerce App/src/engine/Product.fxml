@@ -31,7 +31,6 @@
             <Blend />
          </effect>
       </Button>
-      <Label fx:id="nameLabel" layoutX="28.0" layoutY="17.0" prefHeight="49.0" prefWidth="253.0" styleClass="welcome-message" stylesheets="@style.css" />
       <HBox layoutX="179.0" layoutY="227.0" prefHeight="340.0" prefWidth="170.0">
          <children>
             <VBox alignment="CENTER" prefHeight="372.0" prefWidth="236.0">
@@ -178,5 +177,23 @@
             <Image url="@resources/UnlikedProduct.png" />
          </image>
       </ImageView>
+      <HBox layoutX="24.0" layoutY="13.0" prefHeight="42.0" prefWidth="42.0">
+         <children>
+            <ImageView fx:id="profile" fitHeight="48.0" fitWidth="44.0" onMouseClicked="#viewProfile" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@resources/profile.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+         <padding>
+            <Insets bottom="8.0" />
+         </padding>
+      </HBox>
    </children>
 </AnchorPane>

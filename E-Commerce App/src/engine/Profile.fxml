@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.ProfileController">
+   <children>
+      <Label id="title" fx:id="title" alignment="BASELINE_CENTER" layoutX="-18.0" layoutY="3.0" prefHeight="69.0" prefWidth="933.0" styleClass="title" stylesheets="@style.css" text="★Cadabra" textAlignment="CENTER" textFill="#9f5d5d">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button layoutX="33.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="42.0" prefWidth="105.0" styleClass="backButton" stylesheets="@style.css" text="← Back">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Label fx:id="profileTitle" alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="47.0" layoutY="111.0" prefHeight="48.0" prefWidth="267.0" style="-fx-text-fill: orange;" styleClass="subTitle" stylesheets="@style.css" text="Profile " textFill="ORANGE">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <VBox layoutX="211.0" layoutY="229.0" prefHeight="221.0" prefWidth="414.0" spacing="10.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="nameLabel" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="458.0" text="name">
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="emailLabel" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="458.0" text="Label">
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="addressLabel" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="521.0" text="Label">
+                     <padding>
+                        <Insets left="100.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="413.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="phoneLabel" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="525.0" text="Label">
+                     <padding>
+                        <Insets left="100.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="walletBox" prefHeight="100.0" prefWidth="413.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Wallet">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="walletLabel" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="525.0" text="wallet">
+                     <padding>
+                        <Insets left="100.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
