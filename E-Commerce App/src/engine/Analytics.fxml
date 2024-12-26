@@ -30,7 +30,7 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <VBox layoutX="211.0" layoutY="193.0" prefHeight="369.0" prefWidth="489.0" spacing="10.0">
+      <VBox layoutX="216.0" layoutY="209.0" prefHeight="249.0" prefWidth="450.0" spacing="10.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -136,5 +136,7 @@
             </HBox>
          </children>
       </VBox>
+      <Button layoutX="218.0" layoutY="488.0" mnemonicParsing="false" onAction="#viewAllOrders" prefHeight="38.0" prefWidth="201.0" styleClass="menu-button" stylesheets="@style.css" text="View All orders" />
+      <Button layoutX="466.0" layoutY="489.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="201.0" styleClass="menu-button" text="View All Customers" />
    </children>
 </AnchorPane>

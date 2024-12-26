@@ -52,8 +52,6 @@ public class HomeController extends BaseController {
             engine.switchScene(Screen.ORDERS);
         else engine.switchScene(Screen.ANALYTICS);
     }
-    
-    
     // @FXML
     // public void handleWishlist(){
     //     engine.switchScene(Screen.WISHLIST);

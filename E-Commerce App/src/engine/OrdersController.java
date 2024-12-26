@@ -8,11 +8,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
+
 public class OrdersController extends BaseController {
+    @FXML 
+    Label titleLabel;
 
 int orderCount;
+ArrayList<Order> orders;
+
 public void populateOrders(int startingIndex){
-    ArrayList<Order> orders=engine.getOrders();
+    orders=(engine.isCustomer)?engine.getCustomerOrders():engine.getAllOrders();
+    titleLabel.setText((engine.isCustomer)?"My Orders":"All Orders");
 
     if(startingIndex==-1) startingIndex=orderCount;
     int orderSize=orders.size();
@@ -24,7 +30,6 @@ public void populateOrders(int startingIndex){
     HBox[] orderBoxes={orderBox1,orderBox2,orderBox3};
     int i;  
     for(i=0;i<3&&startingIndex+i<orderSize;i++){
-        //we will look from down up
         Order order=orders.get(startingIndex+i);
         dateLabels[i].setText(order.getOrderDate());
         statusLabels[i].setText(order.getOrderStatus().toString());
@@ -53,7 +58,6 @@ public void navigateOrdersLeft(){
 }
 @FXML
 public void navigateOrdersRight(){
-    ArrayList<Order> orders=engine.getOrders();
     if(orders.size()>orderCount+3){
         orderCount+=3;
         populateOrders(orderCount);
@@ -61,7 +65,8 @@ public void navigateOrdersRight(){
 }
 @FXML
 public void handleBack(){
-    engine.switchScene(Screen.HOME);
+    if(engine.isCustomer)   engine.switchScene(Screen.HOME);
+    else engine.switchScene(Screen.ANALYTICS);
 }
 @FXML
 private Button backButton;

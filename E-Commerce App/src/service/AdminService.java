@@ -117,7 +117,9 @@ public class AdminService {
             totalRevenue+=order.getOrderTotal();
         }
     }
-    
+    public ArrayList<Order> getAllOrders(){
+        return orderDAO.getAllOrders();
+    }
     public void assignHelpTicket(HelpTicket helpTicket)
     throws ServiceException{
         ArrayList<Admin> admins=adminDAO.getAllAdmins();

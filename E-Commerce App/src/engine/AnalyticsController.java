@@ -2,6 +2,7 @@ package engine;
 
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class AnalyticsController extends BaseController{
@@ -18,6 +19,15 @@ public class AnalyticsController extends BaseController{
     @FXML
     private Label bestProduct;
 
+    @FXML
+    private Button viewOrders;
+    @FXML
+    private Button viewCustomers;
+
+    @FXML
+    public void viewAllOrders(){
+        engine.switchScene(Screen.ORDERS);
+    }
     public void updateAnalytics(){
         if(engine==null) return;
         totalCustomers.setText(String.valueOf(engine.getTotalCustomers()));

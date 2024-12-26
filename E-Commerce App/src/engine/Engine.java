@@ -46,6 +46,9 @@ public class Engine {
     private Scene profileScene;
     private ProfileController profileController;
 
+    private Scene customerDBScene;
+    private CustomerDBController customerDBController;
+
     private Stage stage;
     private Screen currentScreen;
 
@@ -142,7 +145,11 @@ public class Engine {
             profileScene = new Scene(profileLoader.load());
             profileController =(ProfileController) profileLoader.getController();
             profileController.setEngine(this);
-            
+        
+            FXMLLoader customerDBLoader = new FXMLLoader(getClass().getResource("CustomerDB.fxml"));
+            customerDBScene = new Scene(customerDBLoader.load());
+            customerDBController =(CustomerDBController) customerDBLoader.getController();
+            customerDBController.setEngine(this);
     }
     public void switchScene(Screen nextScreen){
         currentScreen=nextScreen;
@@ -198,6 +205,9 @@ public class Engine {
             case PROFILE:
                 profileController.setUser(currentUser);
                 stage.setScene(profileScene);
+            case CUSTOMER_DB:
+                customerDBController.populateCustomerDB(0);
+                stage.setScene(customerDBScene);
             default: break;
         }
     }
@@ -358,8 +368,11 @@ public class Engine {
             return 0;
         }
     }
-    public ArrayList<Order> getOrders(){
+    public ArrayList<Order> getCustomerOrders(){
         return currentCustomer.getOrders();
+    }
+    public ArrayList<Order> getAllOrders(){
+        return adminService.getAllOrders();
     }
     public void setViewedOrder(Order order){
         this.viewedOrder=order;
@@ -389,4 +402,7 @@ public class Engine {
     public Product getBestProduct(){
         return adminService.getBestSellingProduct();
     }
+    // public AdminDBViewController getAdminDBViewController(){
+    //     return adminDBViewController;
+    // }
 } 

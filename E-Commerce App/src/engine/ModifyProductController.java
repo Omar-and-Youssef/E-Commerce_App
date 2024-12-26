@@ -136,7 +136,6 @@ public class ModifyProductController extends BaseController {
         errorLabel.setVisible(false);
         if(currentProduct==null)engine.switchScene(Screen.HOME);
         else engine.switchScene(Screen.PRODUCT);
-        engine.getHomeController().handleCategoryAll();
     }
     public void updateImage(String path){
         try{

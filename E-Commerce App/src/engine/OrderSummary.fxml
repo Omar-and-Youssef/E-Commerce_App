@@ -31,10 +31,19 @@
          <children>
             <HBox prefHeight="61.0" prefWidth="489.0">
                <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" styleClass="subTitle" text="Customer ID: " />
+                  <Label fx:id="customerLabel" style="-fx-font-size: 14;" styleClass="subTitle" text="Label">
+                     <padding>
+                        <Insets left="10.0" top="2.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets right="100.0" />
+                     </HBox.margin>
+                  </Label>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" styleClass="subTitle" text="Order:" />
                   <Label fx:id="orderIDLabel" style="-fx-font-size: 14;" styleClass="subTitle" text="Label">
                      <HBox.margin>
-                        <Insets right="320.0" />
+                        <Insets right="100.0" />
                      </HBox.margin>
                      <padding>
                         <Insets left="10.0" top="2.0" />
@@ -54,7 +63,7 @@
             <HBox prefHeight="106.0" prefWidth="637.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" styleClass="subTitle" text="Ordered Items:" />
-                  <Label fx:id="orderedItems" alignment="TOP_LEFT" prefHeight="110.0" prefWidth="489.0" style="-fx-font-size: 14;" text="Label">
+                  <Label fx:id="orderedItems" alignment="TOP_LEFT" prefHeight="110.0" prefWidth="489.0" style="-fx-font-size: 15;" text="Label">
                      <padding>
                         <Insets left="10.0" top="2.0" />
                      </padding>

@@ -81,7 +81,6 @@ public class CartController extends BaseController{
             else { 
                 engine.orderByCOD(address);
                 displaySuccessMessage();
-                engine.getOrders().get(0).toString();
             }
         walletLabel.setText("$" + String.format("%.2f",engine.getCurrentCustomer().getWallet()));
             //same for card for now

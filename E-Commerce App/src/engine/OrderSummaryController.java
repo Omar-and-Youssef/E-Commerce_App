@@ -23,6 +23,8 @@ public class OrderSummaryController extends BaseController {
     private Label paymentLabel;
     @FXML
     private Label totalLabel;
+    @FXML
+    private Label customerLabel;
 
 
     public void setOrder(Order order){
@@ -38,12 +40,15 @@ public class OrderSummaryController extends BaseController {
         engine.cancelOrder();
         engine.switchScene(Screen.ORDERS);
     }
-
     @FXML
     public void handleBack(ActionEvent e){
         engine.switchScene(Screen.ORDERS);
     }
     public void fillOrderSummary(){
+        if(!engine.isCustomer||order.getOrderStatus()==OrderStatus.CANCELLED) 
+        cancelOrderButton.setVisible(false);
+        else cancelOrderButton.setVisible(true);
+        customerLabel.setText("#"+order.getCustomer().getUserID());
         orderIDLabel.setText("#"+order.getOrderID());
         dateLabel.setText(order.getOrderDate().toString());
         statusLabel.setText(order.getOrderStatus().toString());
@@ -52,6 +57,5 @@ public class OrderSummaryController extends BaseController {
         paymentLabel.setText(order.getPaymentMethod());
         orderedItems.setText(order.toString());
         cancelOrderButton.setVisible(true);
-        if(order.getOrderStatus()==OrderStatus.CANCELLED)cancelOrderButton.setVisible(false);
     }
 }
