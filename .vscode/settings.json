@@ -22,5 +22,8 @@
         "exclude": [
             "c:\\Users\\MONTASER YOUSUF\\Desktop\\javafx-sdk-21.0.5\\lib\\javafx.swing.jar"
         ]
+    },
+    "files.associations": {
+        "cmath": "cpp"
     }
 }

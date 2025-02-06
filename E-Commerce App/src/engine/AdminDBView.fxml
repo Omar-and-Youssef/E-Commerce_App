@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="engine.OrdersController">
+   <children>
+      <Label id="title" fx:id="title" alignment="BASELINE_CENTER" layoutX="-18.0" layoutY="3.0" prefHeight="69.0" prefWidth="933.0" styleClass="title" stylesheets="@style.css" text="★Cadabra" textAlignment="CENTER" textFill="#9f5d5d">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="backButton" layoutX="33.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="42.0" prefWidth="105.0" styleClass="backButton" stylesheets="@style.css" text="← Back">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="47.0" layoutY="111.0" prefHeight="48.0" prefWidth="267.0" styleClass="subTitle" stylesheets="@style.css" text="Your Orders">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <VBox layoutX="67.0" layoutY="180.0" prefHeight="300.0" prefWidth="761.0" stylesheets="@style.css">
+         <children>
+            <HBox prefHeight="36.0" prefWidth="493.0" stylesheets="@style.css">
+               <children>
+                  <Label id="image-header" stylesheets="@style.css" text="Date">
+                     <HBox.margin>
+                        <Insets right="70.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label id="image-header" stylesheets="@style.css" text="Status">
+                     <HBox.margin>
+                        <Insets right="70.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label id="details-header" stylesheets="@style.css" text="Shipping address">
+                     <HBox.margin>
+                        <Insets right="70.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label id="quantity-header" stylesheets="@style.css" text="Payment Method">
+                     <HBox.margin>
+                        <Insets right="70.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label id="subtotal-header" stylesheets="@style.css" text="Total">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <styleClass>
+                  <String fx:value="cart-header" />
+                  <String fx:value="cart-header-border" />
+               </styleClass>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox fx:id="orderBox1" alignment="CENTER_LEFT" prefHeight="81.0" prefWidth="805.0" styleClass="order-row" stylesheets="@style.css">
+               <children>
+                  <Label fx:id="dateLabel1" prefHeight="25.0" prefWidth="119.0" style="-fx-font-size: 16;" text="Label">
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="statusLabel1" prefHeight="25.0" prefWidth="122.0" style="-fx-font-size: 16; -font-weight: bold;" text="Label">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="addressLabel1" prefHeight="25.0" prefWidth="203.0" style="-fx-font-size: 16;" text="Label">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="paymentLabel1" prefHeight="25.0" prefWidth="193.0" style="-fx-font-size: 16;" text="Label">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="totalLabel1" style="-fx-font-size: 16;" text="Label">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="orderBox2" alignment="CENTER_LEFT" prefHeight="81.0" prefWidth="805.0" styleClass="order-row" stylesheets="@style.css">
+               <children>
+                  <Label fx:id="dateLabel2" prefHeight="25.0" prefWidth="119.0" style="-fx-font-size: 16;" text="Label">
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="statusLabel2" prefHeight="25.0" prefWidth="122.0" style="-fx-font-size: 16; -font-weight: bold;" text="Label">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="addressLabel2" prefHeight="25.0" prefWidth="203.0" style="-fx-font-size: 16;" text="Label">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="paymentLabel2" prefHeight="25.0" prefWidth="193.0" style="-fx-font-size: 16;" text="Label">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="totalLabel2" style="-fx-font-size: 16;" text="Label">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="orderBox3" alignment="CENTER_LEFT" prefHeight="81.0" prefWidth="805.0" styleClass="order-row" stylesheets="@style.css">
+               <children>
+                  <Label fx:id="dateLabel3" prefHeight="25.0" prefWidth="119.0" style="-fx-font-size: 16;" text="Label">
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="statusLabel3" prefHeight="25.0" prefWidth="122.0" style="-fx-font-size: 16; -font-weight: bold;" text="Label">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="addressLabel3" prefHeight="25.0" prefWidth="203.0" style="-fx-font-size: 16;" text="Label">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="paymentLabel3" prefHeight="25.0" prefWidth="193.0" style="-fx-font-size: 16;" text="Label">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="totalLabel3" style="-fx-font-size: 16;" text="Label">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button fx:id="navOrdersLeftButton" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="373.0" layoutY="490.0" mnemonicParsing="false" onAction="#navigateOrdersLeft" prefHeight="24.0" prefWidth="29.0" style="-fx-font-size: 14;" styleClass="black-button" stylesheets="@style.css" text="&lt;">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+      <Button fx:id="navOrdersRightButton" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="455.0" layoutY="491.0" mnemonicParsing="false" onAction="#navigateOrdersRight" prefHeight="0.0" prefWidth="0.0" style="-fx-font-size: 14;" styleClass="black-button" stylesheets="@style.css" text="&gt;">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

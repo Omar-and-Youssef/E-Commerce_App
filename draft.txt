@@ -1,25 +1,6 @@
-//Search Bar?
-User
-|-Admin(For maniging)
-|-Customer(Buyer,Seller)
-Ticket For Help
-Cart
-Orders(Product Id,price,date,info...)
-Order Status
-MemberShip (price,expiry)
-MemberShipType(Enum)
-WishList
-
-Exceptions...
-Gui.....
-resources...
-
-Product
-Review (user id,productid,message,rating)
-Category (tech..)
-
-Promotions:
-|-Coupon(Voucher either)
-|-Discount(For item,Category,All)
-|-Points
-
+Future Plans: 
+-Help Tickets
+-MemberShips
+-Promotions
+-Multithreading & client server commnunication
+-AWS Deployment 

@@ -5,7 +5,6 @@ import entity.products.Category;
 import entity.products.Product;
 import entity.users.details.CartItem;
 import entity.users.details.Order;
-import exceptions.ServiceException;
 import entity.users.accounts.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
@@ -224,7 +223,7 @@ public class Engine {
         currentUser = customerService.logIn(email, password);
         if (currentUser != null) {
             currentCustomer = (Customer) currentUser;
-            isCustomer=true;//will b used in product controller
+            isCustomer=true;
             return true;
         }
         currentUser = adminService.logIn(email, password);
@@ -312,8 +311,10 @@ public class Engine {
     public void deleteViewedProduct(){
         try{
         adminService.deleteProduct(viewedProduct);
-        }catch(Exception ex){
-        
+        }
+        catch(Exception ex){
+            System.err.print(ex.getMessage());
+            ex.printStackTrace();
         }
     }
     public boolean addProduct(Product product){

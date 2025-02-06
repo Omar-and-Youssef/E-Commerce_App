@@ -15,5 +15,4 @@ public class AppLauncher extends Application {
     public void start(Stage primaryStage) throws Exception {
         app=new Engine(primaryStage);
     }
-  
 }
