@@ -24,17 +24,19 @@ public class Database {
             ADMIN_DB.add(a2);
 
             // Create product objects
-            Product p1=new Product(1200.00, 30, "Apple iPhone 13", "Latest Apple smartphone", "Apple", Category.ELECTRONICS, "resources/iphone13.png")
+            Product p1=new Product(799.00, 55, "Apple iPhone 14 Pro", "Larger version of the iPhone 14", "Apple", Category.ELECTRONICS, "resources/iphone14Pro.png")
             ,p2=new Product(1000.00, 50, "ASUS Laptop", "High-end gaming laptop", "ASUS", Category.ELECTRONICS, "resources/laptop.png")
-            ,p3=new Product(800.00, 40, "Samsung Galaxy Tab", "10-inch tablet", "Samsung", Category.ELECTRONICS, "resources/galaxytab.png")
             ,p4=new Product(199.99, 100, "Fitbit Charge 5", "Fitness tracker with heart rate monitor", "Fitbit", Category.ELECTRONICS, "resources/fitbit.png");
             p1.setRating(5);
             p2.setRating(4);
+            PRODUCT_DB.add(new Product(1099.00, 30, "Apple iPhone 16 Pro Max", "Latest iPhone with enhanced features", "Apple", Category.ELECTRONICS, "resources/iphone16ProMax.png"));
+            PRODUCT_DB.add(new Product(999.00, 45, "Apple iPhone 15 Pro Max", "Previous iPhone model with great features", "Apple", Category.ELECTRONICS, "resources/iphone15ProMax.png"));
+            PRODUCT_DB.add(p1);
+            PRODUCT_DB.add(new Product(1500.00, 25, "MacBook Pro 16-inch", "Apple's powerful laptop with M1 chip", "Apple", Category.ELECTRONICS, "resources/macbookPro.png"));
             PRODUCT_DB.add(p2);
-            PRODUCT_DB.add(p3);
             PRODUCT_DB.add(new Product(450.00, 60, "Sony Headphones", "Noise-canceling over-ear headphones", "Sony", Category.ELECTRONICS, "resources/sonyHeadphones.png"));
             PRODUCT_DB.add(p4);
-            PRODUCT_DB.add(p1);
+
             // Clothing
             PRODUCT_DB.add(new Product(15.05, 500, "Black T-shirt", "Basic cotton t-shirt", "Nike", Category.CLOTHING, "resources/blackShirt.png"));
             PRODUCT_DB.add(new Product(60.07, 300, "Blue Jeans", "Slim fit jeans", "Levi's", Category.CLOTHING, "resources/blueJeans.png"));

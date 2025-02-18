@@ -19,7 +19,7 @@
             "request": "launch",
             "mainClass": "engine.AppLauncher",
             "projectName": "E-Commerce_App_2b4c32e8",
-            "vmArgs": "--module-path \"C:/Users/MONTASER YOUSUF/Desktop/javafx-sdk-17.0.13/lib\" --add-modules javafx.controls,javafx.fxml"
+            "vmArgs": "--module-path \"C:/Users/MONTASER YOUSUF/Desktop/javafx-sdk-17.0.14/lib\" --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",
