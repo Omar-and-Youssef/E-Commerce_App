@@ -14,11 +14,16 @@ public class Database {
             Customer c1 = new Customer("John Doe", "q", "q", Gender.MALE,Category.ELECTRONICS);
             c1.setWallet(5000);
             Customer c2 = new Customer("Jane Doe", "jane@gmail.com", "password", Gender.FEMALE,Category.CLOTHING);
+            Customer c3 = new Customer("Omar Montaser", "omarmontaser@gmail.com", "password", Gender.FEMALE,Category.CLOTHING);
+            Customer c4 = new Customer("Mohamed Salah", "salah@gmail.com", "password", Gender.FEMALE,Category.CLOTHING);
+
             CUSTOMER_DB.add(c1);
             CUSTOMER_DB.add(c2);   
+            CUSTOMER_DB.add(c3);
+            CUSTOMER_DB.add(c4);
             
             Admin a1 = new Admin("Montaser", "w", "w", Gender.MALE, "Development","8-4");
-            Admin a2 = new Admin("Yousuf", "montaser@gmail.com", "password", Gender.MALE, "Development","9-5");        
+            Admin a2 = new Admin("Yousuf", "yousuf@gmail.com", "password", Gender.MALE, "Development","9-5");        
 
             ADMIN_DB.add(a1);
             ADMIN_DB.add(a2);
